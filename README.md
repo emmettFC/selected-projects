@@ -5,5 +5,4 @@
 #### Scrape white shark telemetry: Build visualizations against NOAA CoRTAD SST and ETOPO1 bathymetry
 
 Spring White-Shark Plot: 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/Spring_telemetry_cortadSST_bathymetry.png "Spring White Shark Telemetry")
-
+![spring white shark plot]({{ https://emmettfc.github.io/selected-projects/ }}/assets/Spring_telemetry_cortadSST_bathymetry.png)
