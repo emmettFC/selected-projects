@@ -1,0 +1,26 @@
+<annotation>
+	<folder>foundFrames 2</folder>
+	<filename>frame5.png</filename>
+	<path>/Users/culhane/Desktop/foundFrames/frame5.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>500</width>
+		<height>888</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>goldfish</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>45</xmin>
+			<ymin>151</ymin>
+			<xmax>204</xmax>
+			<ymax>338</ymax>
+		</bndbox>
+	</object>
+</annotation>
