@@ -21,6 +21,7 @@ import matplotlib.pyplot as plt
 from sklearn import decomposition 
 import argparse
 from svdBackgroundRemoval import * 
+from buildAnnotation import * 
 
 # -- 
 # Command line interface
@@ -83,7 +84,10 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         text = "Fish Detected"
     if (counter, counterClear) == (1,1): 
-        cv2.imwrite('./foundFrames/frame' + str(counterLab) + '.jpg', frame)
+        outFile = './foundFrames/frame' + str(counterLab) + '.jpg'
+        cv2.imwrite(outFile, frame)
+        # build annotation xml file
+        buildAnnotation(x, y, h, w, outFile, 'goldfish', 'foundFrames')
         counterLab +=1
         # write out labeled frame
     # draw the text and timestamp on the frame
