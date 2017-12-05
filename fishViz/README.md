@@ -75,7 +75,12 @@ I am running the CPU version of tensorflow, which is tedious and inefficient. Fo
 ### To do / Expanding on current state: 
 Moving forward, it the model must be made more robust and applied to both the White Sucker and the Carp. The ultimate goal is differentiation, which has not yet been accomplished. To do this it will be necessary to train a model on multiple classes, correct for depth, and orientation -- perhaps via application of siamese neural network. 
 
-In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed. For these, some more work on the Arduino sketch used to measure the temperature is required. 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/arduino-temperature-sensor.png)
 
+In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured above). For these, some more work on the Arduino sketch used to measure the temperature is required. 
+
+### Thanks for reading!! 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/me-with-sucker.png)
 
 
