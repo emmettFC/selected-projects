@@ -26,6 +26,19 @@ Philadelphia's Wissahickon Creek is one of its 7 major subwatersheds and drains 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/camera-sensors.png)
 
 ### Hardware: 
+In order to do this project, two underwater camera sensors were made using Raspberry Pi's. The complete set of materials used is as follows: 
+  * 2x Raspberry Pi SCB 
+  * 2x Logitech C905 USB webcams
+  * 2x 16G USB storage devices
+  * 2x 5200 mAh lithium ion battery packs
+  * 2x SPOR PCB with USB and Micro-USB 
+  * 2x Micro-USB to USB cables
+  * 2x plastic 7.5 x 3.5 x 2 inch plastic boxes 
 
+Each of the devices was booted on a Raspbian linux image via micro-sd cards. Code for motion detection and subprocess for writing out labeled frames was implemented in python via openCV. Instllation was a bit trying, though this is generally the case with openCv given its significant associated requirements and space contraints of the SCB's. The boxes were sealed with hot glue and electrical tape, and mounted to submerged trees in the regions of interest. NB: the hot glue seams were insufficient, and on the second deployment one of the boxes leaked and the Pi was destroyed. I have since purchased another Pi and am working towards an improved housing design. 
+
+
+
+### Code and Implentation: 
 
 
