@@ -56,3 +56,26 @@ For this I applied an implementation of regular SVD proposed in a solution propo
 When motion is detected, the camera then transfers each occupied frame to the USB storage device. Given the number of frames per second that the device sees, and the large number of potentially spurious objects (such as leaves), I had to specify a large threshold value for what was considered to be a detected object. Further, these images are ultimately meant to be used to train a model, so images with many bounding rectangles and objects at multiple depths are difficult to annotate and to use. For this reason I also specified that a frame would only be written to memory if 1) it was of a large enough size and 2) if there was only one detected object in the frame. This may seem like a severe limitation but the camera sees so many objects that it turned out to be an effective method. Moreover, this set of constraints allowed for a very helpful adaptation of the model training process. Instead of using a GUI or command line utility to move through the frames and draw / label each rectangle, I was able to use the dimensions of the bounding rectangles to produce labeled xml annotations that could be used to train the object detection model. The above figure shows the output of this process for an adequatey sized frame. 
 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/loss-graph.png)
+
+
+### Object detection & training the SSD mobilenet CNN for recognition: 
+Once labels and images have been generated via motion detection, and exctracted from the USB storage after sensor retreival, the object recognition model had to be trained so that fish classification could be accomplished. For this I used the tensorflow object detection API, which can be challenging to stand up. The process is as follows: 
+  * Divide images into training and testing sets
+  * Convert xml labels to csv
+  * Create tf records file that can be read by tensorflow to train the model
+  * Train the model and wait for enough steps to get adequate convergence (process illustrated in the above figure) 
+  * Export the frozen inference graph to be used in objet detection
+  * Run object detection script and observe results
+
+I am running the CPU version of tensorflow, which is tedious and inefficient. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces a workable model for recognition. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/mobilenet-applied-carp.png)
+
+### To do / Expanding on current state: 
+Moving forward, it the model must be made more robust and applied to both the White Sucker and the Carp. The ultimate goal is differentiation, which has not yet been accomplished. To do this it will be necessary to train a model on multiple classes, correct for depth, and orientation -- perhaps via application of siamese neural network. 
+
+In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed. For these, some more work on the Arduino sketch used to measure the temperature is required. 
+
+
+
