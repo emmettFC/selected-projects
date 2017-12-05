@@ -38,8 +38,14 @@ In order to do this project, two underwater camera sensors were made using Raspb
 Each of the devices was booted on a Raspbian linux image via micro-sd cards. Code for motion detection and subprocess for writing out labeled frames was implemented in python via openCV. Instllation was a bit trying, though this is generally the case with openCv given its significant associated requirements and space contraints of the SCB's. The boxes were sealed with hot glue and electrical tape, and mounted to submerged trees in the regions of interest. NB: the hot glue seams were insufficient, and on the second deployment one of the boxes leaked and the Pi was destroyed. I have since purchased another Pi and am working towards an improved housing design. 
 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/mobilenet-applied-carp.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/delta-mask-monitor.png)
 
-### Code and Implentation: 
+### Motion Detection:
+The process for detecting and classying the observed fish begins with a light-weight / real time motion detection functionality implemented in openCv. Motion detection is much less computationaly heavy than object-detection, which requires the use of neural networks and tensorflow. The object-detection component of this project is implemented only after image data has been collected by the submerged cameras, with the mobilenet CNN being trained locally on labeled images from the stoage devices attatched to the Raspberry Pi's. The figure above, which is an example frame from a test deployment of the sensor in my fishtank, shows the output of the motion detection process. From left to right, the images show: the mask, and improved delta and the resulting video frame with bounding rectangle drawn on screen. Detection is simple in principle: openCv is told what the 'empty' tank looks like, and then a pixel matrix is created for the unoccupied space. Then, any deviations from this structure are marked as occupations, and motion is detected. The contraint here is that the model must therefore be told what the 'empty' frame is so that it can measure disruptions. Since the intent was to built a geneirc sensor, I had to design a process to identify the 'empty' frame without manually providing it. 
+
+
+
+### Application of regular SVD to initialize empty frame: 
+
 
 
