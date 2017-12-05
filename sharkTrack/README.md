@@ -1,6 +1,8 @@
 # sharkTrack
-## Scrape white shark telemetry from OCEARCH Global Shark Tracker
-## Build visualizations against NOAA CoRTAD SST and ETOPO1 bathymetry
+## Scrape white shark telemetry from OCEARCH Global Shark Tracker & build visualizations against NOAA CoRTAD SST and ETOPO1 bathymetry
+
+
+
 
 ### Topics included in this repository: 
 1. Data scraping: 
@@ -12,3 +14,7 @@
 
 3. Data Visualization: 
   * Production of high quality GIS visualizations by integration of OCEARCH White Shark data, ETOPO1 bathymetric tiles and Sea Surface Temperature from NOAA Coral Reef Temperature Anomaly Database
+  * Implement kernel density via havershine distance metric to smooth sparse point data 
+  
+
+
