@@ -38,6 +38,7 @@ In order to do this project, two underwater camera sensors were made using Raspb
 Each of the devices was booted on a Raspbian linux image via micro-sd cards. Code for motion detection and subprocess for writing out labeled frames was implemented in python via openCV. Instllation was a bit trying, though this is generally the case with openCv given its significant associated requirements and space contraints of the SCB's. The boxes were sealed with hot glue and electrical tape, and mounted to submerged trees in the regions of interest. NB: the hot glue seams were insufficient, and on the second deployment one of the boxes leaked and the Pi was destroyed. I have since purchased another Pi and am working towards an improved housing design. 
 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/mobilenet-applied-carp.png)
 
 ### Code and Implentation: 
 
