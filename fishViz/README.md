@@ -18,5 +18,7 @@
   * One humidity/temperature sensor built with Arduino Yun (not deployed) 
  
 
+### Project Overview: 
+Philadelphia's Wissahickon Creek is one of its 7 major subwatersheds and drains into the Schuylkill river. The creek is known to be very dirty, swimming is prohibited but many do so despite the prohibition. It is also an attractive destination for anglers due to the variety and density of its fish population. The creek is stocked with adult trout twice each year. I am a frequent and somewhat zealous snorkler of the creek, which has dense pockets of fish with (occasionally) high visibility. I identified two adjacent sections of the creek, each less than 300 yards long, which -- with the exception of short periods following very heavy rainfall -- are separated by rockbeds where the water level is < 3 inches deep.  
 
 
