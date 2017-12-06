@@ -44,7 +44,7 @@ The density plot illustrates clear seasonal migration. The most basic next step 
 
 
 ### Data visualization: Adding the bathymetric model
-As sharks move out past the shelf they pass into deep water. That said there are isolated points of lower depth far out in the Atlantic. As a final component to this initial mapping effort, I thought it would be useful to integrate a bathymetric model to see if any observable concentration around these points of lower depth existed. The post detailing the SST application also made referece to the ETOPO1 global relief model, which I then integrated (as shown below): 
+As sharks move out past the shelf they pass into deep water. That said there are isolated points of lower depth far out in the Atlantic. As a final component to this initial mapping effort, I thought it would be useful to integrate a bathymetric model to see if any observable concentration around these points of lower depth existed. The post detailing the SST application also made referece to the ETOPO1 global relief model, which I then integrated (as shown below for Spring): 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/spring-actual-big.png)
 
