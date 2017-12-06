@@ -20,7 +20,7 @@
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/bathy-and-sst-fall-spring.png)
 
 ### Project Overview: 
-This past summer I saw an article in the New Haven Register that reported the sensational fact of a White Shark having been tracked into the Long Island Sound. I typically spend a few weeks each summer at my family cottage in Madison CT, which is less than a mile from Guilford -- the reported location of the White Shark (Montauk, migration pattern pictured below). The article referenced the OCEARCH Global Shark Tracker, a web-based application that tracks the location of tagged sharks and plots them on a map. While I liked their interface, I thought it could be improved upon through the integration of external data sources and the addition of a dynamic component to enable season-specific visualization. I subsequently wrote a scraping process in python and pulled down the geopoint data from the tracker so that I could build out this functionality. This project repository presents some of that initial discovery work.  
+This past summer I saw an article in the New Haven Register that reported the sensational fact of a White Shark having been tracked into the Long Island Sound -- the sharks name was Montauk, migration pattern pictured below. The article referenced the OCEARCH Global Shark Tracker, a web-based application that tracks the location of tagged sharks and plots them on a map. While I liked their interface, I thought it could be improved upon through the integration of external data sources and the addition of a dynamic component to enable season-specific visualization. I subsequently wrote a scraping process in python and pulled down the geopoint data from the tracker so that I could build out this functionality. This ultimately turned out to be a fruitful project, as I reached out to the folks at OCEARCH hoping to contribute, and have since been on several calls with them / am looking to deepen my involvement going forward. This project repository presents some of that initial discovery work.  
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/Montauk-Migration.png)
 
@@ -32,19 +32,19 @@ I wrote a scraping proceedure in python to extract all of the geopoint data used
 
 
 ### Data visualization: Kernel Density 
-For the first pass at visualization, I wanted to segment the data according to season and see how the population moved. Scatter plots were a bit confusing to look at, and the concentration of sharks near the coast obscured the density given how close they were to one another. To navigate this I applied a bivariate kernel density estimate, using the havershine distance metric, in an attempt to get a better sense of the concentration (pictured below). 
+For the first pass at visualization, I wanted to segment the data according to season and see how the population moved. Scatter plots were a bit confusing to look at, and the concentration of sharks near the coast obscured the density given how close they were to one another. To navigate this I applied a kernel density estimate--which employed a Ball Tree built on the havershine distance metric--in an attempt to get a better sense of the concentration (pictured below). The application of kernel density estimates to lat/lon data was guided by the following reference found in the scikitlearn documentation: http://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/kernel-density-plots-whiteShaks-seasonal.png)
 
 
 ### Data visualization: Sea Surface Temperature 
-The density plot illustrates clear seasonal migration. The most basic next step seemed then to plot the corresponding change in water temperature as a point of reference. The pings are only sent to the satellite when the shark fins--or when the submerged device breaches / nearly breaches the surface of the water. I found a helpful resource that detailed the application of the NOAA CoRTAD SST layer to basemap projections (can be accessed here http://www.trondkristiansen.com/), which I implemented for the region of interest in the Atlantic (pictured below). 
+The density plot illustrates clear seasonal migration. The most basic next step seemed then to plot the corresponding change in water temperature as a point of reference. The pings are only sent to the satellite when the shark fins--or when the submerged device breaches / nearly breaches the surface of the water. I found a helpful resource that detailed the application of the NOAA CoRTAD SST layer to basemap projections (can be accessed here http://www.trondkristiansen.com/), which I implemented for the region of interest in the Atlantic (pictured below for the Fall). 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/fall-map-temp-only.png)
 
 
 ### Data visualization: Adding the bathymetric model
-As sharks move out past the shelf they pass into deep water. That said there are isolated points of lower depth far out in the Atlantic. As a final component of this initial mapping effort, I thought it would be useful to integrate a bathymetric model into to the plot to see if any observable concentration around these points of lower depth existed. The post detailing the SST application also made referece to the ETOPO1 global relief model, which I then integrated (as shown below): 
+As sharks move out past the shelf they pass into deep water. That said there are isolated points of lower depth far out in the Atlantic. As a final component of this initial mapping effort, I thought it would be useful to integrate a bathymetric model into the plot to see if any observable concentration around these points of lower depth existed. The post detailing the SST application also made referece to the ETOPO1 global relief model, which I then integrated (as shown below): 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/spring-actual-big.png)
 
