@@ -5,6 +5,7 @@
 1. Computer vision:
   * Motion detection in openCv 
   * Background removal for 'empty' frame initialization via applied regular singular value decomposition
+  * Image classification with ResNet-152 & DenseNet-121
   * Object detection in tensorflow
   * Applied feature extraction and convolutional neural network via SSD Mobile Net algorithm 
 
@@ -59,16 +60,23 @@ When motion is detected, the camera then transfers each occupied frame to the US
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/domain-fish-images.png)
 
 ### Fish classification: 
-While efforts at motion detection were successful, classification of the fish images for population analysis proved to be a more stubborn problem. I initially beleived that object-detection was a required step in this process, though after using the motion detection process to generate automatic annotations, I realized it could be leveraged then to crop out regions of interest from the frame. This recognition could provide substantial contribution to this solution write - up on which I based my classification analysis (https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html). This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
+While efforts at motion detection were successful, classification of the fish images for population analysis proved to be a more stubborn problem. I initially beleived that object-detection was a required step in this process, though after using the motion detection process to generate automatic annotations, I realized it could be leveraged then to crop out regions of interest from the frame. This recognition could provide substantial contribution to this post, detailing a submission to a kaggle competition which asked participants to classify boated-fish from commercial fishing boat cameras (https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html), on which I based my classification analysis. This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
 
   * Classify fish into 1) carp 2) sucker 3) other
   * Classify fish into 1) rock bass 2) sunfish 3) smallmouth bass 4) white sucker 5) carp
 
-Both methods were implemented using the two recommended algorithms from the very similar problem outlined in the solution referenced above (ResNet-152 and DenseNet-121). As expected, the 3 level classification yeilded much better results than the 5 level classification. This is because both the carp and sucker fish are so much larger than the other fish, that the distinction was simplified. Keeping in mind the known discrepancy in population across the two regions, the classification model ultimately learns to assign predictive weight to aspects of the stationary frame in each of the two scenarios. It is very likely that a white sucker, if observed by the camera deployed in the downstream section, would be mislabeled as a carp or vise versa. Though this has not yet been observed, larger rock bass and small mouth bass have been mislabeled as carp in the region with many carp, and have been labeled as white sucker fish in the region with many white suckers. 
+Both methods were tested using ResNet-152 (Keras implementation with ImageNet pre-trained weights: https://gist.github.com/flyyufelix/7e2eafb149f72f4d38dd661882c554a6) recommended / written up as part of the solution to the very similar problem outlined in the solution referenced above-- indeed the author is the same, and has based his work on a paper: 
+```
+Deep Residual Learning for Image Recognition.
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+arXiv:1512.03385
+```
+As expected, the 3 level classification yeilded much better results than the 5 level classification. This is because both the carp and sucker fish are so much larger than the other fish, that the distinction was simplified. Keeping in mind the known discrepancy in population across the two regions, the classification model ultimately learns to assign predictive weight to aspects of the stationary frame in each of the two scenarios. It is very likely that a white sucker, if observed by the camera deployed in the downstream section, would be mislabeled as a carp or vise versa. Though this has not yet been observed, larger rock bass and small mouth bass have been mislabeled as carp in the region with many carp, and have been labeled as white sucker fish in the region with many white suckers. An example of the problem of spurious frame based leanring is pictued in the image below, which was taken from the solution write up linked in the above passage. 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/spurious-features.png)
 
 ### To do / Expanding on current state: 
-Moving forward, it the model must be made more robust. Classification, while modestly effective in the 3 level implementation, was impacted significantly by the background features of the two locations as mentioned above. Some potential solutions to this have been proposed in a post detailing a submission to a kaggle competition which asked participants to classify boated-fish from commercial fishing boat cameras (https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html). Going forward I intend to test some of these methods for my project.  
+Moving forward, the model must be made more robust. Classification, while modestly effective in the 3 level implementation, was impacted significantly by the background features of the two locations as mentioned above. Some potential solutions to this have been proposedon the forum for the Nature Conservancy Fisheries Monitoring competition. Going forward I intend to test some of these methods for my project.  
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/arduino-temperature-sensor.png)
 
