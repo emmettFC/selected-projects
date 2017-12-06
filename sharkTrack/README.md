@@ -26,7 +26,7 @@ This past summer I saw an article in the New Haven Register that reported the se
 
 
 ### Data ingestion & backend structure
-I wrote a scraping proceedure in python to pull down all of the geopoint data sitting behind the map on the OCEARCH shark tracker home page. This process used basic post-request structure, with all variables determined via the inspect element functionality in the Google Chrome browser. After the data is loaded into memory, the script uses the ElasticSearch python client to index all of the data into documents. At this point the data sits in the 'ocearch_shark_pings' index I set up to house it, and can be queried via the browser and Kibana Plugin. It is also then simple for other scripts to quickly load and transform accordingly.
+I wrote a scraping proceedure in python to extract all of the geopoint data used to populate the map on the OCEARCH shark tracker home page. This process employs basic post-request structure, with all variables determined via the inspect element functionality in the Google Chrome browser. Data is then loaded into an elasticsearch index where it can be queried at the specified port (in my case localhost:5601) and Kibana Plugin. It is then simple to load and transform accordingly.
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/both-backend-images.png)
 
@@ -44,7 +44,7 @@ The density plot illustrates clear seasonal migration. The most basic next step 
 
 
 ### Data visualization: Adding the bathymetric model
-As sharks move out past the shelf they pass into deep water. That said there are isolated points of lower depth far out in the Atlantic. As a final component of this initial mapping effort, I thought it would be useful to integrate a bathymetric model into to the plot to see if any observable concentration around these points of lower depth existed. The post detailing the SST application also made referece to the ETOPO1 global relief model. As a final component to the initial plotting exercise I included bathymetric tiles from this model. 
+As sharks move out past the shelf they pass into deep water. That said there are isolated points of lower depth far out in the Atlantic. As a final component of this initial mapping effort, I thought it would be useful to integrate a bathymetric model into to the plot to see if any observable concentration around these points of lower depth existed. The post detailing the SST application also made referece to the ETOPO1 global relief model, which I then integrated (as shown below): 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/spring-actual-big.png)
 
@@ -52,5 +52,5 @@ As sharks move out past the shelf they pass into deep water. That said there are
 ### To do / Moving forward: 
 I did some research into shark migration in the North Atlantic, and discovered that there were two semi-distinct migration patterns for White Sharks: Coastal -- sharks that migrate approximately from Florida to Cape Cod -- and Oceanic -- sharks that during late winter and early spring move out way into the open Atlantic ocean. While the costal migration pattern was generally understood, there was no consensus on the factors driving those sharks to make the jouney far into the Atlantic. Given the available geolocation data, I think a reasonable next step would be to featurize the migration patterns of the individual sharks and use it to classify them into one of the two migration cohorts. In addition to the geolocation data, OCEARCH hosts a set of other metrics associated with each shark (ex age, sex, weight..). If the migration clustering is successful, it would be interesting to see if any of these other available datapoints had any predictive power on the migration behavior, and therefore provide some insight into the factors that drive the Oceanic sharks out into the Atlantic. 
 
-
+### Thanks for reading!
 
