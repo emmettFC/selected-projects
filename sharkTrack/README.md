@@ -30,9 +30,10 @@ I wrote a scraping proceedure in python to pull down all of the geopoint data si
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/kernel-density-plots-whiteShaks-seasonal.png)
 
-### Data visualization: 
+### Data visualization: Kernel Density 
 For the first pass at visualization, I wanted to segment the data according to season and see how the population moved. Scatter plots were a bit confusing to look at, and the concentration of sharks near the coast obscured the density given how close they were to one another. To navigate this I applied a bivariate kernel density estimate, using the havershine distance metric, in an attempt to get a better sense of the concentration (pictured above).
 
 
+### Data visualization: Sea Surface Temperature 
 
 
