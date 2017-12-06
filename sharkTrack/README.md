@@ -15,7 +15,10 @@
   * Production of high quality GIS visualizations by integration of OCEARCH White Shark data, ETOPO1 bathymetric tiles and Sea Surface Temperature from NOAA Coral Reef Temperature Anomaly Database
   * Implement kernel density via havershine distance metric to smooth sparse point data 
  
- 
+
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/bathy-and-sst-fall-spring.png)
+
 ### Project Overview: 
 This past summer I saw an article in the New Haven Register that reported the sensational fact of a White Shark having been tracked into the Long Island Sound. I typically spend a few weeks each summer at my family cottage in Madison CT, which is less than a mile from Guilford -- the reported location of the observed White Shark (Montauk, migration pattern pictured below). I have only ever seen spiny dogfish in the sound, so this was radical to me. I was poking around and stumbled accross the OCEARCH Global Shark Tracker, a web-based application that tracks the location of tagged sharks and plots them on a map. I liked their interface, but thought it could be improved upon by integrating other atmospheric data, allowing for seasonal subsetting and building more robust visualizations. I put together a scraping proceedure and backend to ingest and house new pings each day, on top of which I built some plots of their telemetric data against sea surface temperature and a bathymetric model. I sent some of this work over to them as a kind of resume, hoping to get involved somehow. I have since spoken with members of the organization on multiple occasions, and hope to continue to deepen my involvement with them in the future. This project repository presents some of that initial discovery work.  
 
@@ -41,7 +44,13 @@ The density plot illustrates clear seasonal migration. The most basic next step 
 
 
 ### Data visualization: Adding the bathymetric model
+As sharks move out past the shelf they pass into deep water. That said there are isolated points of lower depth far out in the Atlantic. As a final component of this initial mapping effort, I thought it would be useful to integrate a bathymetric model into to the plot to see if any observable concentration around these points of lower depth existed. The post detailing the SST application also made referece to the ETOPO1 global relief model. As a final component to the initial plotting exercise I included bathymetric tiles from this model. 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/spring-actual-big.png)
+
+
+### To do / Moving forward: 
+I did some research into shark migration in the North Atlantic, and discovered that there were two semi-distinct migration patterns for White Sharks: Coastal -- sharks that migrate approximately from Florida to Cape Cod -- and Oceanic -- sharks that during late winter and early spring move out way into the open Atlantic ocean. While the costal migration pattern was generally understood, there was no consensus on the factors driving those sharks to make the jouney far into the Atlantic. Given the available geolocation data, I think a reasonable next step would be to featurize the migration patterns of the individual sharks and use it to classify them into one of the two migration cohorts. In addition to the geolocation data, OCEARCH hosts a set of other metrics associated with each shark (ex age, sex, weight..). If the migration clustering is successful, it would be interesting to see if any of these other available datapoints had any predictive power on the migration behavior, and therefore provide some insight into the factors that drive the Oceanic sharks out into the Atlantic. 
 
 
 
