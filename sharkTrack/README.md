@@ -25,12 +25,14 @@ This past summer I saw an article in the New Haven Register that reported the se
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/scrape-sharks.png)
 
 ### Data ingestion & backend structure
-I wrote a scraping proceedure in python to pull down all of the geopoint data sitting behind the map on the OCEARCH shark tracker home page. This process used basic post-request structure, with all variables determined via the inspect element functionality in the Google Chrome browser. After the data is loaded into memory, the script uses the ElasticSearch python client to index all of the data into documents. At this point the data sits in the 'ocearch_shark_pings' index I set up to house it, and can be queried via the browser and Kibana Plugin. It is also then simple for other scripts to quickly load and transform accordingly (Pictured below).
+I wrote a scraping proceedure in python to pull down all of the geopoint data sitting behind the map on the OCEARCH shark tracker home page. This process used basic post-request structure, with all variables determined via the inspect element functionality in the Google Chrome browser. After the data is loaded into memory, the script uses the ElasticSearch python client to index all of the data into documents. At this point the data sits in the 'ocearch_shark_pings' index I set up to house it, and can be queried via the browser and Kibana Plugin. It is also then simple for other scripts to quickly load and transform accordingly.
 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/elasticsearch.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/kernel-density-plots-whiteShaks-seasonal.png)
 
 ### Data visualization: 
-For the first pass at visualization, I wanted to segment the data according to season and see how the population moved. Scatter plots were a bit confusing to look at, and the concentration of sharks near the coast obscured the density given how close they were to one another. To navigate this I applied a bivariate kernel density estimate, using the havershine distance metric, in an attempt to get a better sense of the concentration. I built the plot using functionality from scikitlearn and basemap: 
+For the first pass at visualization, I wanted to segment the data according to season and see how the population moved. Scatter plots were a bit confusing to look at, and the concentration of sharks near the coast obscured the density given how close they were to one another. To navigate this I applied a bivariate kernel density estimate, using the havershine distance metric, in an attempt to get a better sense of the concentration (pictured above).
+
+
 
 
