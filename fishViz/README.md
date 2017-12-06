@@ -6,8 +6,7 @@
   * Motion detection in openCv 
   * Background removal for 'empty' frame initialization via applied regular singular value decomposition
   * Image classification with ResNet-152 Keras implementation
-  * Object detection in tensorflow
-  * Applied feature extraction and convolutional neural network via SSD Mobile Net algorithm 
+  * Object detection in tensorflow (CNN with SSD Mobile Net algorithm)
 
 2. Automated annotation: 
   * Implementing new method for automating annotations - generating xml labels via bounding rectangles
