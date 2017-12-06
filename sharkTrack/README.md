@@ -5,7 +5,7 @@
 
 ### Topics included in this repository: 
 1. Data scraping: 
-  * Implementation of robust scraping proceedure to ingest & update database of White Shark geolocation
+  * Implementation of scraping proceedure to ingest & update database of White Shark geolocation
 
 2. Data Integration: 
   * Integrating external data sources with White Shark geolocation data
