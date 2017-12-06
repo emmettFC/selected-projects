@@ -56,11 +56,30 @@ For this I applied an implementation of regular SVD proposed in a solution propo
 When motion is detected, the camera then transfers each occupied frame to the USB storage device. Given the number of frames per second that the device sees, and the large number of potentially spurious objects (such as leaves), I had to specify a large threshold value for what was considered to be a detected object. Further, these images are ultimately meant to be used to train a model, so images with many bounding rectangles and objects at multiple depths are difficult to annotate and to use. For this reason I also specified that a frame would only be written to memory if 1) it was of a large enough size and 2) if there was only one detected object in the frame. This may seem like a severe limitation but the camera sees so many objects that it turned out to be an effective method. Moreover, this set of constraints allowed for a very helpful adaptation of the model training process. Instead of using a GUI or command line utility to move through the frames and draw / label each rectangle, I was able to use the dimensions of the bounding rectangles to produce labeled xml annotations that could be used to train the object detection model. The above figure shows the output of this process for an adequatey sized frame. 
 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/domain-fish-images.png)
+
+### Fish classification: 
+While efforts at motion detection were successful, classification of the fish images for population analysis proved to be a more stubborn problem. I initially beleived that object-detection was a required step in this process, though after using the motion detection process to generate automatic annotations, I realized it could be leveraged then to crop out regions of interest from the frame. This recognition could provide substantial contribution to this solution write - up on which I based my classification analysis (https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html). This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
+
+  * Classify fish into 1) carp 2) sucker 3) other
+  * Classify fish into 1) rock bass 2) sunfish 3) smallmouth bass 4) white sucker 5) carp
+
+Both methods were implemented using the two recommended algorithms from the very similar problem outlined in the solution referenced above (ResNet-152 and DenseNet-121). As expected, the 3 level classification yeilded much better results than the 5 level classification. This is because both the carp and sucker fish are so much larger than the other fish, that the distinction was simplified. Keeping in mind the known discrepancy in population across the two regions, the classification model ultimately learns to assign predictive weight to aspects of the stationary frame in each of the two scenarios. It is very likely that a white sucker, if observed by the camera deployed in the downstream section, would be mislabeled as a carp or vise versa. Though this has not yet been observed, larger rock bass and small mouth bass have been mislabeled as carp in the region with many carp, and have been labeled as white sucker fish in the region with many white suckers. 
+
+
+### To do / Expanding on current state: 
+Moving forward, it the model must be made more robust. Classification, while modestly effective in the 3 level implementation, was impacted significantly by the background features of the two locations as mentioned above. Some potential solutions to this have been proposed in a post detailing a submission to a kaggle competition which asked participants to classify boated-fish from commercial fishing boat cameras (https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html). Going forward I intend to test some of these methods for my project.  
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/arduino-temperature-sensor.png)
+
+In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured above). For these, some more work on the Arduino sketch used to measure the temperature is required. 
+
+## Appendix: To do & Initital attempt at object-detection
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/loss-graph.png)
 
-
-### Object detection & training the SSD mobilenet CNN for recognition: 
-Once labels and images have been generated via motion detection, and exctracted from the USB storage after sensor retreival, the object recognition model had to be trained so that fish classification could be accomplished. For this I used the tensorflow object detection API, which can be challenging to stand up. The process is as follows: 
+### Object detection & training the SSD (single-shot-detection) mobilenet CNN: 
+Before implementing the automated annotation functionality, I thought that an object detection model had to be trained so that fish classification could be accomplished. For this I used the tensorflow object detection API, which can be challenging to stand up. The process is as follows: 
   * Divide images into training and testing sets
   * Convert xml labels to csv
   * Create tf records file that can be read by tensorflow to train the model
@@ -68,16 +87,10 @@ Once labels and images have been generated via motion detection, and exctracted 
   * Export the frozen inference graph to be used in objet detection
   * Run object detection script and observe results
 
-I am running the CPU version of tensorflow, which is tedious and inefficient. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces a workable model for recognition. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
-
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/mobilenet-applied-carp.png)
 
-### To do / Expanding on current state: 
-Moving forward, it the model must be made more robust and applied to both the White Sucker and the Carp. The ultimate goal is differentiation, which has not yet been accomplished. To do this it will be necessary to train a model on multiple classes, correct for depth, and orientation -- perhaps via application of siamese neural network. 
+I am running the CPU version of tensorflow, which is tedious and inefficient. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces an ok model. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/arduino-temperature-sensor.png)
-
-In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured above). For these, some more work on the Arduino sketch used to measure the temperature is required. 
 
 ### Thanks for reading!! 
 
