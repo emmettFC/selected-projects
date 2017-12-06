@@ -12,8 +12,20 @@ In 2015 I was working for the applied analytics group at AlixPartners, a consult
 
 In order to demonstrate the capability of the tool, we did some basic balance sheet analysis of the most recent submissions from companies in the phamaceutical industry, showing decompositon of asset funding by liability and equity. We presented this solution at the annual firm meeting in Orlando FL, and ultimately won first place. 
 
-  
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/xbrlIngest/assets/summary-of-winning-submission.png)
 
-### Presentation Video
+The presentation we gave was video-taped, shakily and with sub-optimal sound quality, but I tracked it down and made a brief edit of it to include here if you'd like to check it out: 
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/BZLs1zgsR7g/0.jpg)](https://www.youtube.com/watch?v=BZLs1zgsR7g)
+
+### Outcome & Ultimate deployment: 
+We got requests from a few people at the firm to build out the prototype into a full software product. As a first step we attempted to validate the data against a subset of the Capital IQ data we got though our company subscription. We were able to reconcile the data to within 80%, though this was seen as insufficient for client deployment, and ultimately did not proceed with the project. 
+
+I left the firm not long after this to join a subcontracting team at DARPA in Ballston Virginia. This group was a performer on several ongoing contracts including MEMEX, XDATA and QCR. We were doing some work for FinRA and FinCen, and had built a tool to identify fraudulent activity in a variety of spaces. Ultimately, this project found a second home as a component of this tool, and has since been deployed with agencies in the Federal Government. 
+
+### Code: 
+I have included the majority of the code used for this project in this repository. 
+
+## Thanks for reading! 
+
 
