@@ -9,7 +9,7 @@
 
 2. Data Integration: 
   * Integrating external data sources with White Shark geolocation data
-  * Work with mutliple GIS data protocol through open source libraries in python (NCDF4; Gridfile) 
+  * Work with mutliple GIS data protocol through open source libraries in python (NCDF4; OpenDAP; Gridfile) 
 
 3. Data Visualization: 
   * Production of high quality GIS visualizations by integration of OCEARCH White Shark data, ETOPO1 bathymetric tiles and Sea Surface Temperature from NOAA Coral Reef Temperature Anomaly Database
@@ -34,6 +34,14 @@ I wrote a scraping proceedure in python to pull down all of the geopoint data si
 For the first pass at visualization, I wanted to segment the data according to season and see how the population moved. Scatter plots were a bit confusing to look at, and the concentration of sharks near the coast obscured the density given how close they were to one another. To navigate this I applied a bivariate kernel density estimate, using the havershine distance metric, in an attempt to get a better sense of the concentration (pictured above).
 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/fall-map-temp-only.png)
+
 ### Data visualization: Sea Surface Temperature 
+The density plot illustrates clear seasonal migration. The most basic next step seemed then to plot the corresponding change in water temperature as a point of reference. The pings are only sent to the satellite when the shark fins--or when the submerged device breaches / nearly breaches the surface of the water. I found a helpful resource that detailed the application of the NOAA CoRTAD SST layer to basemap projections (can be accessed here http://www.trondkristiansen.com/), which I implemented for the region of interest in the Atlantic (pictured above). 
+
+
+### Data visualization: Adding the bathymetric model
+
+
 
 
