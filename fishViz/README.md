@@ -82,7 +82,7 @@ Moving forward, the model must be made more robust. Classification, while modest
 
 In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured above). For these, some more work on the Arduino sketch used to measure the temperature is required. 
 
-## Appendix: To do & Initital attempt at object-detection
+## Appendix: Initital attempt at object-detection
 
 ### Object detection & training the SSD (single-shot-detection) mobilenet CNN: 
 Before implementing the automated annotation functionality, I thought that an object detection model had to be trained so that fish classification could be accomplished. For this I used the tensorflow object detection API, which can be challenging to stand up. The process is as follows: 
