@@ -101,6 +101,5 @@ I am running the CPU version of tensorflow, which is tedious and inefficient. Fo
 
 ### Thanks for reading!! 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/me-with-sucker.png)
 
 
