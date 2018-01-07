@@ -34,7 +34,7 @@ I wrote a scraping proceedure in python to extract all of the geopoint data used
 ### Data visualization: Kernel Density 
 For the first pass at visualization, I subset the data according to season to see how the population moved. Scatter plots were a bit confusing to look at, and the concentration of sharks near the coast obscured the density given how close they were to one another. To navigate this I applied a kernel density estimate--which employed a Ball Tree built on the havershine distance metric--in an attempt to get a better sense of the concentration (pictured below). The application of kernel density estimates to lat/lon data was guided by the following reference found in the scikitlearn documentation: http://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/kernel-density-plots-whiteShaks-seasonal.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/sharkTrack/assets/all-blue-kernel-density.png)
 
 
 ### Data visualization: Sea Surface Temperature 
