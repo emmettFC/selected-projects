@@ -1,7 +1,7 @@
 # VAProject: 
 ## Leveraging the XBRL taxonomy to parse documents from the SEC EDGAR website at scale
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/VAProject/admin/states-progress-map.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/VAproject/admin/states-progress-map.png)
 
 ### Project Overview: 
 I am working as an independent contractor & leading the data science component to a project involving the VA comission on homeless veterans and the University of Pennsylvania. The project seeks to build a consolidated national database of all registered sex offenders in order to perform demographic analysis and records linkage. The individual state level registires have inconsistent formats, and the national aggregator run by the DOJ is essentially just an index of the state level sites. Therefore, the development of a set of scraping utilities is required in order to work with the data in any comprehensive way. 
