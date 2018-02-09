@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--                                                    
+            ,-.----.       ,----..            ,--. 
+  .--.--.   \    /  \     /   /   \         ,--.'| 
+ /  /    '. |   :    \   /   .     :    ,--,:  : | 
+|  :  /`. / |   |  .\ : .   /   ;.  \,`--.'`|  ' : 
+;  |  |--`  .   :  |: |.   ;   /  ` ;|   :  :  | | 
+|  :  ;_    |   |   \ :;   |  ; \ ; |:   |   \ | : 
+ \  \    `. |   : .   /|   :  | ; | '|   : '  '; | 
+  `----.   \;   | |`-' .   |  ' ' ' :'   ' ;.    ; 
+  __ \  \  ||   | ;    '   ;  \; /  ||   | | \   | 
+ /  /`--'  /:   ' |     \   \  ',  / '   : |  ; .' 
+'--'.     / :   : :      ;   :    /  |   | '`--'   
+  `--'---'  |   | :       \   \ .'   '   : |       
+            `---'.|        `---`     ;   |.'       
+              `---`                  '---'         
+                                                   
+
+christopher pietsch, 2016: <script src="https://raw.githubusercontent.com/emmettFC/selected-projects/master/bathyEstimation/d3-legend.js"></script>
+-->
+
+<meta charset="utf-8">
+<title>Earth globe</title>
+<script src="https://zeigma.com/spon/globes/js/d3.v3.min.js"></script>
+<script src="https://zeigma.com/spon/globes/js/d3.geo.projection.v0.min.js"></script>
+<script src="https://zeigma.com/spon/globes/js/topojson.v1.min.js"></script>
+<script src="https://zeigma.com/spon/globes/js/queue.v1.min.js"></script>
+<script src="https://zeigma.com/spon/globes/js/colorbrewer.v1.min.js"></script>
+<script src="https://zeigma.com/spon/globes/js/d3.geo.zoom.js"></script>
+<script src="https://zeigma.com/spon/globes/js/d3-legend.js"></script>
+<script src="https://zeigma.com/spon/globes/js/d3.tip.v0.6.3.js"></script>
+</head>
+<style type="text/css">
+
+body {
+  font-family: Helvetica;
+}
+
+svg {
+    /*padding: 20px;*/
+    clear: left;
+    float: left;
+}
+
+.menu {
+    float: left;
+    padding: 20px;
+}
+
+.menu.side {
+    width: 160px;
+}
+
+.menu .button {
+  margin: 10px;
+      padding: 0 16px;
+  text-transform: uppercase;
+  border: 1px solid #eee;
+  float: left;
+  position: relative;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color:#000;
+  background: rgba(158,158,158,.2);    
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+  border-radius: 2px;
+  text-align: center;
+  line-height: 36px;
+  vertical-align: middle;
+  min-width: 64px;
+  height: 36px;
+}
+
+.menu .button2 {
+margin: 10px;
+    /* padding: 0 16px; */
+    text-transform: uppercase;
+    border: 1px solid #eee;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    background: rgba(158,158,158,.2);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    border-radius: 2px;
+    text-align: center;
+    /* line-height: 36px; */
+    vertical-align: middle;
+    min-width: 36px;
+    /* height: 36px; */
+}
+.menu .button2 img {
+
+}
+
+.colors {
+    position: relative;
+    clear: left;
+    padding: 20px;
+    float: left;
+}
+.colors input {
+    width: 60px;
+    border: none;
+    float: left;
+    padding: 10px;
+}
+
+text.label {
+    font-size: 12px;
+}
+
+.water {
+  fill: none;
+  stroke: #000;
+}
+.d2 .water {
+  stroke: none;
+}
+
+.land {
+  fill: #888;
+  stroke: rgba(0, 0, 0, 0.35);
+  stroke-width: 0.7px;
+}
+
+.land:hover {
+  fill:red;
+  stroke-width: 1px;
+  cursor: pointer;
+}
+
+.focused {
+  fill: #33CC33;
+}
+.graticule {
+  fill:none;
+  stroke:#EEE;
+}
+
+
+
+.noData{
+  mask: url(#mask-stripe);
+}
+
+select {
+  position: absolute;
+  top: 20px;
+  left: 580px;
+  border: solid #ccc 1px;
+  padding: 3px;
+  box-shadow: inset 1px 1px 2px #ddd8dc;
+}
+
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+
+.palette {
+    padding: 20px;
+    float: left;
+    width: 820px;
+}
+
+
+h4 {
+    float: left;
+    /* clear: left; */
+    width: 100%;
+}
+
+.legendTitle  {
+    font-weight: bold;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 11px;
+}
+
+</style>
+<body>
+<svg>
+  <defs>
+    <pattern id="pattern-stripe" 
+      width="4" height="4" 
+      patternUnits="userSpaceOnUse"
+      patternTransform="rotate(45)">
+      <rect width="2" height="4" transform="translate(0,0)" fill="white"></rect>
+    </pattern>
+    <mask id="mask-stripe">
+      <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-stripe)" />
+    </mask>      
+  </defs>
+</svg>
+  <script>
+
+  var margin = {top: 20, right: 20, bottom: 40, left: 40},
+      width = 700 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom,
+      sens = 0.25,
+      focused;
+
+  var speed = -0.1,
+      start = 0;
+
+
+  var datasets = [
+    {
+      name: "GHG excluding LUCF",
+      active: true,
+      url : "excluding.csv",
+      unit: "(CO2e)"
+    },
+    {
+      name: "GHG including LUCF",
+      active: false,
+      //url : "population.csv",
+      url : "including.csv",
+      unit: "(CO2e)"
+    }
+  ];
+
+
+  var projections = [
+    {
+      name: "globe",
+      active: true,
+      initialScale: 245,
+      clipAngle: 90,
+      geo: d3.geo.orthographic()
+            .scale(245)
+            .rotate([0, 0])
+            .translate([width / 2, height / 2])
+            .clipAngle(90)
+    },
+    {
+      name: "map",
+      active: false,
+      initialScale: (245/1.5),
+      clipAngle: null,
+      geo: d3.geo.winkel3()
+            .scale(245/1.5)
+            .translate([width / 2, height / 2])
+            .rotate([0, 0])
+    },
+    {
+      name: "map",
+      active: false,
+      initialScale: (245/2.5),
+      clipAngle: null,
+      geo: d3.geo.mercator()
+            .scale(245/2.5)
+            .translate([width / 2, height / 2])
+            .rotate([0, 0])
+    }
+  ];
+
+  var scales = [
+    {
+      name: "linear",
+      scale: d3.scale.linear().range([0,width])
+    },
+    {
+      name: "linear",
+      scale: d3.scale.linear().range([height,0])
+    }
+  ];
+
+  var state = {
+    mode: "globe",
+    projection: projections[0],
+    dataset: datasets[0],
+    scale: 1,
+    translate: [0,0],
+    play: false,
+    x: scales[0],
+    y: scales[1],
+  }
+
+
+  var xAxis = d3.svg.axis()
+      .scale(state.x.scale)
+      .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+      .scale(state.y.scale)
+      .orient("left")
+      .tickFormat(d3.format("s"))
+
+
+  var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-5, 0])
+
+  var path = d3.geo.path()
+    .projection(state.projection.geo);
+
+  var scale = 1
+  var translate = [0,60];
+  var rotate;
+
+  var zoom = d3.behavior.zoom()
+    .center([0,0])
+    .translate(translate)
+    .on("zoom", function(d){
+
+      scale = d3.event.scale;
+      translate = d3.event.translate;
+      rotate = state.projection.geo.rotate();
+
+      // console.log("zoom", d3.event);
+
+     state.projection.geo
+        .rotate([(translate[0]/scale) * sens, -(translate[1]/scale) * sens, 0])
+        .scale(state.projection.initialScale * d3.event.scale)
+
+     inner
+      .selectAll("path")
+      .attr("d", function(d) { return d.geometry ? path(d.geometry) : path(d); });
+
+    })
+
+  var menu = d3.select("body").append("div").classed("menu", true).classed("side", true);
+  var palette = d3.select("body").append("div").classed("palette", true);
+  // palette.append("h4").text("Color Map")
+  var colors = palette.append("div").classed("colors", true);
+  var colorBrewer = palette.append("div").classed("menu", true);
+
+  var playButton = menu
+    .append("div")
+    .classed("button", true)
+    .text("Pause")
+    .on("click", function(){
+      var d = d3.select(this);
+
+      if(d.text()=="Play"){
+        state.play = true;
+        d.text("Pause")
+      } else {
+        state.play = false;
+        d.text("Play")
+      }
+    })
+
+  menu
+    .append("h4")
+    .text("Views")
+
+  menu
+    .append("div")
+    .classed("button", true)
+    .text("Globe")
+    .on("click", function(){
+      transform2d(0);
+    })
+    // .append("img")
+    // .attr("src", "img/globe.svg")
+
+  menu
+    .append("div")
+    .classed("button", true)
+    .text("Map")
+    .on("click", function(){
+      transform2d(1);
+    })
+    // .append("img")
+    // .attr("src", "img/map.svg")
+
+  menu
+    .append("div")
+    .classed("button", true)
+    .text("Diagram")
+    .on("click", function(){
+      transformScatter();
+    })
+    // .append("img")
+    // .attr("src", "img/chart.svg")
+
+  
+
+  //setTimeout(transformScatter, 800);
+
+
+  var graticule = d3.geo.graticule();
+
+  var svg = d3.select("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .call(zoom)
+    .call(tip)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var axis = svg.append("g").style("opacity", 0);
+  var inner = svg.append("g");
+  var outer = svg.append("g");
+  
+
+  outer.append("path")
+    .datum({type: "Sphere"})
+    .attr("class", "water")
+    .attr("d", path)
+    
+
+  inner.append("path")
+    .datum(graticule())
+    .attr("class", "graticule")
+    .attr("d", path);
+
+  axis.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+      .append("text")
+        .attr("class", "label")
+        .attr("x", width)
+        .attr("y", -6)
+        .style("text-anchor", "end")
+        // .text("fleischkonsum (kg/woche)");
+
+  axis.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+      .append("text")
+        .attr("class", "label")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        // .text("population")
+
+  
+
+  // var colorScaleAbs = d3.scale.quantile().range(colorbrewer.Oranges[9]);
+  // var colorScaleDiverging = d3.scale.quantile().range(colorbrewer.BrBG[9]);
+  var colorScaleAbs = d3.scale.quantile().range(colorbrewer.BuGn[9]);
+  var colorScaleDiverging = d3.scale.quantile().range(colorbrewer.BuGn[9]);
+
+  // var colorScale;
+  var dataMap;
+
+  var reverseCountryMap = {};
+  var isoCodesMap;
+  var globalDataMap;
+
+
+  var transform2d = function(id){
+    console.log("transform");
+
+    state.play = false;
+    playButton.text("Play");
+
+
+    if(id == 0){
+      inner.selectAll(".graticule").transition().style("opacity", 1);
+    }
+    if(id == 1){
+      outer.selectAll(".water").transition().style("opacity", 0);
+    }
+
+    if(state.mode == "scatter"){
+      state.projection = projections[id];
+      path.projection(state.projection.geo);
+      state.mode = "map"+id;
+
+      transformScatterBack();
+      return;
+    }
+
+    state.mode = "map"+id;
+
+    var b = projections[id];
+    var a = projections[(id+1)>1 ? 0:1];
+
+    svg
+      .call(zoom.scale(scale).translate(translate).event)
+      .transition()
+      .duration(function() {
+        var distance = (Math.abs(translate[0])+Math.abs(translate[1]));
+        return distance*2;
+      })
+      .call(zoom.scale(1).translate([0,0]).event)
+      .each("end", function(){
+        
+        inner.selectAll("path")
+          .transition()
+          .duration(1000)
+          // .ease("circle-out")
+          // .attrTween("d", projectionTween(active(projections).geo, inactive(projections).geo))
+          .attrTween("d", geoUtils.projectionTween(a.geo, b.geo))
+          .each("end", function(d,i){
+            if(i!=0) return;
+            
+            state.projection = b;
+            path.projection(state.projection.geo);
+
+            if(id == 0){
+              outer.selectAll(".water").transition().style("opacity", 1);
+              //zoom.event(svg);
+            }
+            
+          })
+      })
+
+    
+   
+  }
+
+  var transformScatterBack = function (callback) {
+
+    axis.transition().duration(1000).style("opacity", 0);
+    //inner.selectAll(".graticule").transition().style("opacity", 1);
+
+    inner.selectAll(".land")
+      .transition()
+      .ease("cubic-out")
+      .duration(800)
+      .attr("d", function (d) {
+        return geoUtils.pathCircle(d.dorling.centroid[0], d.dorling.centroid[1], d.dorling.radius);
+      })
+      .each("end", function(d) {
+        // console.log(d)
+        d3.select(this).attr("d", "M" + d.dorling.coordinates.join("L") + "Z");
+      })
+      .transition()
+      .duration(500)
+      .ease("cubic")
+      .attr("d", function(d) { return path(d.geometry); })
+      .each("end",function (d,i) {
+        if(i==0 && callback){
+          console.log("end", i);
+          callback();
+        }
+      })
+    
+  }
+
+  var transformScatter = function(){
+    console.log("transformScatter");
+
+    state.mode = "scatter";
+
+    state.projection.geo.clipAngle(null);
+
+    outer.selectAll(".water").transition().style("opacity", 0);
+    inner.selectAll(".graticule").transition().style("opacity", 0);
+
+    axis.transition().duration(1000).style("opacity", 1);
+
+    inner.selectAll(".land")
+      .transition()
+      .ease("cubic-out")
+      .duration(800)
+      .attr("d", function(d) {
+        d.dorling = geoUtils.dorling(d.geometry);
+        return "M" + d.dorling.coordinates.join("L") + "Z";
+      })
+      .each("end", function(d) {
+        d = d.dorling;
+        d3.select(this).attr("d", geoUtils.pathCircle(d.centroid[0], d.centroid[1], d.radius));
+      })
+      .transition()
+      .duration(1500)
+      .ease("cubic-out")
+      .attr("d", function (d) {
+        var yVal = globalDataMap.get(d.iso);
+        var xVal = state.dataset.map.get(d.iso)
+        // todo clean that data !!
+        if(!yVal || !yVal.gdp || !xVal || !xVal.value){
+          // return pathCircle(d.dorling.centroid[0], d.dorling.centroid[1], 0);
+          return;
+        };
+      
+        var x = state.x.scale(xVal.value);
+        var y = state.y.scale(yVal.gdp);
+
+        return geoUtils.pathCircle(x, y, 5)
+      })
+
+      state.projection.geo.clipAngle(state.projection.clipAngle);
+
+
+  }
+
+
+  queue()
+    .defer(d3.json, "world-110m.json")
+    // .defer(d3.json, "data/world-50m.json")
+    .defer(d3.csv, "iso3166.csv")
+    .defer(d3.csv, datasets[0].url)
+    .defer(d3.csv, datasets[1].url)
+    .await(ready);
+
+  function ready(error, world, isoCodes, ds1, ds2) {
+    datasets[0].data = ds1;
+    datasets[0].data.forEach(function(d){ d.value *= 1; });
+    datasets[0].map = d3.map(datasets[0].data, function(d){ return d.iso; });
+
+    datasets[1].data = ds2;
+    datasets[1].data.forEach(function(d){ d.value *= 1; });
+    datasets[1].map = d3.map(datasets[1].data, function(d){ return d.iso; });
+
+    isoCodes.forEach(function(d){ d.numeric *= 1; d.population *= 1; d.gdp *= 1; });
+    isoCodesMap = d3.map(isoCodes, function(d){ return d.numeric; });
+    globalDataMap = d3.map(isoCodes, function(d){ return d.alpha3; });
+
+
+    // filter out antarctica
+    world.objects.countries.geometries = world.objects.countries.geometries.filter(function(d) { return d.id != 10; });
+    
+    var land = {
+      type: "GeometryCollection",
+      geometries: geoUtils.polygons(world.objects.countries.geometries)
+    };
+
+    var nodes = topojson.feature(world, land).features.map(function(d) {
+      //exterior(d.geometry);
+      //var centroid = path.centroid(d.geometry);
+      var iso = isoCodesMap.get(d.id);
+
+      return {
+        iso: reverseCountryMap[d.id],
+        // x: centroid[0],
+        // y: centroid[1],
+        // ox: centroid[0],
+        // oy: centroid[1],
+        geometry: d.geometry,
+        //dorling: dorling(d.geometry)
+      };
+    });
+
+    console.log(nodes[0]);
+
+
+
+    var populationExtent = d3.extent(datasets[1].data, function(d){ return d.value; });
+    var max = Math.max(Math.abs(populationExtent[0]), Math.abs(populationExtent[1]));
+    console.log(populationExtent, max);
+
+    colorScaleDiverging
+      .domain([-max,max])
+
+    colorScaleAbs
+      .domain([0, d3.max(datasets[0].data, function(d){ return d.value; })])
+
+    colorScale = colorScaleAbs;
+
+    var getColor = function(d){
+      var entry = state.dataset.map.get(d.iso);
+      return entry ? colorScale(entry.value) : "#B5B5B5";
+    }
+
+
+    state.x.scale.domain(d3.extent(state.dataset.data, function(d) { return d.value; }));
+    state.y.scale.domain(d3.extent(isoCodes, function(d) { return d.gdp; }));
+
+    axis.select(".x.axis").call(xAxis);
+    axis.select(".y.axis").call(yAxis);
+
+    //console.log(state.x.scale.domain());
+
+    tip.html(function(d) {
+      //console.log(d, isoCodesMap.get(d.id).name_deu,meatMap.get(d.iso).value)
+      var map = state.dataset.map.get(d.iso);
+      var val = map ? map.value : "n.v."
+      return "<strong>"+ globalDataMap.get(d.iso).name_deu +"</strong> <span style='color:red'>" + val + "</span>";
+    })
+
+    var world = inner.selectAll("path.land")
+      .data(nodes)
+      .enter()
+      .append("path")
+      .attr("class", "land")
+      .attr("d", function(d) { return path(d.geometry); })
+      .style("fill", getColor)
+      .classed("noData", function(d){ return !state.dataset.map.get(d.iso); })
+      .on('mouseover', tip.show)
+      .on('mousemove', tip.show)
+      .on('mouseout', tip.hide)
+
+    // var world = inner.selectAll("path.land")
+    //   .data(countries)
+    //   .enter()
+    //   .append("path")
+    //   .attr("class", "land")
+    //   .attr("d", path)
+    //   .style("fill", getColor)
+    //   .classed("noData", function(d){ return !active(datasets).map.get(d.iso); })
+      // .on('mouseover', tip.show)
+      // .on('mousemove', tip.show)
+      // .on('mouseout', tip.hide)
+
+    var colorRange = colorScale.range();
+
+//removed lines below removes the weird color bar
+
+    // colors
+    //   .selectAll("input")
+    //   .data(colorRange)
+    //   .enter()
+    //   .append("input")
+    //   .attr("value", function(d){ return d; })
+    //   .style("background", function(d){ return d; })
+    //   .on("input", function(d,i){
+    //     d3.select(this).style("background",this.value);
+    //     colorRange[i] = this.value;
+    //     colorScale.range(colorRange);
+
+    //     updateColors();
+    //   })
+
+    menu
+    .append("h4")
+    .text("Data")
+
+    menu
+      .append("div")
+      .classed("button", true)
+      .text("Excluding LUCF")
+      .on("click", function(){
+        state.dataset = datasets[0];
+
+        colorScale = colorScaleAbs;
+        colorRange = colorScale.range();
+
+        updateColors();
+      })
+
+    menu
+      .append("div")
+      .classed("button", true)
+      .text("Including LUCF")
+      .on("click", function(){
+        state.dataset = datasets[1];
+
+        colorScale = colorScaleDiverging;
+        colorRange = colorScale.range();
+
+        updateColors();
+      })
+
+    var updateColors = function(){
+      inner
+        .selectAll("path.land")
+        .classed("noData", function(d){ return !state.dataset.map.get(d.iso); })
+        .transition()
+        .style("fill", getColor)
+
+      legend
+        .scale(colorScale)
+        .title(state.dataset.name)
+
+      svg.select(".legendQuant")
+        .call(legend);
+
+      colors
+        .selectAll("input")
+        .data(colorRange)
+        .style("background", function(d){ return d; })
+        .attr("value", function(d){ return d; })
+
+      state.x.scale.domain(d3.extent(state.dataset.data, function(d) { return d.value; }));
+      state.y.scale.domain(d3.extent(isoCodes, function(d) { return d.gdp; }));
+
+      axis.select(".x.axis").call(xAxis);
+      axis.select(".y.axis").call(yAxis);
+      
+    }
+
+    var cbrew = d3.entries(colorbrewer).filter(function(d){ return d.value[9]; });
+
+// removed the lines below because they were the dumb color-list toggle aspect
+
+    // colorBrewer
+    //   .selectAll("div")
+    //   .data(cbrew)
+    //   .enter()
+    //   .append("div")
+    //   .classed("button", true)
+    //   .text(function(d){ return d.key; })
+    //   .on("click", function(d){
+    //     colorRange = colorbrewer[d.key][9];
+    //     colorScale.range(colorRange)
+
+    //     updateColors();
+    //   })
+
+    svg.append("g")
+      .attr("class", "legendQuant")
+      .attr("transform", "translate(10,10)");
+
+    axis.select(".x.axis").call(xAxis);
+    axis.select(".y.axis").call(yAxis);
+
+    var legend = d3.legend.color()
+      .labelFormat(d3.format(".2f"))
+      .useClass(false)
+      .labelFormat(function(d){ return d3.format("f")(d); })
+      .scale(colorScale)
+      //.orient("horizontal")
+      .title("GHG excluding LUCF")
+
+    svg.select(".legendQuant")
+      .call(legend);
+
+   zoom.event(svg);
+
+   d3.timer(function() {
+
+      if(state.play){
+        // active(projections).geo
+        //  .rotate([speed * start++, -15])
+
+        // svg.selectAll("path").attr("d", path)
+        zoom.translate([translate[0]+((5)*speed), translate[1]]).event(svg);
+      }
+
+  })
+
+
+};
+
+var geoUtils = {};
+
+geoUtils.exterior = function(d) {
+  // From Jason Davis https://www.jasondavies.com/maps/dorling-world/
+  switch (d.type) {
+    case "Polygon": d.coordinates = [d.coordinates[0]]; break;
+    case "MultiPolygon": d.coordinates = [[d.coordinates[0][0]]]; break;
+  }
+  return d;
+}
+
+
+geoUtils.projectRing = function(coordinates) {
+  // From Jason Davis https://www.jasondavies.com/maps/dorling-world/
+  var ring = [];
+  d3.geo.stream({type: "Polygon", coordinates: [coordinates]}, state.projection.geo.stream({
+    point: function(x, y) { ring.push([x, y]); },
+    lineStart: geoUtils.noop,
+    lineEnd: geoUtils.noop,
+    polygonStart: geoUtils.noop,
+    polygonEnd: geoUtils.noop,
+    sphere: geoUtils.noop
+  }));
+  ring.push(ring[0]);
+  return ring;
+}
+
+
+geoUtils.dorling = function(d) {
+  // From Jason Davis https://www.jasondavies.com/maps/dorling-world/
+  switch (d.type) {
+    case "Polygon": return geoUtils.circle(geoUtils.projectRing(d.coordinates[0]));
+    case "MultiPolygon": return geoUtils.circle(geoUtils.projectRing(d.coordinates[0][0]));
+  }
+  return {radius: 0, coordinates: []};
+}
+
+
+geoUtils.circle = function(coordinates) {
+  // From Mike Bostock’s http://bl.ocks.org/3081153
+  var circle = [],
+      length = 0,
+      lengths = [length],
+      polygon = d3.geom.polygon(coordinates),
+      p0 = coordinates[0],
+      p1,
+      x,
+      y,
+      i = 0,
+      n = coordinates.length - 1;
+
+  // Compute the distances of each coordinate.
+  while (++i < n) {
+    p1 = coordinates[i];
+    x = p1[0] - p0[0];
+    y = p1[1] - p0[1];
+    lengths.push(length += Math.sqrt(x * x + y * y));
+    p0 = p1;
+  }
+
+  var area = polygon.area(),
+      radius = Math.sqrt(Math.abs(area) / Math.PI),
+      centroid = polygon.centroid(-1 / (6 * area)),
+      angleOffset = Math.atan2(coordinates[0][1] - centroid[1], coordinates[0][0] - centroid[0]),
+      angle,
+      i = -1,
+      k = 2 * Math.PI / length;
+
+  // Compute points along the circle’s circumference at equivalent distances.
+  while (++i < n) {
+    angle = angleOffset + lengths[i] * k;
+    circle.push([
+      centroid[0] + radius * Math.cos(angle),
+      centroid[1] + radius * Math.sin(angle)
+    ]);
+  }
+
+  return {coordinates: circle, radius: radius, centroid: centroid};
+}
+
+
+geoUtils.polygons = function(geometries) {
+  // From Jason Davis https://www.jasondavies.com/maps/dorling-world/
+  var id = 0;
+  return d3.merge(geometries.map(function(geometry) {
+    var iso = isoCodesMap.get(geometry.id);
+    var isoName = iso ? iso.alpha3 : "";
+
+    return (geometry.type === "MultiPolygon" ? geometry.arcs : [geometry.arcs]).map(function(d) {
+      reverseCountryMap[++id] = isoName;
+      return {id: id, type: "Polygon", arcs: d, parent: geometry};
+    });
+  }));
+}
+
+
+geoUtils.collide = function(node) {
+  // From http://mbostock.github.com/d3/talk/20111018/collision.html
+  var r = node.radius,
+      nx1 = node.x - r,
+      nx2 = node.x + r,
+      ny1 = node.y - r,
+      ny2 = node.y + r;
+  return function(quad, x1, y1, x2, y2) {
+    if (quad.point && (quad.point !== node)) {
+      var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y),
+          r = node.dorling.radius + quad.point.dorling.radius;
+      if (l < r) {
+        l = (l - r) / l * .5;
+        node.x -= x *= l;
+        node.y -= y *= l;
+        quad.point.x += x;
+        quad.point.y += y;
+      }
+    }
+    return x1 > nx2
+        || x2 < nx1
+        || y1 > ny2
+        || y2 < ny1;
+  };
+}
+
+geoUtils.noop = function() {}
+
+geoUtils.pathCircle = function(x, y, radius) {
+  return "M" + x + "," + (y + radius)
+      + "a" + radius + "," + radius + " 0 1,1 0," + -2 * radius
+      + "a" + radius + "," + radius + " 0 1,1 0," + 2 * radius
+      + "z";
+}
+
+
+geoUtils.projectionTween = function(projection0, projection1) {
+  // by Mike Bostock
+  return function(d) {
+    var t = 0;
+
+    var projection = d3.geo.projection(project)
+        .scale(1)
+        .translate([width / 2, height / 2]);
+
+    var path = d3.geo.path()
+        .projection(projection);
+
+    function project(λ, φ) {
+      λ *= 180 / Math.PI, φ *= 180 / Math.PI;
+      var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
+      var x = (1 - t) * p0[0] + t * p1[0];
+      var y = (1 - t) * -p0[1] + t * -p1[1];
+
+      // hacky error workaround
+      if(x == Infinity || x == -Infinity ) x = -height-1;
+      if(y == Infinity || y == -Infinity) y = -height-1;
+
+      if(isNaN(x)) x = -height;
+      if(isNaN(y)) y = -height;
+
+      return [x, y];
+    }
+
+    return function(_) {
+      t = _;
+      return d.geometry ? path(d.geometry) : path(d);
+    };
+  };
+}
+  </script>
+</body>
+</html>
