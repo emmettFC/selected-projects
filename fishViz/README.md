@@ -62,7 +62,8 @@ While efforts at motion detection were successful, classification of the fish im
   * Classify fish into 1) carp 2) sucker 3) other
   * Classify fish into 1) rock bass 2) sunfish 3) smallmouth bass 4) white sucker 5) carp
 
-### Domain of classifier: 
+Domain of classifier: 
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/domain-fish-images.png)
 
 Both methods were tested using ResNet-152 (Keras implementation with ImageNet pre-trained weights: https://gist.github.com/flyyufelix/7e2eafb149f72f4d38dd661882c554a6) recommended / written up as part of the solution to the very similar problem outlined in the solution referenced above-- indeed the author is the same, and has based his work on a paper: 
