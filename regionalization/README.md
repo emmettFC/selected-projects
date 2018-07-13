@@ -1,6 +1,8 @@
 # Analytical regionalization & land use classification:
 ## Using social media data to map land use in homogenous urban centers
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/yale-datadriven-logo.png)
+
 ### Introduction
 
 Analysis of remote sensing data, specifically multi-spectral satellite imagery, can be used to generate high-resolution land cover classifications. To an extent, these land cover classifications can be used to approximate land use, especially when the underlying scene has a large degree of heterogeneity. Alternatively, for scenes where land cover is uniform, it is more difficult to approximate land use through the analysis of remote sensing data. This problem is exemplified by the analysis of land use in high-density urban centers, where the uniformity of land cover does not represent the diversity of land use within the city. 
