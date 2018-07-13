@@ -1,5 +1,10 @@
-# Data Driven Yale: Analytical Regionalization for Homogenous Urban Centers
-## Using weibo check-in data to develop land use classification for Beijing
+# Analytical regionalization & land use classification:
+## Using social media data to map land use in homogenous urban centers
+
+
+Analytical regionalization & land use classification: 
+Using social media data to map land use in homogenous urban centers
+
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/VAproject/admin/assets/jan24-states-progress-map.png)
 
