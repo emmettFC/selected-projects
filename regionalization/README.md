@@ -34,9 +34,9 @@ Clustering geospatial data is a well-studied problem, and there are several algo
 	3)	OPTICS (Not done) 
 	4)	SOM / Kohonen Algorithm (Done and documented)
 
+Self Organizing Maps is an artificial neural network with a variety of applications. Among these are clustering / dimensionality reduction and space approximation. This analysis does not rely on SOM for dimensionality reduction, and has to this point only used the algorithm to do a spatial approximation for the two-dimensional set of latitude and longitude coordinates for the check-ins. Moving forward we hope to explore the performance of SOM for unsupervised clustering of the full 3 dimensional dataset (LAT, LON, TIMESTAMP).  
 
-
-
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/SOM-cluster-centroids-scatter.png)
 
 ### Summary of Data & Comparison to Previous Study: 
 
