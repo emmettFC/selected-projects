@@ -38,9 +38,15 @@ Self Organizing Maps is an artificial neural network with a variety of applicati
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/SOM-cluster-centroids-scatter.png)
 
-### Summary of Data & Comparison to Previous Study: 
+#### Optimizing SOM initialization: 
 
-This study will replicate the methodology section of an existing paper that sought to do a demographic analysis of individuals on public sex offender registries (citation below). From a methods standpoint, the contibution of our project will be towards the generalization of methods for gathering SOF data from the public registries.  
+There are a number of parameters that have to be specified for SOM initialization. The most critical parameters for this analysis are the learning radius for nuerons, the initializing grid size N [p,q] and the distance metric used to evaluate nueron distance. This iteration of the anaysis uses a learning radius of 2 and haversine distance formula as the distance metric. Frias-Martinez optimized the grid size by minimizing the Davies Bouldin index for different initializing grid sizes. This analysis follows the same process, and we ultimately selected a 9 * 11 = [p,q]. Plotting the DBI index against the total grid size N, and over the ratio of the sides p/q, illustrates some interesting properties about the SOM algorithm. 
+
+
+
+
+
+ 
 
 ```
 Who are the people in your neighborhood? A descriptive analysis of individuals on publix sex offender registries.
