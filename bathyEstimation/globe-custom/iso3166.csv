@@ -1,0 +1,250 @@
+,numeric,alpha3,name,gdp,population,name_deu
+0,4,AFG,Afghanistan,21121935456,31627506,Afghanistan
+1,8,ALB,Albania,13413053494,2889676,Albania
+2,12,DZA,Algeria,2.13518E11,38934334,Algeria
+3,16,ASM,"American,Samoa",#NV,#NV,American Samoa
+4,20,AND,Andorra,#NV,#NV,Andorra
+5,24,AGO,Angola,1.46676E11,24227524,Angola
+6,660,AIA,Anguilla,3.107929774E8,14460,Anguilla
+7,10,ATA,Antarctica,#NV,#NV,Antarctica
+8,28,ATG,"Antigua,and,Barbuda",1248153953,90900,Antigua and Barbuda
+9,32,ARG,Argentina,5.4349E11,42980026,Argentina
+10,51,ARM,Armenia,10888813703,3006154,Armenia
+11,533,ABW,Aruba,2663687151,103441,Aruba
+12,36,AUS,Australia,1.47144E12,23622353,Australia
+13,40,AUT,Austria,4.36888E11,8516916,Austria
+14,31,AZE,Azerbaijan,75193456982,9629779,Azerbaijan
+15,44,BHS,Bahamas,8510495770,383054,Bahamas
+16,48,BHR,Bahrain,33849994572,1361930,Bahrain
+17,50,BGD,Bangladesh,1.73062E11,159077513,Bangladesh
+18,52,BRB,Barbados,4352750000,283380,Barbados
+19,112,BLR,Belarus,76139252027,9500422,Belarus
+20,56,BEL,Belgium,5.31547E11,11226322,Belgium
+21,84,BLZ,Belize,1699150000,351706,Belize
+22,204,BEN,Benin,9575264608,10598482,Benin
+23,60,BMU,Bermuda,5601074000,62376,Bermuda
+24,64,BTN,Bhutan,1965048927,765008,Bhutan
+25,68,BOL,"Bolivia,,Plurinational,State,of",32996188013,10561887,Bolivia  Plurinational State of
+26,535,BES,"Bonaire,,Sint,Eustatius,and,Saba",#NV,#NV,Bonaire  Sint Eustatius and Saba
+27,70,BIH,"Bosnia,and,Herzegovina",18490920340,3817554,Bosnia and Herzegovina
+28,72,BWA,Botswana,15813393709,2219937,Botswana
+29,74,BVT,"Bouvet,Island",#NV,#NV,Bouvet Island
+30,76,BRA,Brazil,2.34652E12,206077898,Brazil
+31,86,IOT,"British,Indian,Ocean,Territory",#NV,#NV,British Indian Ocean Territory
+32,96,BRN,"Brunei,Darussalam",17104193944,417394,Brunei Darussalam
+33,100,BGR,Bulgaria,56717843383,7201308,Bulgaria
+34,854,BFA,"Burkina,Faso",12755524612,17589198,Burkina Faso
+35,108,BDI,Burundi,2868836461,10816860,Burundi
+36,116,KHM,Cambodia,16777820333,15328136,Cambodia
+37,120,CMR,Cameroon,32050820689,22773014,Cameroon
+38,124,CAN,Canada,1.78539E12,35587793,Canada
+39,132,CPV,"Cape,Verde",1854766969,513906,Cape Verde
+40,136,CYM,"Cayman,Islands",3479801474,59172,Cayman Islands
+41,140,CAF,"Central,African,Republic",1838020266,4804316,Central African Republic
+42,148,TCD,Chad,12790697438,13587053,Chad
+43,152,CHL,Chile,2.58062E11,17762647,Chile
+44,156,CHN,China,1.04306E13,1369435670,China
+45,162,CXR,"Christmas,Island",#NV,#NV,Christmas Island
+46,166,CCK,"Cocos,(Keeling),Islands",#NV,#NV,Cocos (Keeling) Islands
+47,170,COL,Colombia,3.7774E11,47791393,Colombia
+48,174,COM,Comoros,6.477201025E8,769991,Comoros
+49,178,COG,Congo,14077122976,4504962,Congo
+50,180,COD,"Congo,,the,Democratic,Republic,of,the",35909377660,74877030,Congo  the Democratic Republic of the
+51,184,COK,"Cook,Islands",310927296,20725,Cook Islands
+52,188,CRI,"Costa,Rica",49552580543,4757606,Costa Rica
+53,191,HRV,Croatia,57136585614,4255853,Croatia
+54,192,CUB,Cuba,82775000000,11379111,Cuba
+55,531,CUW,Curaçao,3159299887,155763,Curaçao
+56,196,CYP,Cyprus,23076808670,882577,Cyprus
+57,203,CZE,"Czech,Republic",2.0527E11,10542666,Czech Republic
+58,384,CIV,"Côte,d'Ivoire",34254020640,22157107,Côte d'Ivoire
+59,208,DNK,Denmark,3.46119E11,5646899,Denmark
+60,262,DJI,Djibouti,1589025860,876174,Djibouti
+61,212,DMA,Dominica,5.325157752E8,72341,Dominica
+62,214,DOM,"Dominican,Republic",63968961566,10405943,Dominican Republic
+63,218,ECU,Ecuador,1.00917E11,15902916,Ecuador
+64,818,EGY,Egypt,2.82242E11,89579670,Egypt
+65,222,SLV,"El,Salvador",25163714670,6107706,El Salvador
+66,226,GNQ,"Equatorial,Guinea",16731073670,820885,Equatorial Guinea
+67,232,ERI,Eritrea,3857795410,5110444,Eritrea
+68,233,EST,Estonia,26485155278,1316203,Estonia
+69,231,ETH,Ethiopia,53638456999,96958732,Ethiopia
+70,238,FLK,"Falkland,Islands,(Malvinas)",#NV,#NV,Falkland Islands (Malvinas)
+71,234,FRO,"Faroe,Islands",#NV,#NV,Faroe Islands
+72,242,FJI,Fiji,4531698547,886450,Fiji
+73,246,FIN,Finland,2.72217E11,5479660,Finland
+74,250,FRA,France,2.82919E12,66100168,France
+75,254,GUF,"French,Guiana",#NV,#NV,French Guiana
+76,258,PYF,"French,Polynesia",5623186216,279781,French Polynesia
+77,260,ATF,"French,Southern,Territories",#NV,#NV,French Southern Territories
+78,266,GAB,Gabon,17412499258,1687673,Gabon
+79,270,GMB,Gambia,850958281,1928201,Gambia
+80,268,GEO,Georgia,16530275226,4034774,Georgia
+81,276,DEU,Germany,3.86829E12,80646262,Germany
+82,288,GHA,Ghana,37176593579,26786598,Ghana
+83,292,GIB,Gibraltar,#NV,#NV,Gibraltar
+84,300,GRC,Greece,2.35574E11,11000777,Greece
+85,304,GRL,Greenland,2441226080,56211,Greenland
+86,308,GRD,Grenada,8.840407407E8,106349,Grenada
+87,312,GLP,Guadeloupe,#NV,#NV,Guadeloupe
+88,316,GUM,Guam,#NV,#NV,Guam
+89,320,GTM,Guatemala,58826840956,16015494,Guatemala
+90,831,GGY,Guernsey,#NV,#NV,Guernsey
+91,324,GIN,Guinea,6578775676,12275527,Guinea
+92,624,GNB,Guinea-Bissau,1209484051,1800513,Guinea-Bissau
+93,328,GUY,Guyana,3085834784,763893,Guyana
+94,332,HTI,Haiti,8598928793,10572029,Haiti
+95,334,HMD,"Heard,Island,and,McDonald,Islands",#NV,#NV,Heard Island and McDonald Islands
+96,336,VAT,"Holy,See,(Vatican,City,State)",#NV,#NV,Holy See (Vatican City State)
+97,340,HND,Honduras,19497198190,7961680,Honduras
+98,344,HKG,"Hong,Kong",2.90896E11,7226869,Hong Kong
+99,348,HUN,Hungary,1.38347E11,9889540,Hungary
+100,352,ISL,Iceland,17036097482,327318,Iceland
+101,356,IND,India,2.05494E12,1295291543,India
+102,360,IDN,Indonesia,8.88538E11,254454778,Indonesia
+103,364,IRN,"Iran,,Islamic,Republic,of",4.25326E11,78143644,Iran  Islamic Republic of
+104,368,IRQ,Iraq,2.25422E11,35273293,Iraq
+105,372,IRL,Ireland,2.50814E11,4675164,Ireland
+106,833,IMN,"Isle,of,Man",#NV,#NV,Isle of Man
+107,376,ISR,Israel,3.05673E11,7939483,Israel
+108,380,ITA,Italy,2.14116E12,59788667,Italy
+109,388,JAM,Jamaica,13927105740,2783301,Jamaica
+110,392,JPN,Japan,4.60242E12,126794564,Japan
+111,832,JEY,Jersey,#NV,#NV,Jersey
+112,400,JOR,Jordan,35826901408,7416083,Jordan
+113,398,KAZ,Kazakhstan,2.16036E11,17371621,Kazakhstan
+114,404,KEN,Kenya,60936427713,44863583,Kenya
+115,296,KIR,Kiribati,1.802739448E8,110470,Kiribati
+116,408,PRK,"Korea,,Democratic,People's,Republic,of",17395832618,24997874,Korea  Democratic People's Republic of
+117,410,KOR,"Korea,,Republic,of",1.41038E12,50074401,Korea  Republic of
+118,414,KWT,Kuwait,1.63637E11,3753121,Kuwait
+119,417,KGZ,Kyrgyzstan,7404418463,5843617,Kyrgyzstan
+120,418,LAO,"Lao,People's,Democratic,Republic",11749111245,6689300,Lao People's Democratic Republic
+121,428,LVA,Latvia,31285533217,1989354,Latvia
+122,422,LBN,Lebanon,49630856940,5612096,Lebanon
+123,426,LSO,Lesotho,2080536397,2109197,Lesotho
+124,430,LBR,Liberia,2122000000,4396554,Liberia
+125,434,LBY,Libya,41319258101,6258984,Libya
+126,438,LIE,Liechtenstein,5855392374,37286,Liechtenstein
+127,440,LTU,Lithuania,48392319442,2916798,Lithuania
+128,442,LUX,Luxembourg,64873963098,556573,Luxembourg
+129,446,MAC,Macao,55501545048,577914,Macao
+130,807,MKD,"Macedonia,,the,Former,Yugoslav,Republic,of",11318959431,2075625,Macedonia  the Former Yugoslav Republic of
+131,450,MDG,Madagascar,10673517838,23571713,Madagascar
+132,454,MWI,Malawi,5720080522,16695253,Malawi
+133,458,MYS,Malaysia,3.26933E11,29901997,Malaysia
+134,462,MDV,Maldives,3032239478,357415,Maldives
+135,466,MLI,Mali,11978738474,17086022,Mali
+136,470,MLT,Malta,10535990657,417723,Malta
+137,584,MHL,"Marshall,Islands",208814181,52898,Marshall Islands
+138,474,MTQ,Martinique,#NV,#NV,Martinique
+139,478,MRT,Mauritania,5092179849,3969625,Mauritania
+140,480,MUS,Mauritius,12616414222,1268567,Mauritius
+141,175,MYT,Mayotte,#NV,#NV,Mayotte
+142,484,MEX,Mexico,1.29469E12,125385833,Mexico
+143,583,FSM,"Micronesia,,Federated,States,of",308000000,104044,Micronesia  Federated States of
+144,498,MDA,"Moldova,,Republic,of",7944167914,4072340,Moldova  Republic of
+145,492,MCO,Monaco,7059948256,37623,Monaco
+146,496,MNG,Mongolia,12067051157,2909871,Mongolia
+147,499,MNE,Montenegro,4587741791,625292,Montenegro
+148,500,MSR,Montserrat,6.308518519E7,5094,Montserrat
+149,504,MAR,Morocco,1.10009E11,33921203,Morocco
+150,508,MOZ,Mozambique,17080913408,27216276,Mozambique
+151,104,MMR,Myanmar,66477754856,53437159,Myanmar
+152,516,NAM,Namibia,13429307309,2402858,Namibia
+153,520,NRU,Nauru,181710650,10176,Nauru
+154,524,NPL,Nepal,19489214387,28174724,Nepal
+155,528,NLD,Netherlands,8.79319E11,16868020,Netherlands
+156,540,NCL,"New,Caledonia",10233914888,259800,New Caledonia
+157,554,NZL,"New,Zealand",1.98652E11,4495482,New Zealand
+158,558,NIC,Nicaragua,11805641121,6013913,Nicaragua
+159,562,NER,Niger,8168698935,19113728,Niger
+160,566,NGA,Nigeria,5.68499E11,177475986,Nigeria
+161,570,NIU,Niue,#NV,#NV,Niue
+162,574,NFK,"Norfolk,Island",#NV,#NV,Norfolk Island
+163,580,MNP,"Northern,Mariana,Islands",#NV,#NV,Northern Mariana Islands
+164,578,NOR,Norway,5.00519E11,5147970,Norway
+165,512,OMN,Oman,81796618986,4236057,Oman
+166,586,PAK,Pakistan,2.51255E11,185044286,Pakistan
+167,585,PLW,Palau,233500000,21097,Palau
+168,275,PSE,"Palestine,,State,of",12765800000,4542059,Palestine  State of
+169,591,PAN,Panama,49166000000,3867535,Panama
+170,598,PNG,"Papua,New,Guinea",16576155295,7463577,Papua New Guinea
+171,600,PRY,Paraguay,30984748095,6552518,Paraguay
+172,604,PER,Peru,2.01809E11,30973148,Peru
+173,608,PHL,Philippines,2.84582E11,99138690,Philippines
+174,612,PCN,Pitcairn,#NV,#NV,Pitcairn
+175,616,POL,Poland,5.44959E11,38619974,Poland
+176,620,PRT,Portugal,2.30117E11,10402343,Portugal
+177,630,PRI,"Puerto,Rico",1.03676E11,3686517,Puerto Rico
+178,634,QAT,Qatar,2.11817E11,2172065,Qatar
+179,642,ROU,Romania,1.38347E11,9889540,Romania
+180,643,RUS,"Russian,Federation",1.84994E12,143429435,Russian Federation
+181,646,RWA,Rwanda,7903362002,11341544,Rwanda
+182,638,REU,Réunion,#NV,#NV,Réunion
+183,652,BLM,"Saint,Barthélemy",#NV,#NV,Saint Barthélemy
+184,654,SHN,"Saint,Helena,,Ascension,and,Tristan,da,Cunha",#NV,#NV,Saint Helena  Ascension and Tristan da Cunha
+185,659,KNA,"Saint,Kitts,and,Nevis",#NV,#NV,Saint Kitts and Nevis
+186,662,LCA,"Saint,Lucia",1405794281,183645,Saint Lucia
+187,663,MAF,"Saint,Martin,(French,part)",#NV,#NV,Saint Martin (French part)
+188,666,SPM,"Saint,Pierre,and,Miquelon",#NV,#NV,Saint Pierre and Miquelon
+189,670,VCT,"Saint,Vincent,and,the,Grenadines",7.293093844E8,109360,Saint Vincent and the Grenadines
+190,882,WSM,Samoa,8.237238147E8,191845,Samoa
+191,674,SMR,"San,Marino",1844924701,31595,San Marino
+192,678,STP,"Sao,Tome,and,Principe",3.374134772E8,186342,Sao Tome and Principe
+193,682,SAU,"Saudi,Arabia",7.5246E11,30886545,Saudi Arabia
+194,686,SEN,Senegal,15658083145,14672557,Senegal
+195,688,SRB,Serbia,43866419448,7127137,Serbia
+196,690,SYC,Seychelles,1510749016,95868,Seychelles
+197,694,SLE,"Sierra,Leone",4893299323,6315627,Sierra Leone
+198,702,SGP,Singapore,3.07872E11,5506586,Singapore
+199,534,SXM,"Sint,Maarten,(Dutch,part)",1058659218,37696,Sint Maarten (Dutch part)
+200,703,SVK,Slovakia,1.00249E11,5422861,Slovakia
+201,705,SVN,Slovenia,49491440620,2066068,Slovenia
+202,90,SLB,"Solomon,Islands",1102683983,572171,Solomon Islands
+203,706,SOM,Somalia,1374625108,10517569,Somalia
+204,710,ZAF,"South,Africa",3.49819E11,53969054,South Africa
+205,239,SGS,"South,Georgia,and,the,South,Sandwich,Islands",#NV,#NV,South Georgia and the South Sandwich Islands
+206,728,SSD,"South,Sudan",11006755458,11911184,South Sudan
+207,724,ESP,Spain,1.38134E12,46259716,Spain
+208,144,LKA,"Sri,Lanka",74941145474,20618991,Sri Lanka
+209,729,SDN,Sudan,81893873233,39350274,Sudan
+210,740,SUR,Suriname,5210344242,538248,Suriname
+211,744,SJM,"Svalbard,and,Jan,Mayen",#NV,#NV,Svalbard and Jan Mayen
+212,748,SWZ,Swaziland,4482250123,1269112,Swaziland
+213,752,SWE,Sweden,5.7109E11,9703247,Sweden
+214,756,CHE,Switzerland,7.01037E11,8211383,Switzerland
+215,760,SYR,"Syrian,Arab,Republic",34184127956,18772481,Syrian Arab Republic
+216,158,TWN,"Taiwan,,Province,of,China",#NV,#NV,Taiwan  Province of China
+217,762,TJK,Tajikistan,9241627841,8295840,Tajikistan
+218,834,TZA,"Tanzania,,United,Republic,of",48030400639,50443621,Tanzania  United Republic of
+219,764,THA,Thailand,4.04824E11,67725979,Thailand
+220,626,TLS,Timor-Leste,4969775094,1157360,Timor-Leste
+221,768,TGO,Togo,4575764718,7115163,Togo
+222,772,TKL,Tokelau,#NV,#NV,Tokelau
+223,776,TON,Tonga,4.351913863E8,105586,Tonga
+224,780,TTO,"Trinidad,and,Tobago",28068547186,1354483,Trinidad and Tobago
+225,788,TUN,Tunisia,47423435127,11130154,Tunisia
+226,792,TUR,Turkey,7.98414E11,77523788,Turkey
+227,795,TKM,Turkmenistan,47931929825,5307188,Turkmenistan
+228,796,TCA,"Turks,and,Caicos,Islands",796759000,33740,Turks and Caicos Islands
+229,798,TUV,Tuvalu,3.755372047E7,9893,Tuvalu
+230,800,UGA,Uganda,27464535495,37782971,Uganda
+231,804,UKR,Ukraine,1.31806E11,45002497,Ukraine
+232,784,ARE,"United,Arab,Emirates",3.99451E11,9086139,United Arab Emirates
+233,826,GBR,"United,Kingdom",2.98889E12,64331348,United Kingdom
+234,840,USA,"United,States",1.73481E13,319448634,United States
+235,581,UMI,"United,States,Minor,Outlying,Islands",#NV,#NV,United States Minor Outlying Islands
+236,858,URY,Uruguay,57471202066,3419516,Uruguay
+237,860,UZB,Uzbekistan,63029684684,29469913,Uzbekistan
+238,548,VUT,Vanuatu,8.122456154E8,258883,Vanuatu
+239,862,VEN,"Venezuela,,Bolivarian,Republic,of",5.09968E11,30693827,Venezuela  Bolivarian Republic of
+240,704,VNM,"Viet,Nam",1.86205E11,92423338,Viet Nam
+241,92,VGB,"Virgin,Islands,,British",902386167,29585,Virgin Islands  British
+242,850,VIR,"Virgin,Islands,,U.S.",#NV,#NV,Virgin Islands  U.S.
+243,876,WLF,"Wallis,and,Futuna",#NV,#NV,Wallis and Futuna
+244,732,ESH,"Western,Sahara",#NV,#NV,Western Sahara
+245,887,YEM,Yemen,37130520973,26183676,Yemen
+246,894,ZMB,Zambia,26963357469,15721343,Zambia
+247,716,ZWE,Zimbabwe,14719366527,15245855,Zimbabwe
+248,248,ALA,"Åland,Islands",#NV,#NV,Åland Islands
