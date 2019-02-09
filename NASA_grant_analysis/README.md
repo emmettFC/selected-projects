@@ -1,21 +1,21 @@
 # Analytical regionalization & land use classification:
-## Using social media data to map land use in homogenous urban centers
+## Using social media and remote sensing data to map land use in homogenous urban centers
 
 ### Introduction
 
 Analysis of remote sensing data, specifically multi-spectral satellite imagery, can be used to generate high-resolution land cover classifications. To an extent, these land cover classifications can be used to approximate land use, especially when the underlying scene has a large degree of heterogeneity. Alternatively, for scenes where land cover is uniform, it is more difficult to approximate land use through the analysis of remote sensing data. This problem is exemplified by the analysis of land use in high-density urban centers, where the uniformity of land cover does not represent the diversity of land use within the city. 
 
-Social media check-in data can be used to classify land use over scenes with homogenous land cover (Frias Martinez 2015). Even in the absence of semantic analysis, geo-tagged social media check-ins provide insight into where people are within the city at a given point in time. This repository contains code and results from an effort to perform land use classification using social media geo-point data. The intention is to develop a model that takes discrete point data and outputs polygons which can be classified by thier land use. There are three major components to this analysis: 
+Social media check-in data can be used to classify land use over scenes with homogenous land cover (Frias Martinez 2015). Even in the absence of semantic analysis, geo-tagged social media check-ins provide insight into where people are within the city at a given point in time. This repository contains code and results from an effort to perform land use classification using social media geo-point data. The intention is to develop a model that takes discrete point data and outputs polygons which can be classified by thier land use. Classification is then performed based on a combinaton of features from 1) the social media geopoints 2) remote sensing indices 3) baidu and google map property labels. There are three major components to this analysis: 
 
 #### 1) Build polygons from discrete geo-points (analytical regionalization)
 	
-#### 2) Classify polygons by aggregate activity vectors 
+#### 2) Classify polygons by aggregate activity vectors, remote sensing layers and property/business labels from baidu 
 
-#### 3) Develop reliable annotations to evaluate model performance 
+#### 3) Develop reliable annotations to evaluate model performance (beijing city labs data on land use)
 
 The purpose of this repository is to compare the performance of different methodological strategies, and ultimately optimize a land use classification model for Beijing. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/weibo-scatter.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-1-sm-data.tiff)
 
 ### Replication of Frias Martinez (2012):
 
