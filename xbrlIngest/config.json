@@ -1,0 +1,78 @@
+{
+    "es" : {
+        "host" : "localhost",
+        "port" : 9205
+    },
+    "crowdsar" : {
+      "index" : "ernest_crowdsar",
+      "_type" : "post"
+    },
+    "edgar_index" : {
+      "index" : "edgar_index_cat",
+      "_type" : "entry"  
+    },
+    "forms" : {
+        "index" : "ernest_forms_cat",
+        "_type" : "entry"
+    },
+    "symbology" : { 
+        "index" : "ernest_symbology_v2",
+        "_type" : "entry"
+    },
+    "ownership" : { 
+        "index" : "ernest_ownership_cat",
+        "_type" : "forms_3_4"
+    },
+    "otc_raw" : {
+        "index" : "ernest_otc_raw_cat",
+        "_type" : "trade"        
+    },
+    "otc_directory" : {
+        "index" : "ernest_otc_directory_cat",
+        "_type" : "reference"        
+    },
+    "otc_halts" : {
+        "index" : "ernest_otce_halts_cat",
+        "_type" : "halt"        
+    }, 
+    "otc_delinquency" : { 
+        "index" : "ernest_otc_delinquency_cat",
+        "_type" : "delinquency"
+    },
+    "aq_forms_enrich" : { 
+        "index" : "ernest_aq_forms",
+        "_type" : "filing"
+    }, 
+    "xbrl_rss" : { 
+        "index" : "ernest_xbrl_rss",
+        "_type" : "filing"
+    },
+    "xbrl_aqfs" : { 
+        "index" : "ernest_xbrl_aqfs",
+        "_type" : "filing"
+    },
+    "xbrl_submissions" : { 
+        "index" : "xbrl_submissions_cat",
+        "_type" : "filing"
+    },
+    "omx" : { 
+        "index" : "ernest_omx_cat",
+        "_type" : "article"
+    },
+    "suspension" : {
+        "index": "ernest_sec_finra_halts",
+        "_type": "suspension"
+    },
+    "network" : {
+        "index" : "ernest_private_network",
+        "_type" : "relationship"
+    },
+    "financials" : {
+        "index" : "ernest_aq_forms_enrich_cat",
+        "_type" : "filing"
+    },
+    "agg" : {
+        "index" : "ernest_agg_v3",
+        "_type" : "company"
+    }
+}
