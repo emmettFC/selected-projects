@@ -44,7 +44,7 @@ Self Organizing Maps is an artificial neural network with a variety of applicati
 
 #### Optimizing SOM initialization: 
 
-There are a number of parameters that have to be specified for SOM initialization. The most critical parameters for this analysis are the learning radius for nuerons, the initializing grid size N [p,q] and the distance metric used to evaluate nueron distance. This iteration of the anaysis uses a learning radius of 2 and haversine distance formula as the distance metric. Frias-Martinez optimized the grid size by minimizing the Davies Bouldin index for different initializing grid sizes. This analysis follows the same process, and we ultimately selected a 8 * 22 = [p,q]. Plotting the DBI index against the total grid size N, and over the ratio of the sides p/q, illustrates some interesting properties about the SOM algorithm. 
+There are a number of hyperparameters that have to be specified for SOM initialization. The most critical parameters for this analysis are the learning radius for nuerons, the initializing grid size N [p,q] and the distance metric used to evaluate nueron distance. This iteration of the anaysis uses a learning radius of 2 and haversine distance formula as the distance metric. Frias-Martinez optimized the grid size by minimizing the Davies Bouldin index for different initializing grid sizes. This analysis follows the same process, and we ultimately selected a 8 * 22 = [p,q]. Plotting the DBI index against the total grid size N, and over the ratio of the sides p/q, illustrates some interesting properties about the SOM algorithm. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/combined-dbi-plots.png)
 
