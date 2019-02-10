@@ -72,10 +72,31 @@ These sets of polygons are actually very simmilar, which is a qualitative endors
 
 There were some cardinality issues in joining the two sets of social media data that we have not yet had time to debug, though with a larger proportion of coverge we have seen the NMI scores get as high as 90%. 
 
+#### Comparison with rectangular grid for baseline performance 
+
+An alternative method for creating subregions is just to overlay a rectangular grid over the study region. Frias-Martinez (2015) do not discuss this alternative, which we feel is a nessecary aspect of evaluating the regionalization methodology. For this reason we have done a paralell analysis that uses a regular grid for classification. The most straighforward approach to this follows from the initializing grid of nuerons from the SOM clustering. We use the same 18 height by 22 width rectangular orientation of corner points, which generates the same number of polygons with the same average area as the irregular set of polygons from tesselation. The figure below shows the grid on its own over the region of interest.
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-4-rectangular-grid.png)
+
+It is helpful to see a direct comparison of the grid and tesselation, which gives a good demonstration of the relative size of polygons produced by the two methods. The figure below shows the rectangular grid in red, and the tesselation in black. 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-5-grid-over-tess.png)
+
 #### Intersecting polygons and remote sensing inputs 
 
-Frias-Martinez use only the social media data to do both regionalization and classification, though other studies seeking to do land use classification use a host of other inputs such as remote sensing layers, semantic data and open data on infrastructure networks. Our analysis will include several remote sensing layers and property data from baidu and google maps. Some studies which report very high classification accuracy have used land cover classifications of remote sensing data to separate water, undeveloped land parcels, farmland and grass parks from adjacent regions. While this is a reasonable approach, if this separation is then interpreted as the endpoint of a classification model with levels such as 1) water, 2) recreation, 3) comercial, 4) undeveloped land, 5) grass park, then that model is a hybrid land cover land use classifier with an exaggerated predictive performance. In our analysis, we are going to include this information 
+Frias-Martinez use only the social media data to do both regionalization and classification, though other studies seeking to do land use classification use a host of other inputs such as remote sensing layers, semantic data and open data on infrastructure networks. Our analysis will include several remote sensing layers and property data from baidu and google maps. Some studies which report very high classification accuracy have used land cover classifications of remote sensing data to separate water, undeveloped land parcels, farmland and grass parks from adjacent regions. While this is a reasonable approach in one sense, if this separation is then interpreted as the endpoint of a classification model with levels such as 1) water, 2) recreation, 3) comercial, 4) undeveloped land, 5) grass park, then that model is a hybrid land cover land use classifier with an exaggerated predictive performance. For example, 'water' is not a land use, and it is relatively trivial to identify and separate water parcels from a larger region. To count each such exclusion as a correct classification then overstates the ability of the model to make the more subtle distinctions between commercial and residential parcels, for example, that is the purpose of a land use classification. In our analysis, we are going to include remote sensing layers as features in our analysis, while keeping them within the larger land use parcels. We used several remote sensing layers in the analysis to this point (pictured below for the study region and different sets of polygons): 
 
+1) Normalized difference built-up index (30m landsat 2010); 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-6-ndbi-poly.png)
+
+2) percentage of impervious surface (30m landsat 2010 via http://sedac.ciesin.columbia.edu/ );
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-7-imp-poly.png)
+
+3) saturation corrected annual mean nightlights (30m VIIRS 2013);
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-8-nl-poly.png)
 
 #### Classifying Activity Vectors for Polygons: 
 
