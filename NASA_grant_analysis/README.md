@@ -44,15 +44,31 @@ Self Organizing Maps is an artificial neural network with a variety of applicati
 
 There are a number of parameters that have to be specified for SOM initialization. The most critical parameters for this analysis are the learning radius for nuerons, the initializing grid size N [p,q] and the distance metric used to evaluate nueron distance. This iteration of the anaysis uses a learning radius of 2 and haversine distance formula as the distance metric. Frias-Martinez optimized the grid size by minimizing the Davies Bouldin index for different initializing grid sizes. This analysis follows the same process, and we ultimately selected a 8 * 22 = [p,q]. Plotting the DBI index against the total grid size N, and over the ratio of the sides p/q, illustrates some interesting properties about the SOM algorithm. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/combined-dbi-plots.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/combined-dbi-plots.png)
 
-The lefthand graph shows the DBI index on Y axis and grid size on the X axis, and suggests that as the grid size N increases the DBI performance gets better. This is consistent with the space aproximation functionality of the SOM, and as the number of nuerons increse the coverage of the underlying data improves. The righthand graph was made to illustrate the periodicity of the lefthand graph, and suggests that the periodicity of the graph relates the the similarity between the ratio of the sides of the initializing grid, and the ratio of the sides of the underlying region of interest. In this case both are maximized simultaneously with N = 99, [p,q] = [9, 11]. 
+The lefthand graph shows the DBI index on Y axis and grid size on the X axis, and suggests that as the grid size N increases the DBI performance gets better. This is consistent with the space aproximation functionality of the SOM, and as the number of nuerons increse the coverage of the underlying data improves. The righthand graph was made to illustrate the periodicity of the lefthand graph, and suggests that the periodicity of the graph relates the the similarity between the ratio of the sides of the initializing grid, and the ratio of the sides of the underlying region of interest. In this case both are maximized simultaneously with N = 396, [p,q] = [18, 22]. The insight here is clear, and suggests somewhat intuitively that in terms of DBI clustering performance, SOM initializations improve acording to 1) the number of nuerons and 2) the similarity of the initializing rectangle and the shape of the region of interest.
 
 #### Tessellation (Voronoi Polygons): 
 
 The centroids output by the SOM were then used to perform tessellation over the scene and generate polygons. This analysis used the scipy voronoi tessellation module, and has not yet explored other algorithms. The voronoi tessellation algorithm generates some polygons that are not finite, and those were ultimately excluded from the subsequent analysis. This is a hacky solution, because the polygons on the perimeter could be cropped to the ROI polygon, this will be solved in version 2. The process produces the following segmentation of the ROI: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/finite-polygons-centroids-scatter-snip.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-4-tesselation.png)
+
+#### Evaluating the stability of SOM spatial approximation methods
+
+The SOM algorithm used to build the polygons pictured above is trained for 100 epochs, and shows relatively good convergence. Like all ANNs, convergence is defined in terms of a cost function minimization through some stochastic gradient descent process. Stability then refers to the minimal value of this function, and not the actual geometric output of centroids. If there were no meaningful clusters in the data, a stable solution in terms of minimal cost would not nessecarily correspond to a stable set of output clusters. Frias-Martinez (2015) do not address this issue of geometric stability in thier analysis. Given that we are interested in producing meaningful and stable regions, we consider SOM performance in terms of a normalized mutual information score through the NMI scipy implementation. Consider the following two sets of centroids ( green and red) produced by two SOM initializations with identical hyperparamters and nueron intializations:
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-13-nmi-cents-only.png)
+
+While it is clear that there is some good correspondance between the two sets of clusters--which may improve given more training steps--there is definitely some difference. Ultimately though, the important aspect of this difference is the different segmentations of the region of interest that result from tesselation. This is not clear just from the centroid locations, and can be better observed when the polygons are drawn over the ROI: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-12-nmi-som-cent.png)
+
+These sets of polygons are actually very simmilar, which is a qualitative endorsement of the SOM ann approach. To quantify thier similarity, we then observe the normalized mutual information score of the pairwise assigment of social media data to one or another subregion (polygon). The score is quite good, and shows the method has some desireable stability: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-14-nmi-score.png)
+
+There were some cardinality issues in joining the two sets of social media data that we have not yet had time to debug, though with a larger proportion of coverge we have seen the NMI scores get as high as 90%. 
 
 #### Classifying Activity Vectors for Polygons: 
 
