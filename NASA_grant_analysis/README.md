@@ -15,7 +15,7 @@ Social media check-in data can be used to classify land use over scenes with hom
 
 The purpose of this repository is to compare the performance of different methodological strategies, and ultimately optimize a land use classification model for Beijing. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-1-sm-data.tiff)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-1-sm-data.png)
 
 ### Replication of Frias Martinez (2012):
 
