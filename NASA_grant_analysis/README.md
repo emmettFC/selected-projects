@@ -15,32 +15,34 @@ Social media check-in data can be used to classify land use over scenes with hom
 
 The purpose of this repository is to compare the performance of different methodological strategies, and ultimately optimize a land use classification model for Beijing. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-1-sm-data.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-2-roi-labels-sm-scatter.png)
 
 ### Replication of Frias Martinez (2012):
 
-#### Data Preparation: 
+#### Data preparation: 
 
-The data used for this analysis comprises 1.7 million Sina Weibo check-in points with timestamps and geo-tags (pictured below in red). These data were collected over the full 2012 calendar year (01-01-2012 → 12-31-2012). The annotations for the underlying region of interest are built from specific landmarks pulled from the Google Earth API (pictured below in blue). The Sina Weibo point data were restricted to the annotated region in order to build polygons that would describe the region in adequate granularity (ROI polygon pictured below).  After restricting the input data to the region of interest, 152K of the 1.7 million data points remain for clustering analysis.
+The data used for this analysis comprises 1.7 million Sina Weibo check-in points with timestamps and geo-tags (pictured above in red). These data were collected over the full 2012 calendar year (01-01-2012 → 12-31-2012). Property data for the underlying region of interest are a set of specific landmarks pulled from the Google Earth API (pictured above in blue). The Sina Weibo point data were restricted to the annotated region in order to build polygons that would describe the region in adequate granularity (ROI polygon pictured above).  After restricting the input data to the region of interest, 152K of the 1.7 million data points remain for clustering analysis.
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/boundary-labels-weibos-snip.png)
+#### Building subregional polygons for classification
 
-#### Clustering & Review of Algorithms:
+The first step in a land use classification process is builing polygons over the study region that can be used to aggregate input data and classify land use types. This has been done in a variety of ways in the liteature, with one of the most common strategies being the use of road networks and other infrastructure boundaries to delineate regions. The purpose of our analysis is to look at changing land use parcels over time, and use this change as a way to forecast the pace and direction of urban expansion. For this reason, it is desireable to use a method that generates non-physical and flexible regions (ie. not delineated by infrastructure) so we can observe fluctuation in the boundaries of land use parcels. Frias-Martinez (2015) use spatial clustering of social media data to generate centroids that can then be used as inputs for tesselation (or triangulation or convex hull approximation). Our analysis follows the methods outlined in Frias-Martinez, and also seeks to asses the comparative performance of other classification algorithms and spatial clustering techniques. 
 
-Clustering geospatial data is a well-studied problem, and there are several algorithms that have been used with good performance. This paper will explore 4 different clustering algorithms: 
+#### Clustering & review of algorithms:
 
-	1)	K-Means (Haversine distance) (Done, not run through end to end)
-	2)	DBSCAN / GDBSCAN (Done, not run through end to end) 
-	3)	OPTICS (Not done) 
+Clustering geospatial data is a well-studied problem, and there are several algorithms that have been used with good performance. Our analysis will ultimately explore 4 different clustering algorithms: 
+
+	1)	K-Means (Haversine distance) (Not complete)
+	2)	DBSCAN / GDBSCAN (Not complete) 
+	3)	OPTICS (Not complete) 
 	4)	SOM / Kohonen Algorithm (Done and documented)
 
-Self Organizing Maps is an artificial neural network with a variety of applications. Among these are clustering / dimensionality reduction and space approximation. This analysis does not rely on SOM for dimensionality reduction, and has to this point only used the algorithm to do a spatial approximation for the two-dimensional set of latitude and longitude coordinates for the check-ins. Moving forward we hope to explore the performance of SOM for unsupervised clustering of the full 3 dimensional dataset (LAT, LON, TIMESTAMP).  
+Self Organizing Maps is an artificial neural network with a variety of applications. Among these are clustering / dimensionality reduction and space approximation. This analysis does not rely on SOM for dimensionality reduction, and has to this point only used the algorithm to do a spatial approximation for the two-dimensional set of latitude and longitude coordinates for the check-ins. Moving forward we hope to explore the performance of SOM for unsupervised clustering of the full 3 dimensional dataset (LAT, LON, TIMESTAMP). The SOM ann ultimately does a pretty good job of clustering the social media data.  
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/SOM-cluster-centroids-scatter.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-3-som-centroids.png)
 
 #### Optimizing SOM initialization: 
 
-There are a number of parameters that have to be specified for SOM initialization. The most critical parameters for this analysis are the learning radius for nuerons, the initializing grid size N [p,q] and the distance metric used to evaluate nueron distance. This iteration of the anaysis uses a learning radius of 2 and haversine distance formula as the distance metric. Frias-Martinez optimized the grid size by minimizing the Davies Bouldin index for different initializing grid sizes. This analysis follows the same process, and we ultimately selected a 9 * 11 = [p,q]. Plotting the DBI index against the total grid size N, and over the ratio of the sides p/q, illustrates some interesting properties about the SOM algorithm. 
+There are a number of parameters that have to be specified for SOM initialization. The most critical parameters for this analysis are the learning radius for nuerons, the initializing grid size N [p,q] and the distance metric used to evaluate nueron distance. This iteration of the anaysis uses a learning radius of 2 and haversine distance formula as the distance metric. Frias-Martinez optimized the grid size by minimizing the Davies Bouldin index for different initializing grid sizes. This analysis follows the same process, and we ultimately selected a 8 * 22 = [p,q]. Plotting the DBI index against the total grid size N, and over the ratio of the sides p/q, illustrates some interesting properties about the SOM algorithm. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/regionalization/assets/combined-dbi-plots.png)
 
