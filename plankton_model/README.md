@@ -35,7 +35,7 @@ Further the assumption of (x,y) planar uniformity allows for the proposition of 
 
 The base of the model is a one dimensional diffusion equation—Fickian diffusion or the heat equation—which describes the random motion of particles in a Newtonian fluid caused by unresolved turbulence or agitation (19). The equation is expressed as the following partial differential equation: 
 
-      ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_eq_1.png)
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_eq_1.png)
 
 This equation is not solvable analytically, though it can be solved numerically for the variable concentration P(z, t) given known parameters for D and sufficient boundary conditions (3)(19)(20). The left-hand expression is of order 1 in time, and therefore requires a single boundary condition for t=0 at each interval in z. The right-hand expression is a second order spatial derivative, and therefore requires two boundary conditions at either edge of the domain {x=0, x=dx(n)(19). Boundary conditions and initialization of parameters will be discussed bellow. The simplest and most intuitive method of solving this equation numerically is to use a forward in time centered in space (FTCS) finite difference method(19). This method allows you to discretize the problem in space and time by representing the right and left side as finite differences using Taylor expansion. The left-hand temporal derivative is thus restated and rearranged for P’(x, t): 
 
