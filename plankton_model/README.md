@@ -40,22 +40,27 @@ The base of the model is a one dimensional diffusion equation—Fickian diffusio
 This equation is not solvable analytically, though it can be solved numerically for the variable concentration P(z, t) given known parameters for D and sufficient boundary conditions (3)(19)(20). The left-hand expression is of order 1 in time, and therefore requires a single boundary condition for t=0 at each interval in z. The right-hand expression is a second order spatial derivative, and therefore requires two boundary conditions at either edge of the domain {x=0, x=dx(n)(19). Boundary conditions and initialization of parameters will be discussed bellow. The simplest and most intuitive method of solving this equation numerically is to use a forward in time centered in space (FTCS) finite difference method(19). This method allows you to discretize the problem in space and time by representing the right and left side as finite differences using Taylor expansion. The left-hand temporal derivative is thus restated and rearranged for P’(x, t): 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_2_eq2.png)
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_3_eq3.png)
 
 This is the forward difference approximation of the temporal derivative using the Taylor expansion(19). In my implementation of the FTCS scheme I have not considered the error term O(dt) and have disregarded the higher order terms. The central difference approximation for the right hand second order spatial derivative can be derived as follows: 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_4_eq_4.png)
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_5_eq_5.png)
 
 From the first expression you can get the forward difference approximation as above for the time step t + dt but instead for z + dz, and the second yields the backwards difference approximation. Subtracting the backward difference approximation from the forward approximation, you get the central difference approximation for the first order spatial term(19). When you then add the backward and forward difference approximations you get an expression for the second order spatial term: 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_6_eq_6.png)
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_7_eq_7.png)
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_8_eq8.png)
 
 The terms on the end are truncation errors resulting from the discretization of the continuous diffusion equation. This error can become cumulatively significant in long-term model simulations. A more formal consideration of truncation error is something that would benefit the model proposed here given more time. These errors will not be considered in the remainder of this analysis. Substituting in the forward difference expression for the first order temporal derivative on the left, and the central difference approximation of the second order spatial term on the right, gives the FTCS approximation of the one dimensional diffusion equation(20)(19): 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_9_eq9.png)
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_10_eq_10.png)
 
 This is the baseline equation that is used to build the model for this project, and can be used to describe the sequential change of concentration of particles specified by P(z, t +dt) at each step in time dt. This FTCS approximation of the diffusion equation specified above was easily transcribed into pure python and simulated for different time increments with the following function: 
@@ -81,91 +86,40 @@ The relatively higher concentration of benthic diatoms in this region requires a
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_11_eq_11.png)
 
-### Hardware: 
-In order to do this project, two underwater camera sensors were made using Raspberry Pi's (pictured below). The complete set of materials used is as follows: 
-  * 2x Raspberry Pi SCB 
-  * 2x Logitech C905 USB webcams
-  * 2x 16G USB storage devices
-  * 2x 5200 mAh lithium ion battery packs
-  * 2x SPOR PCB with USB and Micro-USB 
-  * 2x Micro-USB to USB cables
-  * 2x plastic 7.5 x 3.5 x 2 inch plastic boxes 
-
-Each of the devices was booted on a Raspbian linux image via micro-sd cards. Code for motion detection and subprocess for writing out labeled frames was implemented in python via openCV. Instllation was a bit trying, though this is generally the case with openCv given its significant associated requirements and space contraints of the SCB's. The boxes were sealed with Smarter Adhesive Solutions 16 fast-set medium bodied solvent cement, and mounted to submerged trees in the regions of interest. NB: the seams were insufficient, and on the second deployment one of the boxes leaked and the Pi was destroyed. I have since purchased another Pi and am working towards an improved housing design. 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/camera-sensors.png)
-
 To incorporate the sedimentation term into the FTCS approximation, the first order spatial derivative must be replaced with the central difference approximation of the first derivative. Recall that this is the difference of the backward and forward difference approximations at P(x,z-1) and P(x,z+1), as given by the Taylor expansions. The sedimentation term then can be replaced by the expression: 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/12_eq_12.png)
 
-The units of Ws are ms^-1, the units of dz are ms^-1, and the units of the concentration P(z,t) are mass*m^-3, so the expression has units mass*m^-3. This is the same as the units of the D * the second spatial derivative, and since the two terms are summed the resulting expression has the correct units. It is illustrative to compare the results of a simulation of this model with the previous diffusion equation. 
+The units of Ws are ms^-1, the units of dz are ms^-1, and the units of the concentration P(z,t) are mass(m^-3), so the expression has units mass(m^-3). This is the same as the units of the D * the second spatial derivative, and since the two terms are summed the resulting expression has the correct units. It is illustrative to compare the results of a simulation of this model with the previous diffusion equation. 
 
-### Motion Detection:
-The process for detecting and classying the observed fish begins with a light-weight / real time motion detection functionality implemented in openCv. Motion detection is much less computationaly heavy than object-detection & classficiation, which requires the use of deep learning methodology. The classification component of this project is implemented only after image data has been collected by the submerged cameras, with the models being trained locally on labeled images from the stoage devices attatched to the Raspberry Pi's. The figure below, which is an example frame from a test deployment of the sensor in my fishtank, shows the output of the motion detection process. From left to right, the images show: the mask, and improved delta and the resulting video frame with bounding rectangle drawn on screen. Detection is simple in principle: openCv is told what the 'empty' tank looks like, and then a pixel matrix is created for the unoccupied space. Then, any deviations from this structure are marked as occupations, and motion is detected. The contraint here is that the model must therefore be told what the 'empty' frame is so that it can measure disruptions. Since the intent was to built a geneirc sensor, I had to design a process to identify the 'empty' frame without manually providing it. 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_3.png)
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/delta-mask-monitor.png)
+The initial condition of symmetrical peaks flattens out from the maximum of the function on both sides as in the diffusion model, though now the peaks also shift towards the bottom. This is a pretty satisfying result, because what is being illustrated in this graph—and by this model—is the gradual diffusive spreading out of particles in the water column with a simultaneous constant downward drift or sedimentation. This is intuitively what I imagine the motion of suspended plankton would look like in fluid completely free of turbulent forcing. This is then a kind of ‘null model’ of the latent physical movement of plankton, and sets up the next step of adding in a periodic excitation to mimic the cycle of tidal current velocity. 
 
+#### Simple one dimensional diffusion with sedimentation and periodic excitation
 
-### Application of regular SVD to initialize empty frame: 
-For this I applied an implementation of regular SVD found in a solution proposed for one of the standardized videos from the 'Background Models Challenge Dataset'. The solution was presented as part of a Numerical Linear Algebra course originally taught in the University of San Francisco MS in Analytics graduate program, and can be found here: https://nbviewer.jupyter.org/github/fastai/numerical-linear-algebra/blob/master/nbs/3.%20Background%20Removal%20with%20Robust%20PCA.ipynb . The method itself is efficient and relies on the scikitlearn decomposition utility. The image below shows the actual empty tank taken a a frame from the video --on the left -- and the tank background after the application of SVD. The video quality is relatively poor, so the still frame is actually less clear than the one produced by the decomposition, which is awesome. This method is sensitive to changes in lighting, and so if there is vairable cloud cover, one inititalization will fail once the cloud cover changes significanlty. To solve this I included functionality to periodically recalculate the background frame. 
+Initially I intended to model the vertical fluctuation of plankton as a periodic upward velocity proportional to the tidal current speed. This is however not a physically meaningful approach, since the vertical component of velocity in this context is the result of turbulent mixing / diffusivity that propagates both upward and downward(21). It is therefore preferable to build the periodicity into the model through a spatiotemporal variability in the diffusion coefficient D. This is slightly more challenging than the addition of sedimentation though is ultimately pretty straightforward. The first step is to change the constant D in the model to a function of time and space D(z, t). For simplicity of representation—and since it does not have impact on the ultimate expression—I will disregard sedimentation in the derivation. The addition of D(z, t) yields the following from the first diffusion equation: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/real-tank-vs-svd-tank.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/13_eq_13.png)
 
+The left hand expression is already known by the forward difference approximation, though the right hand expression now has to be expanded by the chain rule. Applying the chain rule to the right hand expression we then get: 
 
-### Use of motion detection to automate annotations: 
-When motion is detected, the camera then transfers each occupied frame to the USB storage device. Given the number of frames per second that the device sees, and the large number of potentially spurious objects (such as leaves), I had to specify a large threshold value for what was considered to be a detected object. Further, these images are ultimately meant to be used to train a model, so images with many bounding rectangles and objects at multiple depths are difficult to annotate and to use. For this reason I also specified that a frame would only be written to memory if 1) it was of a large enough size and 2) if there was only one detected object in the frame. This may seem like a severe limitation but the camera sees so many objects that it turned out to be an effective method. Moreover, this set of constraints allowed for a very helpful adaptation of the model training process. Instead of using a GUI or command line utility to move through the frames and draw / label each rectangle, I was able to use the dimensions of the bounding rectangles to produce labeled xml annotations that could be used to train models for detection and classification. The figure below shows the output of this process for an adequatey sized frame. 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_14_eq_15.png)
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/label-and-image.png)
+We have already found an expression for dP/dZ, so the only thing to do is to discretize D’(z,t). D can be treated exactly as the spatial components of dP/dz, approximating central difference with a Taylor expansion: 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_15_eq_15.png)
 
-### Fish classification: 
-While efforts at motion detection were successful, classification of the fish images for population analysis proved to be a more stubborn problem. I initially beleived that object-detection was a required step in this process, though after using the motion detection process to generate automatic annotations, I realized it could be leveraged then to crop out regions of interest from the frame. This recognition could provide substantial contribution to this post, detailing a submission to a kaggle competition which asked participants to classify boated-fish from commercial fishing boat cameras (https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html), on which I based my classification analysis. This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
+The one dimensional diffusion equation with variable diffusion coefficient is approximated as: 
 
-  * Classify fish into 1) carp 2) sucker 3) other
-  * Classify fish into 1) rock bass 2) sunfish 3) smallmouth bass 4) white sucker 5) carp
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/16_eq16.png)
 
-Domain of classifier: 
+The complete model form for this analysis is the above diffusion model with variable diffusion coefficient and the sedimentation term as specified in the last section (which can just be added on to the end of the above). The point of expressing D as a function is to allow it to vary along with the fluctuation in tidal current speed. To simplify this, I now make the assumption that at t=0 the tide is at its high or low extreme, and therefore the derivative of tidal height, or current velocity, is 0. Based on some trial and error, and consideration of the physical context, I chose to represent the function D(z, t) as: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/domain-fish-images.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_17_eq_17.png)
 
-Both methods were tested using ResNet-152 (Keras implementation with ImageNet pre-trained weights: https://gist.github.com/flyyufelix/7e2eafb149f72f4d38dd661882c554a6) recommended / written up as part of the solution to the very similar problem outlined in the solution referenced above-- indeed the author is the same, and has based his work on a paper: 
-```
-Deep Residual Learning for Image Recognition.
-Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
-arXiv:1512.03385
-```
-As expected, the 3 level classification yeilded much better results than the 5 level classification. This is because both the carp and sucker fish are so much larger than the other fish, that the distinction was simplified. Keeping in mind the known discrepancy in population across the two regions, the classification model ultimately learns to assign predictive weight to aspects of the stationary frame in each of the two scenarios (despite much of this context being eliminated by the bounding rectangles). It is very likely that a white sucker, if observed by the camera deployed in the downstream section, would be mislabeled as a carp or vise versa. Though this has not yet been observed, larger rock bass and small mouth bass have been mislabeled as carp in the region with many carp, while they have been labeled as white sucker fish in the region with many white suckers. An example of the problem of spurious frame based learning is pictued in the image below, which was taken from the solution write up linked in the above passage: heatmap shows regions of model focus for a given input image.  
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_18_eq_18.png)
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/spurious-features.png)
+The value of D will vary according to both 1) the tidal current velocity at time t, and 2) the distance from the mean value of z or the middle of the water column. The latter dimension of diffusive variation is based on the principle of wall-bounded diffusion (21), which in the most crude interpretation holds that the magnitude of diffusive velocity is inversely related to the distance between a point and a solid boundary. For the sake of simplicity I am considering that the surface of the water and the sea floor are both equivalently static boundaries, and therefore the proportional relationship of D and z is symmetric about the average value of z (zmean).
 
-### To do / Expanding on current state: 
-Moving forward, the model must be made more robust. Classification, while modestly effective in the 3 level implementation, was impacted significantly by the background features of the two locations as mentioned above. Some potential solutions to this have been proposedon the forum for the Nature Conservancy Fisheries Monitoring competition. Going forward I intend to test some of these methods for my project.  
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/arduino-temperature-sensor.png)
-
-In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured above). For these, some more work on the Arduino sketch used to measure the temperature is required. 
-
-## Appendix: Initital attempt at object-detection
-
-### Object detection & training the SSD (single-shot-detection) mobilenet CNN: 
-Before implementing the automated annotation functionality, I thought that an object detection model had to be trained so that fish classification could be accomplished. For this I used the tensorflow object detection API, which can be challenging to stand up. The process is as follows: 
-  * Divide images into training and testing sets
-  * Convert xml labels to csv
-  * Create tf records file that can be read by tensorflow to train the model
-  * Train the model and wait for enough steps to get adequate convergence (process illustrated in the figure below) 
-  * Export the frozen inference graph to be used in objet detection
-  * Run object detection script and observe results
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/loss-graph.png)
-
-I am running the CPU version of tensorflow, which is tedious and inefficient. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces an ok model. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/mobilenet-applied-carp.png)
-
-### Thanks for reading!! 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/me-with-sucker.png)
-
-
-
+There are several other parameters to note in the above expressions. The value (e) is the constant of proportionality, and can be adjusted to bring about the desired relationship between D and Ws over time. The value v_min_mean is the initial value D(z,t) for z=zmean and t=0. At t=0, the sinusoidal term goes to zero and at z=zmean the function f(zmean, z) is at its maximum value of 1. Therefore D(zmean, 0) = v_min_zmean, and is the maximum value in the vector of D(zn, t=0) used to initialize the forward integration of the equation. The initial vector for D(zn, t=0) is pictured below
