@@ -60,6 +60,11 @@ The terms on the end are truncation errors resulting from the discretization of 
 
 This is the baseline equation that is used to build the model for this project, and can be used to describe the sequential change of concentration of particles specified by P(z, t +dt) at each step in time dt. This FTCS approximation of the diffusion equation specified above was easily transcribed into pure python and simulated for different time increments with the following function: 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_1.png)
+
+The results that are produced by this method are dependent on the initialization of parameters (P(zn, t) vector for t=0 and z in (0, ndz)), and the selection of the diffusion coefficient D. Often this solution is demonstrated with a single punctuated release, meaning that the initial concentration vector at t=0 is a zero vector with one component not equal to zero from which the concentration spreads (v0 = [0,0,0,40,0,0,0]) (19)(3). The situation I am trying to model takes in some distribution of plankton density P0 at t=0, which is then redistributed throughout the water column in (z) through the 6 hour tidal current cycle. This redistribution occurs with no loss of plankton mass, which is the effect of the assumption of uniform distribution of plankton density in the (x, y) plane (meaning that horizontal advection through the tidal cycle does not change the vertical gradient since it is the same throughout the inlet).  I mention this because an initialization with a single punctuated release is not representative of this variable initial density distribution P0. For this reason I experimented with multiple punctuated release points of varying magnitudes and spacing. The following is a plot of the model when initialized with two symmetric concentrations (in magnitude and space) at t=0: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_2.png)
 
 
 
