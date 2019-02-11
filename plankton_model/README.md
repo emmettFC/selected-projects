@@ -122,4 +122,9 @@ The complete model form for this analysis is the above diffusion model with vari
 
 The value of D will vary according to both 1) the tidal current velocity at time t, and 2) the distance from the mean value of z or the middle of the water column. The latter dimension of diffusive variation is based on the principle of wall-bounded diffusion (21), which in the most crude interpretation holds that the magnitude of diffusive velocity is inversely related to the distance between a point and a solid boundary. For the sake of simplicity I am considering that the surface of the water and the sea floor are both equivalently static boundaries, and therefore the proportional relationship of D and z is symmetric about the average value of z (zmean).
 
-There are several other parameters to note in the above expressions. The value (e) is the constant of proportionality, and can be adjusted to bring about the desired relationship between D and Ws over time. The value v_min_mean is the initial value D(z,t) for z=zmean and t=0. At t=0, the sinusoidal term goes to zero and at z=zmean the function f(zmean, z) is at its maximum value of 1. Therefore D(zmean, 0) = v_min_zmean, and is the maximum value in the vector of D(zn, t=0) used to initialize the forward integration of the equation. The initial vector for D(zn, t=0) is pictured below
+There are several other parameters to note in the above expressions. The value (e) is the constant of proportionality, and can be adjusted to bring about the desired relationship between D and Ws over time. The value v_min_mean is the initial value D(z,t) for z=zmean and t=0. At t=0, the sinusoidal term goes to zero and at z=zmean the function f(zmean, z) is at its maximum value of 1. Therefore D(zmean, 0) = v_min_zmean, and is the maximum value in the vector of D(zn, t=0) used to initialize the forward integration of the equation. The initial vector for D(zn, t=0) is pictured below: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_4.png)
+
+
+
