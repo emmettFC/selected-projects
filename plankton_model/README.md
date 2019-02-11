@@ -66,7 +66,20 @@ The results that are produced by this method are dependent on the initialization
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_2.png)
 
+#### Simple one dimensional diffusion with sedimentation (no boundary conditions)
 
+The one dimensional diffusion equation can be easily modified to incorporate a sedimentation term (10). This term is intended to describe the constant sinking of plankton due to gravity. Planktonic sinking is a well-studied phenomenon, and sinking rates for various species of plankton are correspondingly well documented. A study of suspended macro benthic gradients in submarine caves used a 2-dimensional diffusion-sedimentation model to describe the observed distribution of plankton perpendicular to the mouth of the cave(10). To parameterize the sinking term, the authors used a range of sedimentation rates between 10^-6 and 10^-3. I have experimented with a range of sinking rates based on the species of plankton common the region of the North Sea described by the empirical data (8):
+
+    * Chaeotoceros 
+    * Paralia
+    * Skeletonema
+    * Eucampia
+    * Cylindrotheca
+    * Plagiogrammopsis
+
+The relatively higher concentration of benthic diatoms in this region requires a higher range of sinking rates, between 10^-5 and 10^-2 ms^-1(8). The continuous one dimensional diffusion equation with a sedimentation term is as follows: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_11_eq_11.png)
 
 ### Hardware: 
 In order to do this project, two underwater camera sensors were made using Raspberry Pi's (pictured below). The complete set of materials used is as follows: 
@@ -82,6 +95,11 @@ Each of the devices was booted on a Raspbian linux image via micro-sd cards. Cod
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/camera-sensors.png)
 
+To incorporate the sedimentation term into the FTCS approximation, the first order spatial derivative must be replaced with the central difference approximation of the first derivative. Recall that this is the difference of the backward and forward difference approximations at P(x,z-1) and P(x,z+1), as given by the Taylor expansions. The sedimentation term then can be replaced by the expression: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/12_eq_12.png)
+
+The units of Ws are ms^-1, the units of dz are ms^-1, and the units of the concentration P(z,t) are mass*m^-3, so the expression has units mass*m^-3. This is the same as the units of the D * the second spatial derivative, and since the two terms are summed the resulting expression has the correct units. It is illustrative to compare the results of a simulation of this model with the previous diffusion equation. 
 
 ### Motion Detection:
 The process for detecting and classying the observed fish begins with a light-weight / real time motion detection functionality implemented in openCv. Motion detection is much less computationaly heavy than object-detection & classficiation, which requires the use of deep learning methodology. The classification component of this project is implemented only after image data has been collected by the submerged cameras, with the models being trained locally on labeled images from the stoage devices attatched to the Raspberry Pi's. The figure below, which is an example frame from a test deployment of the sensor in my fishtank, shows the output of the motion detection process. From left to right, the images show: the mask, and improved delta and the resulting video frame with bounding rectangle drawn on screen. Detection is simple in principle: openCv is told what the 'empty' tank looks like, and then a pixel matrix is created for the unoccupied space. Then, any deviations from this structure are marked as occupations, and motion is detected. The contraint here is that the model must therefore be told what the 'empty' frame is so that it can measure disruptions. Since the intent was to built a geneirc sensor, I had to design a process to identify the 'empty' frame without manually providing it. 
