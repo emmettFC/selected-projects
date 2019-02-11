@@ -53,6 +53,15 @@ From the first expression you can get the forward difference approximation as ab
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_7_eq_7.png)
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_8_eq8.png)
 
+The terms on the end are truncation errors resulting from the discretization of the continuous diffusion equation. This error can become cumulatively significant in long-term model simulations. A more formal consideration of truncation error is something that would benefit the model proposed here given more time. These errors will not be considered in the remainder of this analysis. Substituting in the forward difference expression for the first order temporal derivative on the left, and the central difference approximation of the second order spatial term on the right, gives the FTCS approximation of the one dimensional diffusion equation(20)(19): 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_9_eq9.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_10_eq_10.png)
+
+This is the baseline equation that is used to build the model for this project, and can be used to describe the sequential change of concentration of particles specified by P(z, t +dt) at each step in time dt. This FTCS approximation of the diffusion equation specified above was easily transcribed into pure python and simulated for different time increments with the following function: 
+
+
+
 
 ### Hardware: 
 In order to do this project, two underwater camera sensors were made using Raspberry Pi's (pictured below). The complete set of materials used is as follows: 
