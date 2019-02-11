@@ -128,4 +128,15 @@ There are several other parameters to note in the above expressions. The value (
 
 In order for the model to make consistent sense, the units of D(z,t) have to be the same as the constant D, m^2s^-1. Conveniently, the units of f(zmean, z) are meters, and therefore the function D(z,t)  is of units m^2s^-1, so it works out in the larger equation. A few more considerations have to be made before the model is in a workable form. First, the issue of the boundary conditions. When you plot the concentration SUM(P(zn, t)) for each time step, the impact of infinite domain on the model performance is very clear: 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_5.png)
+
+To avoid this loss of mass, I specified a impermeable boundary condition at the sea floor, or z=0, such that D(z=0,t) = -D(dP/dt) (19). This acts as an equal and opposite diffusive force at the low boundary, such that there is an effect of accumulation at the lower boundary. This improves the model both by retaining mass, but also bring the representation closer to the physical reality of particle sedimentation and suspension. 
+Finally, the model requires that parameters for d_initial (v_min_zmean) and (e) be chosen. The range of acceptable values for D is constrained by the value of dz and dt. The Courant–Friedrichs–Lewy condition states that D <= dx^2/2dt, or the model will be unstable in time (24). With D=0.5 for dz,dt =1 the model yields negative concentrations. If you set the diffusion coefficient to 1, the model concentrations are completely nonsensical. All this to say that the values for d_initial (v_min_zmean) and (e) were chosen such that at the peak of tidal current speed (for t divisible by 10800 seconds and not 21600), the maximum positional value of D(z,t), which is at z=zmean, will be equal to 0.5. To satisfy this, the values for d_initial and (e) were both set to 0.25. Further, this is defensible parameterization because this means that on average, Ws is an order of magnitude less than D(z,t), which is appropriate given the empirical range of values for those parameters presented in the literature (8)(10).  When this is all put together, the function to iterate is actually quite simple: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_6.png)
+
+This equation is not a particularly heavy operation and was straightforward to simulate. I ran the model for 10 cycles of 21600 time steps, which corresponds to 10 cycles of the tidal current period of 6 hours. 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_7.png)
+
 
