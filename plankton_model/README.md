@@ -2,26 +2,56 @@
 ## Describing coastal plankton density with a one dimensional diffusion-sedimentation model with spatially variable diffusion coefficient and sinusoidal excitation
 
 ### Introduction
+
 This aim of this project is to develop a model that describes the variability of plankton density in-phase with the tidal current cycle of ~6 hours and 12 minutes. The model is intended to describe a short-duration localized periodicity of near-surface (top 1m) plankton density in terms of variable tidal current velocity. The behavior of the model will be compared to empirical data provided by 
 
-   * 1) a SMartBuoy deployed in the Warp station estuary in the North Sea by the Center for Environment Fisheries and Aquaculture Science        (CEFAS) and 
-   * 2) tidal gauge data from the nearby Sheerness station collected by the British Oceanographic Data Center (BODC)(8)(17)(18) 
+   * a SMartBuoy deployed in the Warp station estuary in the North Sea by the Center for Environment Fisheries and Aquaculture Science          (CEFAS) and 
+   * tidal gauge data from the nearby Sheerness station collected by the British Oceanographic Data Center (BODC)(8)(17)(18) 
 
 The Warp station in the North Sea is located in a shallow tidal inlet, with stable depth of 15 meters and tidal range of 4.3 meters (8)(17). The water column is well mixed due to its shallow depth and turbulent mixing as a result of tidal current. The proposed model will make several simplifying assumptions, which follow from the short-duration temporal scale of the research question and the characteristics of the empirical context that is being explored. The model will assume the following: 
 
-   * 1) there will be no loss of plankton due to grazing or death; 
-   * 2) there will be no growth of plankton due to photosynthesis; 
-   * 3) at any time (t) the horizontal (x, y) distribution of plankton density will be assumed to be uniform in the inlet; 
-   * 4) there will be no consideration of changes in density corresponding to the change in volume due to rise and fall of the water               level; 
-   * 5) tidal current velocity will be treated as a laminar force perpendicular to the mouth of the inlet (10)
+   * there will be no loss of plankton due to grazing or death; 
+   * there will be no growth of plankton due to photosynthesis; 
+   * at any time (t) the horizontal (x, y) distribution of plankton density will be assumed to be uniform in the inlet; 
+   * there will be no consideration of changes in density corresponding to the change in volume due to rise and fall of the water              level; 
+   * tidal current velocity will be treated as a laminar force perpendicular to the mouth of the inlet (10)
   
 The model then seeks only to describe variability in the vertical (z) distribution of plankton density in the water column as a consequence of laminar flow velocity. 
 
-The chlorophyll fluorescence readings used to validate the model are taken at a discrete point in the (x, y) space at a depth of 1 meter from the surface (17). The assumption of uniformity in the (x, y) plane parallel to the surface is made to eliminate the impact of horizontal transport of plankton during the tidal cycle. This assumption follows from the empirical observation that changes in salinity and temperature are dominated by the 12 hour semidiurnal tidal cycle, though remain relatively stable through the 6 hour tidal current cycle (8). Further the assumption allows for the proposition of a specific discrete state space in the (z) direction, which will make a solution by finite difference methods possible. Specifically, the model will attempt to describe the change in plankton density of a cylinder with a height of 15-meters and cross-sectional area of 1m^2, stretching from the surface of the water to the sea floor. The model will describe the change in plankton density at 1m spatial steps in the (z) direction, and at 1-second time steps through the tidal-current period of ~6 hours. The three dimensional distribution (x, y, z) of plankton within each section of the cylinder at any time (t) will be assumed to be uniform. The concentration P(z, t) of plankton at depth z and time t will be the output of the model at each step in time, though it is the concentration P(t(n), zmax) in the top 1 meter of the water column that is of specific interest given the availability of empirical data. 
+The chlorophyll fluorescence readings used to validate the model are taken at a discrete point in the (x, y) space at a depth of 1 meter from the surface (17). The assumption of uniformity in the (x, y) plane parallel to the surface is made to eliminate the impact of horizontal transport / advection of plankton during the tidal cycle. This assumption follows from the empirical observation that changes in salinity and temperature are dominated by the 12 hour semidiurnal tidal cycle, though remain relatively stable through the 6 hour tidal current cycle (8). This observation comes from the paper below:
+
+```
+Dancing with the Tides: Fluctuations of Coastal Phytoplankton Orchestrated by Different Oscillatory Modes of the Tidal Cycle.
+Blauw AN, Beninca` E, Laane RWPM, Greenwood N, Huisman J (2012)
+PLoS ONE 7(11): e49319. doi:10.1371/journal.pone.0049319
+```
+
+Further the assumption of (x,y) planar uniformity allows for the proposition of a specific discrete state space in the (z) direction, which will make a solution by finite difference methods possible. The model will describe the change in plankton density at 1m spatial steps in the (z) direction, and at 1-second time steps through the tidal-current period of ~6 hours. The three dimensional distribution (x, y, z) of plankton within each 1m section of the water column at any time (t) will be assumed to be uniform. The concentration P(z, t) of plankton at depth (z) and time (t) will be the output of the model at each step in time, though it is the concentration P(t(n), zmax) in the top 1 meter of the water column that is of specific interest given the availability of empirical data. 
 
 
-### Project Overview: 
-Philadelphia's Wissahickon Creek is one of its 7 major subwatersheds and drains into the Schuylkill river. I have identified two adjacent sections of the creek, each less than 300 yards long, which -- with the exception of short periods following very heavy rainfall -- are separated by rockbeds where the water level is < 2 inches deep. The effect of this segmentation is that there is an observably distinct population of fish on either side of these spillways, though the sections are nearly touching one another. While Redbreasted Sunfish, Rockbass, Smallmouth Bass and Pumpkinseed Sunfish exist in aproximately equal number, one section has an abundance of very large (>20 lbs) Common Carp, and the other has almost none. In the section without these Carp, there is an abundance large (1-4 pounds) White Suckers, which I have seen only very rarely in the downstream section. Though this is likely an unsubstantial phenomenon from the ecological perspective, it presents an interesting opportunity for data analysis. Namely, I wondered if this population discrepancy could be reproduced by the deployment of remote sensors, without application of any prior assumptions on the distribution of fish across the two sections of the creek. This project is as of this writing incomplete, though significant progress has been made. The following sections provide a breif / high-level description of the methods applied to this point.
+### Model derivation
+
+#### Simple one dimensional diffusion over infinite domain (no boundary conditions)
+
+The base of the model is a one dimensional diffusion equation—Fickian diffusion or the heat equation—which describes the random motion of particles in a Newtonian fluid caused by unresolved turbulence or agitation (19). The equation is expressed as the following partial differential equation: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_eq_1.png)
+
+This equation is not solvable analytically, though it can be solved numerically for the variable concentration P(z, t) given known parameters for D and sufficient boundary conditions (3)(19)(20). The left-hand expression is of order 1 in time, and therefore requires a single boundary condition for t=0 at each interval in z. The right-hand expression is a second order spatial derivative, and therefore requires two boundary conditions at either edge of the domain {x=0, x=dx(n)(19). Boundary conditions and initialization of parameters will be discussed bellow. The simplest and most intuitive method of solving this equation numerically is to use a forward in time centered in space (FTCS) finite difference method(19). This method allows you to discretize the problem in space and time by representing the right and left side as finite differences using Taylor expansion. The left-hand temporal derivative is thus restated and rearranged for P’(x, t): 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_2_eq2.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_3_eq3.png)
+
+This is the forward difference approximation of the temporal derivative using the Taylor expansion(19). In my implementation of the FTCS scheme I have not considered the error term O(dt) and have disregarded the higher order terms. The central difference approximation for the right hand second order spatial derivative can be derived as follows: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_4_eq_4.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_5_eq_5.png)
+
+From the first expression you can get the forward difference approximation as above for the time step t + dt but instead for z + dz, and the second yields the backwards difference approximation. Subtracting the backward difference approximation from the forward approximation, you get the central difference approximation for the first order spatial term(19). When you then add the backward and forward difference approximations you get an expression for the second order spatial term: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_6_eq_6.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_7_eq_7.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_8_eq8.png)
 
 
 ### Hardware: 
