@@ -126,5 +126,6 @@ There are several other parameters to note in the above expressions. The value (
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_4.png)
 
+In order for the model to make consistent sense, the units of D(z,t) have to be the same as the constant D, m^2s^-1. Conveniently, the units of f(zmean, z) are meters, and therefore the function D(z,t)  is of units m^2s^-1, so it works out in the larger equation. A few more considerations have to be made before the model is in a workable form. First, the issue of the boundary conditions. When you plot the concentration SUM(P(zn, t)) for each time step, the impact of infinite domain on the model performance is very clear: 
 
 
