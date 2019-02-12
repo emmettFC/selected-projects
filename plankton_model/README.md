@@ -137,6 +137,6 @@ Finally, the model requires that parameters for d_initial (v_min_zmean) and (e) 
 
 This equation is not a particularly heavy operation and was straightforward to simulate. I ran the model for 10 cycles of 21600 time steps, which corresponds to 10 cycles of the tidal current period of 6 hours. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_7.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_20.png)
 
 
