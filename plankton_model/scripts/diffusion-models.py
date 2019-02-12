@@ -555,6 +555,258 @@ plt.legend(handles=[bl_patch, b_patch, y_patch, g_patch, r_patch])
 
 plt.show()
 
+
+''' plot macro curves first in subplot matrix '''
+
+hc = 10800
+indices = []
+for i in range(18): 
+    indices.append(hc*(i+1))
+
+
+
+fig, ((ax1,ax2,ax3), (ax4, ax5, ax6), (ax7,ax8,ax9)) = plt.subplots(nrows=3, ncols=3, figsize=(20,20))
+
+ax1.plot(x_domain, combined[1], 'black', label='numerical')
+ax1.plot(x_domain, combined[indices[0]], 'red', label='numerical')
+ax1.plot(x_domain, combined[indices[1]], 'blue', label='numerical')
+
+ax2.plot(x_domain, combined[indices[2]], 'red', label='numerical')
+ax2.plot(x_domain, combined[indices[3]], 'blue', label='numerical')
+
+ax3.plot(x_domain, combined[indices[4]], 'red', label='numerical')
+ax3.plot(x_domain, combined[indices[5]], 'blue', label='numerical')
+
+ax4.plot(x_domain, combined[indices[6]], 'red', label='numerical')
+ax4.plot(x_domain, combined[indices[7]], 'blue', label='numerical')
+
+ax5.plot(x_domain, combined[indices[8]], 'red', label='numerical')
+ax5.plot(x_domain, combined[indices[9]], 'blue', label='numerical')
+
+ax6.plot(x_domain, combined[indices[10]], 'red', label='numerical')
+ax6.plot(x_domain, combined[indices[11]], 'blue', label='numerical')
+
+ax7.plot(x_domain, combined[indices[12]], 'red', label='numerical')
+ax7.plot(x_domain, combined[indices[13]], 'blue', label='numerical')
+
+ax7.plot(x_domain, combined[indices[14]], 'red', label='numerical')
+ax7.plot(x_domain, combined[indices[15]], 'blue', label='numerical')
+
+ax8.plot(x_domain, combined[indices[16]], 'red', label='numerical')
+ax8.plot(x_domain, combined[indices[17]], 'blue', label='numerical')
+
+ax9.plot(x_domain, combined[indices[16]], 'red', label='numerical')
+ax9.plot(x_domain, combined[indices[17]], 'blue', label='numerical')
+
+plt.subplots_adjust(top=0.92, bottom=0.08, left=0.20, right=0.95, hspace=0.35,
+                wspace=0.60)
+
+fig.suptitle('Plot of 1m density at t+3 and t+6 for simulation', fontsize=16)
+
+plt.savefig('/Users/culhane/Desktop/_plank_20.tiff')
+
+plt.show()
+
+
+
+''' work to make better plot of particles / then transition to DL pset '''
+
+
+# fig, (ax1, ax2, ax3) = plt.subplots(nrows=1, ncols=3, figsize=(20,20))
+
+N = 1000
+
+# for t + 3
+t = combined[10800]
+z_vec = []
+for i in t: 
+    try: 
+        p = i/200
+        n = 1000 * p 
+        z_vec.append(int(round(n)))
+    except: 
+        z_vec.append(0)
+
+coords = []
+for i in range(len(z_vec)): 
+    for n in range(z_vec[i]): 
+        z = random.uniform(i, i+1)
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
+        coords.append((x, y, z))
+
+zdata = [i[2] for i in coords]
+xdata = [i[0] for i in coords]
+ydata = [i[1] for i in coords]
+
+# for t + 6
+t = combined[21600]
+z_vec = []
+for i in t: 
+    try: 
+        p = i/200
+        n = 1000 * p 
+        z_vec.append(int(round(n)))
+    except: 
+        z_vec.append(0)
+
+coords = []
+for i in range(len(z_vec)): 
+    for n in range(z_vec[i]): 
+        z = random.uniform(i, i+1)
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
+        coords.append((x, y, z))
+
+zdata1 = [i[2] for i in coords]
+xdata1 = [i[0] for i in coords]
+ydata1 = [i[1] for i in coords]
+
+# for t == 0 
+t = combined[1]
+z_vec = []
+for i in t: 
+    try: 
+        p = i/200
+        n = 1000 * p 
+        z_vec.append(int(round(n)))
+    except: 
+        z_vec.append(0)
+
+coords = []
+for i in range(len(z_vec)): 
+    for n in range(z_vec[i]): 
+        z = random.uniform(i, i+1)
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
+        coords.append((x, y, z))
+
+zdata0 = [i[2] for i in coords]
+xdata0 = [i[0] for i in coords]
+ydata0 = [i[1] for i in coords]
+
+
+# debugging plot 
+# fig = plt.figure()
+# ax1 = fig.add_subplot(111, projection='3d')
+# ax2 = fig.add_subplot(211, projection='3d')
+# ax3 = fig.add_subplot(311, projection='3d')
+ax1 = plt.axes(projection='3d')
+ax1.scatter3D(xdata0, ydata0, zdata0, depthshade=0, cmap='Blues')
+ax1.set_xlabel('X - random gaussian')
+ax1.set_ylabel('Y - random gaussian')
+ax1.set_zlabel('Z - model density P(zn, t)')
+ax1.set_title('Plankton density at t=0')
+
+# ax2 = plt.axes(projection='3d')
+ax2 = plt.axes(projection='3d')
+ax2.scatter3D(xdata, ydata, zdata, depthshade=0, cmap='Blues')
+ax2.set_xlabel('X - random gaussian')
+ax2.set_ylabel('Y - random gaussian')
+ax2.set_zlabel('Z - model density P(zn, t)')
+ax2.set_title('Plankton density at t=3hours')
+
+# ax3 = plt.axes(projection='3d')
+ax3 = plt.axes(projection='3d')
+ax3.scatter3D(xdata1, ydata1, zdata1, depthshade=0, cmap='Blues')
+ax3.set_xlabel('X - random gaussian')
+ax3.set_ylabel('Y - random gaussian')
+ax3.set_zlabel('Z - model density P(zn, t)')
+ax3.set_title('Plankton density at t=6hours')
+
+
+# fig = plt.figure()
+# ax1 = fig.add_subplot(111, projection='3d')
+# ax2 = fig.add_subplot(211, projection='3d')
+# ax3 = fig.add_subplot(311, projection='3d')
+# ax1.scatter(xdata0, ydata0, zdata0, c='black')
+# ax1.set_xlabel('X - random gaussian')
+# ax1.set_ylabel('Y - random gaussian')
+# ax1.set_zlabel('Z - model density P(zn, t)')
+# ax1.set_title('Plankton density at t=0')
+
+# ax2.scatter(xdata, ydata, zdata, c='b')
+# ax2.set_xlabel('X - random gaussian')
+# ax2.set_ylabel('Y - random gaussian')
+# ax2.set_zlabel('Z - model density P(zn, t)')
+# ax2.set_title('Plankton density at t=3hours')
+
+# ax3.scatter(xdata1, ydata1, zdata1, c='r')
+# ax3.set_xlabel('X - random gaussian')
+# ax3.set_ylabel('Y - random gaussian')
+# ax3.set_zlabel('Z - model density P(zn, t)')
+# ax3.set_title('Plankton density at t=6hours')
+
+# # ax.legend()
+# plt.show()
+
+
+
+
+
+x = random.uniform(0, 1) 
+y = random.uniform(0, 1)
+
+coords = []
+for i in range(len(z_vec)): 
+    for n in range(z_vec[i]): 
+        z = random.uniform(i, i+1)
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
+        coords.append((x, y, z))
+
+from mpl_toolkits import mplot3d
+
+
+ax = plt.axes(projection='3d')
+
+# # Data for a three-dimensional line
+# zline = np.linspace(0, 15, 1000)
+# xline = np.sin(zline)
+# yline = np.cos(zline)
+# ax.plot3D(xline, yline, zline, 'gray')
+from mpl_toolkits.mplot3d import *
+art3d.zalpha = lambda *args:args[0]
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+
+# Data for three-dimensional scattered points
+zdata = [i[2] for i in coords]
+xdata = [i[0] for i in coords]
+ydata = [i[1] for i in coords]
+ax.scatter3D(xdata, ydata, zdata, c=zdata, depthshade=0, cmap='Greens')
+
+ax.scatter3D(xdata, ydata, zdata, depthshade=0, cmap='Greens')
+
+
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+s = ax.scatter3D(xdata, ydata, zdata, c=zdata, alpha =1, cmap='Greens')
+s.set_edgecolors = s.set_facecolors = lambda *args:None
+
+ax.legend()
+ax.set_xlim3d(0, 1)
+ax.set_ylim3d(0, 1)
+ax.set_zlim3d(0, 1)
+
+plt.show()
+
+
+
+
+ax7.plot(x_domain, combined[indices[14]], 'red', label='numerical')
+ax7.plot(x_domain, combined[indices[15]], 'blue', label='numerical')
+
+
+
+
+
+
+
+
+
 ''' plot density of particles in top 1 meter over mutliple cycles '''
 
 concentration19 = [i[19] for i in combined]
