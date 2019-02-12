@@ -139,4 +139,17 @@ This equation is not a particularly heavy operation and was straightforward to s
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_20.png)
 
+The top lefthand subplot shows the initial symmetric punctuated release, at the minimum of tidal current velocity, and then for each subsequent six hour period the density distribution at the max current speed (blue) and min current speed (red). Perhaps unreasonably the model instantly reaches an oscilatory state of periodic excitation once the initial density concentration has diffused towards the upper and lower buondary. The three conditions (initial, max current, min current) plotted in three dimensions look about how you would expect: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_spread_t0.png)
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_spread_t3.png)
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_spread_t6.png)
+
+When you isolate the top one meter of the water column, you can see a very regular periodic change in density as desired by the model: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_9.png)
+
+
 
