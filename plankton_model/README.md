@@ -33,45 +33,12 @@ Further the assumption of (x,y) planar uniformity allows for the proposition of 
 
 #### Simple one dimensional diffusion over infinite domain (no boundary conditions)
 
-The base of the model is a one dimensional diffusion equation—Fickian diffusion or the heat equation—which describes the random motion of particles in a Newtonian fluid caused by unresolved turbulence or agitation (19). The equation is expressed as the following partial differential equation: 
+The base of the model is a one dimensional diffusion equation—Fickian diffusion or the heat equation—which describes the random motion of particles in a Newtonian fluid caused by unresolved turbulence or agitation (19). The equation is expressed as the following partial differential equation given by equation (1) below. This equation is not solvable analytically, though it can be solved numerically for the variable concentration P(z, t) given known parameters for D and sufficient boundary conditions (3)(19)(20). The left-hand expression is of order 1 in time, and therefore requires a single boundary condition for t=0 at each interval in z. The right-hand expression is a second order spatial derivative, and therefore requires two boundary conditions at either edge of the domain {x=0, x=dx(n)(19). Boundary conditions and initialization of parameters will be discussed bellow. The simplest and most intuitive method of solving this equation numerically is to use a forward in time centered in space (FTCS) finite difference method(19). This method allows you to discretize the problem in space and time by representing the right and left side as finite differences using Taylor expansion. The left-hand temporal derivative is thus restated and rearranged for P’(x, t). The FTCS approximation for the heat equation is given by equation (2) below. 
 
-   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_eq_1.png)
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plankton_image_set_final_1.png)
 
-This equation is not solvable analytically, though it can be solved numerically for the variable concentration P(z, t) given known parameters for D and sufficient boundary conditions (3)(19)(20). The left-hand expression is of order 1 in time, and therefore requires a single boundary condition for t=0 at each interval in z. The right-hand expression is a second order spatial derivative, and therefore requires two boundary conditions at either edge of the domain {x=0, x=dx(n)(19). Boundary conditions and initialization of parameters will be discussed bellow. The simplest and most intuitive method of solving this equation numerically is to use a forward in time centered in space (FTCS) finite difference method(19). This method allows you to discretize the problem in space and time by representing the right and left side as finite differences using Taylor expansion. The left-hand temporal derivative is thus restated and rearranged for P’(x, t): 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_2_eq2.png)
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_3_eq3.png)
-
-This is the forward difference approximation of the temporal derivative using the Taylor expansion(19). In my implementation of the FTCS scheme I have not considered the error term O(dt) and have disregarded the higher order terms. The central difference approximation for the right hand second order spatial derivative can be derived as follows: 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_4_eq_4.png)
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_5_eq_5.png)
-
-From the first expression you can get the forward difference approximation as above for the time step t + dt but instead for z + dz, and the second yields the backwards difference approximation. Subtracting the backward difference approximation from the forward approximation, you get the central difference approximation for the first order spatial term(19). When you then add the backward and forward difference approximations you get an expression for the second order spatial term: 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_6_eq_6.png)
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_7_eq_7.png)
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_8_eq8.png)
-
-The terms on the end are truncation errors resulting from the discretization of the continuous diffusion equation. This error can become cumulatively significant in long-term model simulations. A more formal consideration of truncation error is something that would benefit the model proposed here given more time. These errors will not be considered in the remainder of this analysis. Substituting in the forward difference expression for the first order temporal derivative on the left, and the central difference approximation of the second order spatial term on the right, gives the FTCS approximation of the one dimensional diffusion equation(20)(19): 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_9_eq9.png)
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_10_eq_10.png)
-
-This is the baseline equation that is used to build the model for this project, and can be used to describe the sequential change of concentration of particles specified by P(z, t +dt) at each step in time dt. This FTCS approximation of the diffusion equation specified above was easily transcribed into pure python and simulated for different time increments with the following function: 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_1.png)
-
-The results that are produced by this method are dependent on the initialization of parameters (P(zn, t) vector for t=0 and z in (0, ndz)), and the selection of the diffusion coefficient D. Often this solution is demonstrated with a single punctuated release, meaning that the initial concentration vector at t=0 is a zero vector with one component not equal to zero from which the concentration spreads (v0 = [0,0,0,40,0,0,0]) (19)(3). The situation I am trying to model takes in some distribution of plankton density P0 at t=0, which is then redistributed throughout the water column in (z) through the 6 hour tidal current cycle. This redistribution occurs with no loss of plankton mass, which is the effect of the assumption of uniform distribution of plankton density in the (x, y) plane (meaning that horizontal advection through the tidal cycle does not change the vertical gradient since it is the same throughout the inlet).  I mention this because an initialization with a single punctuated release is not representative of this variable initial density distribution P0. For this reason I experimented with multiple punctuated release points of varying magnitudes and spacing. The following is a plot of the model when initialized with two symmetric concentrations (in magnitude and space) at t=0: 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_2.png)
-
-#### Simple one dimensional diffusion with sedimentation (no boundary conditions)
+In my implementation of the FTCS scheme I have not considered the error terms O(dt) and have disregarded the higher order terms. This is the baseline equation (equation (2)) that is used to build the model for this project, and can be used to describe the sequential change of concentration of particles specified by P(z, t +dt) at each step in time dt.
 
 The one dimensional diffusion equation can be easily modified to incorporate a sedimentation term (10). This term is intended to describe the constant sinking of plankton due to gravity. Planktonic sinking is a well-studied phenomenon, and sinking rates for various species of plankton are correspondingly well documented. A study of suspended macro benthic gradients in submarine caves used a 2-dimensional diffusion-sedimentation model to describe the observed distribution of plankton perpendicular to the mouth of the cave(10). To parameterize the sinking term, the authors used a range of sedimentation rates between 10^-6 and 10^-3. I have experimented with a range of sinking rates based on the species of plankton common the region of the North Sea described by the empirical data (8):
 
@@ -82,15 +49,15 @@ The one dimensional diffusion equation can be easily modified to incorporate a s
     * Cylindrotheca
     * Plagiogrammopsis
 
-The relatively higher concentration of benthic diatoms in this region requires a higher range of sinking rates, between 10^-5 and 10^-2 ms^-1(8). The continuous one dimensional diffusion equation with a sedimentation term is as follows: 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_11_eq_11.png)
-
-To incorporate the sedimentation term into the FTCS approximation, the first order spatial derivative must be replaced with the central difference approximation of the first derivative. Recall that this is the difference of the backward and forward difference approximations at P(x,z-1) and P(x,z+1), as given by the Taylor expansions. The sedimentation term then can be replaced by the expression: 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/12_eq_12.png)
+The relatively higher concentration of benthic diatoms in this region requires a higher range of sinking rates, between 10^-5 and 10^-2 ms^-1(8). The continuous one dimensional diffusion equation with a sedimentation term is given  by equation (3). To incorporate the sedimentation term into the FTCS approximation, the first order spatial derivative must be replaced with the central difference approximation of the first derivative. Recall that this is the difference of the backward and forward difference approximations at P(x,z-1) and P(x,z+1), as given by the Taylor expansions. The sedimentation term then can be replaced by the expression given in equation (4). 
 
 The units of Ws are ms^-1, the units of dz are ms^-1, and the units of the concentration P(z,t) are mass(m^-3), so the expression has units mass(m^-3). This is the same as the units of the D * the second spatial derivative, and since the two terms are summed the resulting expression has the correct units. It is illustrative to compare the results of a simulation of this model with the previous diffusion equation. 
+
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/sed-and-nosed-graphs.png)
+
+
+The results that are produced by this method are dependent on the initialization of parameters (P(zn, t) vector for t=0 and z in (0, ndz)), and the selection of the diffusion coefficient D. Often this solution is demonstrated with a single punctuated release, meaning that the initial concentration vector at t=0 is a zero vector with one component not equal to zero from which the concentration spreads (v0 = [0,0,0,40,0,0,0]) (19)(3). The situation I am trying to model takes in some distribution of plankton density P0 at t=0, which is then redistributed throughout the water column in (z) through the 6 hour tidal current cycle. This redistribution occurs with no loss of plankton mass, which is the effect of the assumption of uniform distribution of plankton density in the (x, y) plane (meaning that horizontal advection through the tidal cycle does not change the vertical gradient since it is the same throughout the inlet).  I mention this because an initialization with a single punctuated release is not representative of this variable initial density distribution P0. For this reason I experimented with multiple punctuated release points of varying magnitudes and spacing. The lefthand plot following shows the output of the model when initialized with two symmetric concentrations (in magnitude and space) at t=0. In the righthand figure, the initial condition of symmetrical peaks flattens out from the maximum of the function on both sides as in the diffusion model, though now the peaks also shift towards the bottom. This is a pretty satisfying result, because what is being illustrated in this graph—and by this model—is the gradual diffusive spreading out of particles in the water column with a simultaneous constant downward drift or sedimentation. This is intuitively what I imagine the motion of suspended plankton would look like in fluid completely free of turbulent forcing. This is then a kind of ‘null model’ of the latent physical movement of plankton, and sets up the next step of adding in a periodic excitation to mimic the cycle of tidal current velocity. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_3.png)
 
