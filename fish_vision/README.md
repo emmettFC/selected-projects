@@ -76,14 +76,14 @@ arXiv:1512.03385
 ```
 As expected, the 3 level classification yeilded much better results than the 5 level classification. This is because both the carp and sucker fish are so much larger than the other fish, that the distinction was simplified. Keeping in mind the known discrepancy in population across the two regions, the classification model ultimately learns to assign predictive weight to aspects of the stationary frame in each of the two scenarios (despite much of this context being eliminated by the bounding rectangles). It is very likely that a white sucker, if observed by the camera deployed in the downstream section, would be mislabeled as a carp or vise versa. Though this has not yet been observed, larger rock bass and small mouth bass have been mislabeled as carp in the region with many carp, while they have been labeled as white sucker fish in the region with many white suckers. An example of the problem of spurious frame based learning is pictued in the image below, which was taken from the solution write up linked in the above passage: heatmap shows regions of model focus for a given input image.  
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/spurious-features.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/spurious-features.png)
 
 ### To do / Expanding on current state: 
-Moving forward, the model must be made more robust. Classification, while modestly effective in the 3 level implementation, was impacted significantly by the background features of the two locations as mentioned above. Some potential solutions to this have been proposedon the forum for the Nature Conservancy Fisheries Monitoring competition. Going forward I intend to test some of these methods for my project.  
+Moving forward, the model must be made more robust. Classification, while modestly effective in the 3 level implementation, was impacted significantly by the background features of the two locations as mentioned above. Some potential solutions to this have been proposed on the forum for the Nature Conservancy Fisheries Monitoring competition. Going forward I intend to test some of these methods for my project.  
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/arduino-temperature-sensor.png)
+In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured below). For these, some more work on the Arduino sketch used to measure the temperature is required. 
 
-In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured above). For these, some more work on the Arduino sketch used to measure the temperature is required. 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/arduino-temperature-sensor.png)
 
 ## Appendix: Initital attempt at object-detection
 
@@ -96,15 +96,15 @@ Before implementing the automated annotation functionality, I thought that an ob
   * Export the frozen inference graph to be used in objet detection
   * Run object detection script and observe results
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/loss-graph.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/loss-graph.png)
 
 I am running the CPU version of tensorflow, which is tedious and inefficient. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces an ok model. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/mobilenet-applied-carp.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/mobilenet-applied-carp.png)
 
 ### Thanks for reading!! 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/me-with-sucker.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/me-with-sucker.png)
 
 
 
