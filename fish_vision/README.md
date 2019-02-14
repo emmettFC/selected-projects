@@ -1,6 +1,8 @@
 # fish_vision
 ## Research and application of methods to video collection & analysis in variable low-light limnological contexts
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/carp-title-panel-final.png)
+
 ### Topics included in this project repository: 
 1. Computer vision:
   * Motion detection in openCv 
@@ -17,7 +19,6 @@
   * One humidity/temperature sensor built with Arduino Uno (not deployed) 
   * One humidity/temperature sensor built with Arduino Yun (not deployed) 
  
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/carp-title-panel-final.png)
 
 ### Project Overview: 
 Philadelphia's Wissahickon Creek is one of its 7 major subwatersheds and drains into the Schuylkill river. I have identified two adjacent sections of the creek, each less than 300 yards long, which -- with the exception of short periods following very heavy rainfall -- are separated by rockbeds where the water level is < 2 inches deep. The effect of this segmentation is that there is an observably distinct population of fish on either side of these spillways, though the sections are nearly touching one another. While Redbreasted Sunfish, Rockbass, Smallmouth Bass and Pumpkinseed Sunfish exist in aproximately equal number, one section has an abundance of very large (>20 lbs) Common Carp, and the other has almost none. In the section without these Carp, there is an abundance large (1-4 pounds) White Suckers, which I have seen only very rarely in the downstream section. Though this is likely an unsubstantial phenomenon from the ecological perspective, it presents an interesting opportunity for data analysis. Namely, I wondered if this population discrepancy could be reproduced by the deployment of underwater cameras on single board computers, without application of any prior assumptions on the distribution of fish across the two sections of the creek. This project is as of this writing incomplete, though significant progress has been made. The following sections provide a breif / high-level description of the methods applied to this point.
