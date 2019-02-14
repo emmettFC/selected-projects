@@ -83,7 +83,7 @@ To avoid this loss of mass, I specified a impermeable boundary condition at the 
 
 Finally, the model requires that parameters for d_initial (v_min_zmean) and (e) be chosen. The range of acceptable values for D is constrained by the value of dz and dt. The Courant–Friedrichs–Lewy condition states that D <= dx^2/2dt, or the model will be unstable in time (24). With D=0.5 for dz,dt =1 the model yields negative concentrations. If you set the diffusion coefficient to 1, the model concentrations are completely nonsensical. All this to say that the values for d_initial (v_min_zmean) and (e) were chosen such that at the peak of tidal current speed (for t divisible by 10800 seconds and not 21600), the maximum positional value of D(z,t), which is at z=zmean, will be equal to 0.5. To satisfy this, the values for d_initial and (e) were both set to 0.25. Further, this is defensible parameterization because this means that on average, Ws is an order of magnitude less than D(z,t), which is appropriate given the empirical range of values for those parameters presented in the literature (8)(10).  When this is all put together, the function to iterate is actually quite simple: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_6.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_code_segment_final.png)
 
 This equation is not a particularly heavy operation and was straightforward to simulate. I ran the model for 10 cycles of 21600 time steps, which corresponds to 10 cycles of the tidal current period of 6 hours. 
 
