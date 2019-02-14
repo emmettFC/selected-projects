@@ -461,7 +461,6 @@ def Dxt(nx, t, alpha, Dparam):
 def discreteCSed(dt, dx, vectC, vectD, x, Ws):
     dt = float(dt) 
     dx = float(dx) 
-    x  = x
     Ws = float(Ws)
     C1 = dt/(2*dx)
     C2 = (vectD[x]*dt)/(dx**2)
