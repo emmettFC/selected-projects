@@ -64,7 +64,9 @@ While efforts at motion detection were successful, classification of the fish im
 
 Domain of classifier: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fishViz/assets/domain-fish-images.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/final-domain-1.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/fish-domain-final.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/final-domain-single.png)
 
 Both methods were tested using ResNet-152 (Keras implementation with ImageNet pre-trained weights: https://gist.github.com/flyyufelix/7e2eafb149f72f4d38dd661882c554a6) recommended / written up as part of the solution to the very similar problem outlined in the solution referenced above-- indeed the author is the same, and has based his work on a paper: 
 ```
