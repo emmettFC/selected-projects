@@ -11,7 +11,7 @@
 2. Automated annotation: 
   * Implementing new method for automating annotations - generating xml labels via bounding rectangles
 
-3. Remote sensing: 
+3. Underwater sensors: 
   * Two underwater camera sensors built with Raspberry Pi's
   * Implementation of light-weight motion detection on Raspbian image
   * One humidity/temperature sensor built with Arduino Uno (not deployed) 
@@ -20,7 +20,7 @@
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/carp-title-panel-final.png)
 
 ### Project Overview: 
-Philadelphia's Wissahickon Creek is one of its 7 major subwatersheds and drains into the Schuylkill river. I have identified two adjacent sections of the creek, each less than 300 yards long, which -- with the exception of short periods following very heavy rainfall -- are separated by rockbeds where the water level is < 2 inches deep. The effect of this segmentation is that there is an observably distinct population of fish on either side of these spillways, though the sections are nearly touching one another. While Redbreasted Sunfish, Rockbass, Smallmouth Bass and Pumpkinseed Sunfish exist in aproximately equal number, one section has an abundance of very large (>20 lbs) Common Carp, and the other has almost none. In the section without these Carp, there is an abundance large (1-4 pounds) White Suckers, which I have seen only very rarely in the downstream section. Though this is likely an unsubstantial phenomenon from the ecological perspective, it presents an interesting opportunity for data analysis. Namely, I wondered if this population discrepancy could be reproduced by the deployment of remote sensors, without application of any prior assumptions on the distribution of fish across the two sections of the creek. This project is as of this writing incomplete, though significant progress has been made. The following sections provide a breif / high-level description of the methods applied to this point.
+Philadelphia's Wissahickon Creek is one of its 7 major subwatersheds and drains into the Schuylkill river. I have identified two adjacent sections of the creek, each less than 300 yards long, which -- with the exception of short periods following very heavy rainfall -- are separated by rockbeds where the water level is < 2 inches deep. The effect of this segmentation is that there is an observably distinct population of fish on either side of these spillways, though the sections are nearly touching one another. While Redbreasted Sunfish, Rockbass, Smallmouth Bass and Pumpkinseed Sunfish exist in aproximately equal number, one section has an abundance of very large (>20 lbs) Common Carp, and the other has almost none. In the section without these Carp, there is an abundance large (1-4 pounds) White Suckers, which I have seen only very rarely in the downstream section. Though this is likely an unsubstantial phenomenon from the ecological perspective, it presents an interesting opportunity for data analysis. Namely, I wondered if this population discrepancy could be reproduced by the deployment of underwater cameras on single board computers, without application of any prior assumptions on the distribution of fish across the two sections of the creek. This project is as of this writing incomplete, though significant progress has been made. The following sections provide a breif / high-level description of the methods applied to this point.
 
 
 ### Hardware: 
@@ -53,7 +53,7 @@ The next step in the process is to build out functionality to initialize the 'em
 ### Use of motion detection to automate annotations: 
 When motion is detected, the camera then transfers each occupied frame to the USB storage device. Given the number of frames per second that the device sees, and the large number of potentially spurious objects (such as leaves), I had to specify a large threshold value for what was considered to be a detected object. Further, these images are ultimately meant to be used to train a model, so images with many bounding rectangles and objects at multiple depths are difficult to annotate and to use. For this reason I also specified that a frame would only be written to memory if 1) it was of a large enough size and 2) if there was only one detected object in the frame. This may seem like a severe limitation but the camera sees so many objects that it turned out to be an effective method. Moreover, this set of constraints allowed for a very helpful adaptation of the model training process. Instead of using a GUI or command line utility to move through the frames and draw / label each rectangle, I was able to use the dimensions of the bounding rectangles to produce labeled xml annotations that could be used to train models for detection and classification. The figure below shows the output of this process for an adequatey sized frame. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/label-and-image.pngg)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/label-and-image.png)
 
 
 ### Fish classification: 
