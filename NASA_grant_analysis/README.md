@@ -109,17 +109,18 @@ One major obstacle to this analysis is the amount of data that we have to look a
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/coverage-matrix-combined.png)
 
-The second plot, which is from the version of the analysis that follows the weekend / weekday procedure used in Frias-Martinez (2012), seems intuitively strange given that you would expect more activity in the weekend than in the week. This plot doesn’t necessarily speak to the density of the activity in the cells, but may be because in areas of similar weekend / weekday activity, there are too few weekend observations to produce any records. The histograms of weekend and weeday activity are more instructive, and illustrate this point. The graphs are pictured below with the weekend historgam on the left and weekday histogram on the right. 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/weekend-weekday-histogram.png)
-
 #### PCA and Kmeans Classification of Activity Vectors: 
 
-To classify the vectors we used 2 dimentional PCA and kmeans as a baseline process. Frias-Martinez use spectral clustering, which will be implemented going forward to compare. We began with k=3 clusters for this initial run. The polygons plot with cluster assignment is pictured below for both sets of vectors (48 hour vector weekend (left) / weekday; 168 hour 7-day (right)): 
+To classify the vectors we used 2 dimentional PCA and kmeans as a baseline process. Frias-Martinez use spectral clustering, which will be implemented going forward to compare. We began with k=5 clusters for this initial run. The two plots below show a comparison of kmeans and principal components for the two different sets of polygons (tesselation left; grid right). Obviously the performance of this model leaves something to be desired. An explicit quantification of the difference between these two classification runs is forthcoming.
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-9-cluster-polygons.png)
 
+A major challenge to this process at the moment is the absense of any ground truth labels that can be used to evaluate the model performance. We have started to incorporate some land use approximation data from Beijing city labs, though this has not yet been incorporated into the analysis. While qualitative description of the classification levels has not yet been done, we can look at a quantitative comparision of the raw inputs based on the average distribution of values for each level in the respective classifications. 
+The grid below shows the spectral graph of social media activity (left), a histogram of night lights rs layer pixels (center) and a color histogram of impervious surface pixels (right) for the tesselation. 
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-10-spectral-hist-tess.png)
+
+There isnt yet any one to one comparison that can be made between the levels of the two classifications, it is still illustrative to look at the same aggregation of values for the analysis of the gridded region. The same values as depicted in the above figure are shown below for the regular grid classification. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-11-spectral-hist-grid.png)
 
