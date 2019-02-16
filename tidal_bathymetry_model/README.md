@@ -24,7 +24,10 @@ To generate bathymetric estimates based on these data, the depth sounding labels
 
 ### Stumpf and Lyzenga bathymetric estimation models
 
+In this iteration of the analysis we chose to employ two well known methods for using multispectral data to estimate bathymetric models: Stumpf (2003) and Lyzenga (1978). The general for of these equations is given below for Lyzenga (equation 1) and Stumpf (equation 2): 
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/stumpf-lyzenga-1.png)
+
 
 
 
