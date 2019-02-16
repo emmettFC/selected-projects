@@ -2,11 +2,22 @@
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathy_12.png)
 
-## Introduction
+ ## Part I: Review of applied methods for WV2 images of South Water Cay Marine Preserve, Belize 
 
-Methods for estimating bathymetry from multispectral images can be broadly classified as either empirical or physical (5). Physical models use known properties of light attenuation in water, substrate reflectance, and diffuse attenuation related to suspended concentrations of biogenic constituents—such as chlorophyll, suspended sediment or dissolved organic matter—to estimate depth from spectral values. Empirical models use known depth values to ‘train’ predictive functions of the relationship between spectral values and depth (5). Models of the latter category are typically hybrid physical-empirical models, and employ some theoretical model of bathymetry to make baseline predictions which are then corrected based on the observed error between depth estimates and ground truth. In the first section I will review the application of two known Bathymetric estimation models to WV2 imagery of the South Water Cay Marine preserve in Belize, and in the second section I will review some preliminary work towards a proposed modification of the Lyzenga Bathymetric estimation technique using drone imagery and a sequential tidal correction. 
+### Introduction 
 
-## Part I: Review of applied methods for WV2 images of South Water Cay Marine Preserve, Belize 
+Methods for bathymetric modeling of oceanic and fluvial sites is a well studied probelm with an extensive literature. That said, with the energence of UAV technology and improvements in satelite remote sensing imagery, this is an area of research that is fertile for the development of new methods from computer science and specifically the use of deep networks. The intent of this project was to leverage low cost UAV imagery, with flights at regular intervals through the tidal cycle, to try and train a model to do high resolution bathymetric modeling of a coastal tidal inlet in the long island sound. Ultimately, weather and the slow pace of feild work trial and error prevented this experiment from being completed at this time. This repositiory with therefore have two components: 1) breif review of trial application of known bathymetric methods to a set of WV2 imagery covering the South Cay Marine Preserve in Belze, and 2) a discussion of the experimental design, proposed model and preliminary analysis from the first pass at UAV bathymetric modeling of a the intended coastal scene on the long island sound. 
+
+### The South Cay Marine Preserve, Belize
+
+I worked with a doctoral student at UCSB on a project seeking to build a high resolution bathymetric model of the South Cay Marine Preserve in Belize. The purpose of this project was to use passive depth sounding data as labels to train the Stumpf and Lyzenga equations for bathymetric estimates. This is a meaningful effort because while LiDAR bathymetry is highly accurate, it is prohibitively expensive in many applications and a significant proportion of large and ecologically important coastal regions have yet to be mapped with this technology. If we could show that passive low cost depth sounding data could be used to effectively calibrate bathymetric models, then we could provide good topographic maps of these unmapped regions. The spectral data for the region of interest are a set of images from the WV2 digital globe satelite. The image below shows the coverage of the WV2 imagery in red, and the minimal bounding box for the passive depth sounding labels in blue: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/raster-labels-coverage.png)
+
+The labeled region is quite small compared to the overall scene, though the real challenge comes from the sparse coverage of labeled points within the smaller region. These labels are passively generated from a hand held depth sounding device onboard a research ship studying the patch reef ecosystem of the South Cay. The coverage within the region is pictured below: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/kernel-density-sparse-labels.png)
+
 
 ### Introduction
 
