@@ -39,7 +39,9 @@ For the 30-meter subset, we found an absolute mean difference between the predic
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/stumpf-regression-out.png)
 
+The 15 meter subset performs pretty well considering the simplicity of the model applied. Clearly though some nonlinear function of the data would perform better given the output shown above. Utlimately though, the model trained on the labeled subset of data can be extrapolated to the entire region for depth < 15 meters and a bathymetric model can be generated. The model produced by this analysis is pictured below: 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/stumpf-regression-out.png)
 
 ### Introduction
 
