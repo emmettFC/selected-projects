@@ -1,5 +1,12 @@
-# Simple physical plankton model
-## Describing coastal plankton density with a one dimensional diffusion-sedimentation model with spatially variable diffusion coefficient and sinusoidal excitation
+# Tidal Bathymetry Model & Review of applied methods 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathy_12.png)
+
+## Introduction
+
+Methods for estimating bathymetry from multispectral images can be broadly classified as either empirical or physical (5). Physical models use known properties of light attenuation in water, substrate reflectance, and diffuse attenuation related to suspended concentrations of biogenic constituents—such as chlorophyll, suspended sediment or dissolved organic matter—to estimate depth from spectral values. Empirical models use known depth values to ‘train’ predictive functions of the relationship between spectral values and depth (5). Models of the latter category are typically hybrid physical-empirical models, and employ some theoretical model of bathymetry to make baseline predictions which are then corrected based on the observed error between depth estimates and ground truth. In the first section I will review the application of two known Bathymetric estimation models to WV2 imagery of the South Water Cay Marine preserve in Belize, and in the second section I will review some preliminary work towards a proposed modification of the Lyzenga Bathymetric estimation technique using drone imagery and a sequential tidal correction. 
+
+## Part I: Review of applied methods for WV2 images of South Water Cay Marine Preserve, Belize 
 
 ### Introduction
 
@@ -17,7 +24,7 @@ The Warp station in the North Sea is located in a shallow tidal inlet, with stab
    * tidal current velocity will be treated as a laminar force perpendicular to the mouth of the inlet (10)
   
 The model then seeks only to describe variability in the vertical (z) distribution of plankton density in the water column as a consequence of periodic laminar flow velocity. 
-
++
 The chlorophyll fluorescence readings used to validate the model are taken at a discrete point in the (x, y) space at a depth of 1 meter from the surface (17). The assumption of uniformity in the (x, y) plane parallel to the surface is made to eliminate the impact of horizontal transport / advection of plankton during the tidal cycle. This assumption follows from the empirical observation that changes in salinity and temperature are dominated by the 12 hour semidiurnal tidal cycle, though remain relatively stable through the 6 hour tidal current cycle (8). This observation comes from the paper below:
 
 ```
