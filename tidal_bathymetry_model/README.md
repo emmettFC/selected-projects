@@ -20,7 +20,7 @@ The labeled region is quite small compared to the overall scene, though the real
 
 To generate bathymetric estimates based on these data, the depth sounding labels have to be intersected with the satellite raster data, such that the spectral values for each band at a given pixel are associated with the depth measurement at that point. Once the spectral data are corrected for atmospheric effects and sun glint, according to the specifications of the satelittle product, then the model coeficients can be calibrated using regression analysis. The 8 bands from the WV2 image data are pictured below for the region of interest : 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathymetric-map.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/wv2-all-bands-separated.png)
 
 ### Stumpf and Lyzenga bathymetric estimation models
 
@@ -41,7 +41,7 @@ For the 30-meter subset, we found an absolute mean difference between the predic
 
 The 15 meter subset performs pretty well considering the simplicity of the model applied. Clearly though some nonlinear function of the data would perform better given the output shown above. Utlimately though, the model trained on the labeled subset of data can be extrapolated to the entire region for depth < 15 meters and a bathymetric model can be generated. The model produced by this analysis is pictured below: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/stumpf-regression-out.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathymetric-map.png)
 
 ### Introduction
 
