@@ -48,6 +48,12 @@ The 15 meter subset performs pretty well considering the simplicity of the model
 
 ## Part II: Proposal for UAV method of bathymatric modeling with sequential tidal correction
 
+
+
+
+
+## Appendix: Patch reef grazing halos 
+
 ### Introduction
 
 
