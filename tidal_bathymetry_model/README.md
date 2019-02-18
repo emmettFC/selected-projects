@@ -1,4 +1,4 @@
-# Tidal Bathymetry Model & Review of applied methods 
+# Tidal bathymetry model & review of applied methods 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathy_12.png)
 
@@ -61,7 +61,7 @@ In this section I propose a method of developing empirical coefficients to corre
 
 ### Experimental design and preliminary feild work
 
-In order to collect the data for the model of tidal depth correction described above, I flew a drone over the region of interest at regular 1-hour intervals through the course of a tidal cycle. Flights were made with a DJI phantom pro drone with an RGB-NIR camera, and controlled using flight plans set in the Ground Station Pro App. The flights were made at an elevation of 270 feet, with an overhead angle of 0 degrees. Images were taken continuously through the flight duration, as opposed to a hover and shoot flight, given the battery restrictions on the DJI Phantom Pro. 
+In order to collect the data for the model of tidal depth correction described above, I flew a drone over the region of interest at regular 1-hour intervals through the course of a tidal cycle. Flights were made with a DJI phantom pro drone with an RGB-NIR camera, and controlled using flight plans set in the Ground Station Pro App. The flights were made at an elevation of 270 feet, with an overhead angle of 0 degrees. Images were taken continuously through the flight duration, as opposed to a hover and shoot flight, given the battery restrictions on the DJI Phantom Pro (flight plan and drone pictured below): 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/flight-plan-and-drone.png)
 
