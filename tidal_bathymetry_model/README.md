@@ -65,6 +65,7 @@ The majority of physical models are based on approximations of the solution to t
 
 Lyzenga (2006) propose a simplification of an approximate solution to the radiative transfer equation in water. They begin with the approximate solution: 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/lyzenga-equations-ii.png)
 
 
 
