@@ -100,7 +100,14 @@ The first such implementation was the use of the sobel operator for edge detecti
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/image-process-1.png)
 
+The sobel operator does a good job of representing the variable reflectance with the image gradient. The process works well for approximating a contour than can be used to mask the land, though does not capture the fine-scale gradient along the coast that will be most useful to model calibration. The final graph above can be used to generate contour / polygon approximations in the image, over which pixel vectors can be built and used for classification. I will address this below for the canny edge detection algorithm, which outperforms sobel in this case. 
 
+Canny edge detection is another algorithm that finds edges in images through the use of intensity gradient approximation. However, unlike the sobel operator, the canny algorithm incorporates the Gaussian filtration step, and so it is not required as a preliminary (in fact, the gradient approximation step in the canny algorithm uses the same convolutional kernel approximation for the image gradients, which is likely why they outperformed relative to other processes) (11). After intensity gradients are approximated, fine scale edges are identified using non-maximum suppression and then reduced to an optimal set through hysterical thresholding (11). For this analysis I used the canny edge detection algorithm as implemented in openCv for python. The algorithm produced the following result: 
+
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/image-process-1.png)
+
+The output is similar to the output of the sobel operator after Gaussian filtration, which is essentially the same algorithm without subsequent identification of ‘thin-edges’. This turns out to be a critical difference for the granularity of coastal boarders. Consider the comparison below: 
 
 ### Discussion of the physical model & potential for a sequential tidal correction 
 
