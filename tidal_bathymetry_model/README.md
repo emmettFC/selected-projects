@@ -73,18 +73,32 @@ The ground control points worked very well, and provided enough tie points for t
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathy_12.png)
 
-While the Drone did a good job of imaging the region, and the GCP points enabled the sucessful stitching of an image mosaic, the data collected were ultimately not viable for the indended bathymetric analysis. This for two main reasons: 1) The flight duration was 20 minutes, which at peak tidal current velocity has a large impact on the time-depth reltationship that is meant to be captured, and 2) The NIR images were not captured due to a connection error between the NIR camera and the drone, and the NIR is needed to de-glint the images which have very significant sun-glint. For the next iteration of the data collection process, we are going to improve the mounting rig for the NIR camera and change the flight plan to a thin rectange perpedicular to the coastline. The latter change will reduce the flight time which will allow for a more precise time-depth snapshot of the region, and give a transect with more variable depth to allow for a more robust test of the model. 
+While the Drone did a good job of imaging the region, and the GCP points enabled the sucessful stitching of an image mosaic, the data collected were ultimately not viable for the indended bathymetric analysis. This for two main reasons: 1) The flight duration was 20 minutes, which at peak tidal current velocity has a large impact on the time-depth reltationship that is meant to be captured, and 2) The NIR images were not captured due to a connection error between the NIR camera and the drone, and the NIR is needed to de-glint the images which have very significant sun-glint. 
+
+For the next iteration of the data collection process, we are going to improve the mounting rig for the NIR camera and change the flight plan to a thin rectange perpedicular to the coastline. The latter change will reduce the flight time which will allow for a more precise time-depth snapshot of the region, and give a transect with more variable depth to allow for a more robust test of the model. Finally, the ground control points will need to be modified to accomodate the new transect. There will be a larger proportion of completely over water images, and so the calibration targets will need to be more prominent features in the images taken at 270 feet. To to this the marking will be changed from a lattice pattern to a checker pattern, the latter of which is more visible in the overhead images as determined through this experiment. Further, the targets themselves will need to be larger and the steaks will need to be longer in order to remain stationary and unsubmerged in deeper water. These proposed changes are pictured below: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathy_13.png)
 
 ### Unsupersived preprocessing of UAV images for land mask generation: 
 
 Though the images were not viable for application of the bathymetric model, they could still be used to test and develop preprocessing methods required for analysis. For example, the Lyzenga method requires that: 
 
-         1) pixels with optically deep water are labeled to calibrate volume scattering effects 
-         2) land and patch reef structures are masked from the image
-         3) regions with white water due to surface turbulence are removed for interpolation
-         4) pixels with identifiable substrate are labeled to calibrate for variable bottom albedo (18)
+    1) pixels with optically deep water are labeled to calibrate volume scattering effects 
+    2) land and patch reef structures are masked from the image
+    3) regions with white water due to surface turbulence are removed for interpolation
+    4) pixels with identifiable substrate are labeled to calibrate for variable bottom albedo (18)
 
 For bathymetric models based on UAV inputs, the labeling requirements are much more significant given the quantity of images used for analysis(2). It is the hope of this analysis that most or all of these feature identification pre-processing steps can be accomplished by either supervised or ideally unsupervised image segmentation and classification methods from the computer vision literature. 
+
+The first and most accesible of these proprocessing steps is the generation of a land-mask to exclude the unsubmerged coastline. I attempted to apply several unsupervised image segmentation processes to accomplish this, both of which follow the same general three-step process involving: 
+
+    1) threshold denoising and edge detection algorithms, 
+    2) density or spatial clustering 
+    3) tessellation or contour approximation to isolate non-uniform polygons or segments in the image 
+
+The first such implementation was the use of the sobel operator for edge detection. The algorithm is based on two 3x3 kernels which are used to approximate the x and y directional derivatives of the image, resulting in an approximation of the image gradient function (19). To make the operation more robust to noise, I first ran the image through Gaussian filtration. The output of this process is shown below, using the skimage implementation of both Gaussian filtration and the sobel operator in python: 
+
+
 
 ### Discussion of the physical model & potential for a sequential tidal correction 
 
