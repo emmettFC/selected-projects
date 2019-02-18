@@ -104,10 +104,12 @@ The sobel operator does a good job of representing the variable reflectance with
 
 Canny edge detection is another algorithm that finds edges in images through the use of intensity gradient approximation. However, unlike the sobel operator, the canny algorithm incorporates the Gaussian filtration step, and so it is not required as a preliminary (in fact, the gradient approximation step in the canny algorithm uses the same convolutional kernel approximation for the image gradients, which is likely why they outperformed relative to other processes) (11). After intensity gradients are approximated, fine scale edges are identified using non-maximum suppression and then reduced to an optimal set through hysterical thresholding (11). For this analysis I used the canny edge detection algorithm as implemented in openCv for python. The algorithm produced the following result: 
 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/image-process-1.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/canny-edge-output.png)
 
 The output is similar to the output of the sobel operator after Gaussian filtration, which is essentially the same algorithm without subsequent identification of ‘thin-edges’. This turns out to be a critical difference for the granularity of coastal boarders. Consider the comparison below: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/image-processing-3.png)
+
 
 ### Discussion of the physical model & potential for a sequential tidal correction 
 
