@@ -48,6 +48,20 @@ The 15 meter subset performs pretty well considering the simplicity of the model
 
 ## Part II: Proposal for UAV method of bathymatric modeling with sequential tidal correction
 
+Models based on empirically calibrated coefficients outperform theoretical models in the literature (5). This is because of the fact that the underlying coastal and fluvial scenes have very different optical properties. There are four main sources of heterogeneity that prevent physical models from making generically accurate predictions: 
+
+    1) surface turbulence and white water
+    2) optical properties of the water column / variability in diffusive attenuation 
+    3) surface reflectance and sun-glint
+    4) substrate reflectance / albedo 
+
+Methods for mitigating the effects of surface turbulence involve the detection and elimination of white-water, and subsequent interpolation of pixels based on a host of spatial interpolation algorithms (ex Kriging) (17)(18)(2). Sun-glint correction is the most ‘solved’ of the above issues, with a robust method of band-specific covariance with the NIR band over optically deep water having been employed with consistent success (17). The other two sources of variability (water column diffuse attenuation and substrate reflectance) are the main impediment to the generalizability of physical models.
+
+In this section I propose a method of developing empirical coefficients to correct physical depth estimates by flying consecutive flights with a UAV at regular 1 hour intervals through the course of a semidiurnal tidal cycle. Given appropriately short flight durations, I hypothesize that the known changes in depth corresponding to the high-low tidal cycle can be compared with estimated depths in order to empirically calibrate a physical model without in situ depth labels. This hypothesis is supported by the fact that known functional relationships exist between the associated physical variables and spectral radiance: spectral radiance is an exponential function of depth and diffuse attenuation, and a linear function of substrate reflectance (17)(18). 
+
+Though the analysis has not yet been completed, I am going to describe my proposed analysis, review some preliminary methods that I have applied and that will be necessary components of the final work-stream, and discuss sources of failure in my experimental methodology. First, I will address two ways in which successive tidal depth estimates can be used to parameterize and enrich physical bathymetric models. Second I will discuss the function of unsupervised image processing in the estimation of depth from multispectral data. This will include a discussion of algorithmic properties and a comparative discussion of performance based on application to data collected in the field. Finally, in the appendix I will discuss the sources of failure in my experimental methodology and how they can be overcome in future iterations of this study. 
+
+
 
 
 
