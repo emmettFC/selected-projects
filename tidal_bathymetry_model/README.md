@@ -98,6 +98,8 @@ The first and most accesible of these proprocessing steps is the generation of a
 
 The first such implementation was the use of the sobel operator for edge detection. The algorithm is based on two 3x3 kernels which are used to approximate the x and y directional derivatives of the image, resulting in an approximation of the image gradient function (19). To make the operation more robust to noise, I first ran the image through Gaussian filtration. The output of this process is shown below, using the skimage implementation of both Gaussian filtration and the sobel operator in python: 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/image-process-1.png)
+
 
 
 ### Discussion of the physical model & potential for a sequential tidal correction 
