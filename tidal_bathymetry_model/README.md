@@ -73,9 +73,18 @@ The ground control points worked very well, and provided enough tie points for t
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/bathy_12.png)
 
-While the Drone did a good job of imaging the region, and the GCP points enabled the sucessful stitching of an image mosaic, the data collected were ultimately not viable for the indended bathymetric analysis. This for two main reasons: 1) The flight duration was 20 minutes, which at peak tidal current has a large impact on the time-depth reltationship that is meant to be captured, and 2) The NIR images were not captured due to a connection error between the NIR camera and the drone, and the NIR is needed to de-glint the images which have very significant sun-glint. 
- 
+While the Drone did a good job of imaging the region, and the GCP points enabled the sucessful stitching of an image mosaic, the data collected were ultimately not viable for the indended bathymetric analysis. This for two main reasons: 1) The flight duration was 20 minutes, which at peak tidal current velocity has a large impact on the time-depth reltationship that is meant to be captured, and 2) The NIR images were not captured due to a connection error between the NIR camera and the drone, and the NIR is needed to de-glint the images which have very significant sun-glint. For the next iteration of the data collection process, we are going to improve the mounting rig for the NIR camera and change the flight plan to a thin rectange perpedicular to the coastline. The latter change will reduce the flight time which will allow for a more precise time-depth snapshot of the region, and give a transect with more variable depth to allow for a more robust test of the model. 
 
+### Unsupersived preprocessing of UAV images for land mask generation: 
+
+Though the images were not viable for application of the bathymetric model, they could still be used to test and develop preprocessing methods required for analysis. For example, the Lyzenga method requires that: 
+
+         1) pixels with optically deep water are labeled to calibrate volume scattering effects 
+         2) land and patch reef structures are masked from the image
+         3) regions with white water due to surface turbulence are removed for interpolation
+         4) pixels with identifiable substrate are labeled to calibrate for variable bottom albedo (18)
+
+For bathymetric models based on UAV inputs, the labeling requirements are much more significant given the quantity of images used for analysis(2). It is the hope of this analysis that most or all of these feature identification pre-processing steps can be accomplished by either supervised or ideally unsupervised image segmentation and classification methods from the computer vision literature. 
 
 ### Discussion of the physical model & potential for a sequential tidal correction 
 
