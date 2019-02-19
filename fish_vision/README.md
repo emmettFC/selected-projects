@@ -43,7 +43,7 @@ When motion is detected, the camera then transfers each occupied frame to the US
 
 
 ### Fish classification: 
-I based my classification model on the (https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html). This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
+I based my classification model on this  paper -- https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html -- which applies Faster R-CNN (Region based convolutional nueral network) to classify boated fish from camera images taken on commercial fishing vessels. This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary--given the output of the motion detection process. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
 
   * Classify fish into 1) carp 2) sucker 3) other
   * Classify fish into 1) rock bass 2) sunfish 3) smallmouth bass 4) white sucker 5) carp
@@ -59,12 +59,12 @@ Deep Residual Learning for Image Recognition.
 Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
 arXiv:1512.03385
 ```
-As expected, the 3 level classification yeilded much better results than the 5 level classification. This is because both the carp and sucker fish are so much larger than the other fish, that the distinction was simplified. 
+The confusion matricies for the different classifiers are shown below, with the three level classification outperforming the 5 level classification. Carp were correctly classified around 70% of the time in either model. On the other hand, the suckerfish classification in the 5 level model is only 27%, while it is 70% in the 3 level model.
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/final-confusion.png)
 
 
-Keeping in mind the known discrepancy in population across the two regions, the classification model ultimately learns to assign predictive weight to aspects of the stationary frame in each of the two scenarios (despite much of this context being eliminated by the bounding rectangles). It is very likely that a white sucker, if observed by the camera deployed in the downstream section, would be mislabeled as a carp or vise versa. Though this has not yet been observed, larger rock bass and small mouth bass have been mislabeled as carp in the region with many carp, while they have been labeled as white sucker fish in the region with many white suckers. An example of the problem of spurious frame based learning is pictued in the image below, which was taken from the solution write up linked in the above passage: heatmap shows regions of model focus for a given input image.  
+One interesting observation is that when the models are used to predict testing data which is taken all from one of the section, the mislabeling of fish in the 'other' category are more often misclassified as suckerfish in the region with more suckerfish, whereas they are mislabeled as Carp on the section with more Carp. As adressed in the paper above, the classification model ultimately learns to assign predictive weight to aspects of the stationary frame in each of the two scenarios (despite much of this context being eliminated by the bounding rectangles). An example of the problem of spurious frame based learning is pictued in the image below, which was taken from the solution write up linked in the above passage: heatmap shows regions of model focus for a given input image.  
 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/spurious-features.png)
@@ -72,14 +72,14 @@ Keeping in mind the known discrepancy in population across the two regions, the 
 ### To do / Expanding on current state: 
 Moving forward, the model must be made more robust. Classification, while modestly effective in the 3 level implementation, was impacted significantly by the background features of the two locations as mentioned above. Some potential solutions to this have been proposed on the forum for the Nature Conservancy Fisheries Monitoring competition. Going forward I intend to test some of these methods for my project.  
 
-In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured below). For these, some more work on the Arduino sketch used to measure the temperature is required. 
+In the hardware department, there is a lot to be done. The seals on one of the cameras broke and it destroyed the board, so the housing for the cameras needs to be improved. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured below). For these, some more work on the Arduino sketch used to measure the temperature is required. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/ard-fnal.png)
 
 ## Appendix: Initital attempt at object-detection
 
 ### Object detection & training the SSD (single-shot-detection) mobilenet CNN: 
-Before implementing the automated annotation functionality, I thought that an object detection model had to be trained so that fish classification could be accomplished. For this I used the tensorflow object detection API, which can be challenging to stand up. The process is as follows: 
+Before implementing the automated annotation functionality, I thought that an object detection model had to be trained so that fish classification could be accomplished. For this I used the tensorflow object detection API. The process is as follows: 
   * Divide images into training and testing sets
   * Convert xml labels to csv
   * Create tf records file that can be read by tensorflow to train the model
@@ -89,7 +89,7 @@ Before implementing the automated annotation functionality, I thought that an ob
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/loss-graph.png)
 
-I am running the CPU version of tensorflow, which is tedious and inefficient. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces an ok model. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
+I am running the CPU version of tensorflow, which takes up a lot of space and has very long run times for models to converge. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces an ok model. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/carp-ob-fnal.png.png)
 
