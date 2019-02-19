@@ -36,7 +36,7 @@ In order to do this project, two underwater camera sensors were made using Raspb
 
 Each of the devices was booted on a Raspbian linux image via micro-sd cards. Code for motion detection and subprocess for writing out labeled frames was implemented in python via openCV. Instllation was a bit trying, though this is generally the case with openCv given its significant associated requirements and space contraints of the SCB's. The boxes were sealed with Smarter Adhesive Solutions 16 fast-set medium bodied solvent cement, and mounted to submerged trees in the regions of interest. NB: the seams were insufficient, and on the second deployment one of the boxes leaked and the Pi was destroyed. I have since purchased another Pi and am working towards an improved housing design. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/camera-sensors.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/cams-fnal.png)
 
 
 ### Motion Detection:
@@ -65,9 +65,8 @@ While efforts at motion detection were successful, classification of the fish im
 
 Domain of classifier: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/final-domain-1.png)
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/fish-domain-final.png)
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/final-domain-single.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/fish-class-fnal.png)
+
 
 Both methods were tested using ResNet-152 (Keras implementation with ImageNet pre-trained weights: https://gist.github.com/flyyufelix/7e2eafb149f72f4d38dd661882c554a6) recommended / written up as part of the solution to the very similar problem outlined in the solution referenced above-- indeed the author is the same, and has based his work on a paper: 
 ```
@@ -90,7 +89,7 @@ Moving forward, the model must be made more robust. Classification, while modest
 
 In the hardware department, there is a lot to be done. The first two cameras -- as evidenced by the destruction of one of them -- were not designed optimally. Work is needed to secure the cameras and insure that they are sealed properly. I have also built two temperature / humidity sensors that I have not yet deployed (one pictured below). For these, some more work on the Arduino sketch used to measure the temperature is required. 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/arduino-temperature-sensor.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/ard-fnal.png)
 
 ## Appendix: Initital attempt at object-detection
 
@@ -107,11 +106,6 @@ Before implementing the automated annotation functionality, I thought that an ob
 
 I am running the CPU version of tensorflow, which is tedious and inefficient. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces an ok model. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/mobilenet-applied-carp.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/carp-ob-fnal.png.png)
 
 ### Thanks for reading!! 
-
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/me-with-sucker.png)
-
-
-
