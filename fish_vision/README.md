@@ -48,7 +48,7 @@ I based my classification model on this  paper -- https://flyyufelix.github.io/2
   * Classify fish into 1) carp 2) sucker 3) other
   * Classify fish into 1) rock bass 2) sunfish 3) smallmouth bass 4) white sucker 5) carp
 
-Domain of classifier: 
+Domain of classifier (images taken from submerged cameras, quality is sub-optimal): 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/fish-class-fnal.png)
 
