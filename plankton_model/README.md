@@ -99,7 +99,13 @@ The tide gauge data is at 15-minute temporal resolution and the chlorophyll fluo
 
 This is in line with the way that the function for D(z,t) takes the absolute value of the periodic rate of change (abs(sin(pit/6))), which facilitates the comparison. The tidal data is at a fine-scale temporal resolution and produces nearly continuous plots over time (pictured below for week 1 & 2 June 2003). When the data are resolved to the less granular interval of the chlorophyll data, the graph becomes less smooth and the current differential is exaggerated (pictured below for week 1 June 2003):
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/empirical-data-1.png)
 
+The chlorophyll fluorescence data is noisy and subject to instrumentation error and anomalous patchiness characteristic of phytoplankton. To try and smooth the data in time, the raw values are log transformed, and the change in density is measured as the differential of the natural log over the change in time(8). This expression can be restated through the application of the chain rule: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/empirical-data-1.png)
+
+Which shows it is exactly equivalent to the relative rate of change in density. The final pre-processing step to mention is that ambient light or photosynthetically active radiance (PAR) can distort readings of chlorophyll fluorescence, and so intervals with PAR>1 at 1m depth, which is a proxy for daylight, should be excluded(8).  The PAR values were not populated in the data I received, so I used the Astral module in python to evaluate the sunset and sunrise times for each record: 
 
 When you isolate the top one meter of the water column, you can see a very regular periodic change in density as desired by the model: 
 
