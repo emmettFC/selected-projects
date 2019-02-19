@@ -116,11 +116,6 @@ Lyzenga (2006) propose a simplification of an approximate solution to the radiat
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/lyzenga-equations-ii.png)
 
-The output of the canny edge detection process can then be evaluated to create discrete segments over the image. This was a bit of a frustrating step in the process, but ultimately I tried to accomplish this by finding centroids based on the density of the canny edge output by performing spatial clustering with DBSCAN. The centroids of ‘points of interest’ can then be used to generate polygons with Delaunay triangulation, Voronoi tessellation or convex hull enclosure. None of the methods worked particularly well but the convex hull implementation in openCv performed best. Representative cluster centroids are pictured below over a contour plot of the region (qualitatively, the cluster centers from left to right represent submerged sand, submerged peat and sand mix, beach sand, submerged peat, partially submerged peat and vegetation):
-
-
-
-
 ## Appendix: Patch reef grazing halos 
 
 ### Introduction
