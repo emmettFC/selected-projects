@@ -120,7 +120,7 @@ The poor performance of image gradient methods for over-water images may be beca
 
 This implementation of the SLIC algorithm is optically very good at building segments in the over-water imagery. The zoomed in section on the right shows how the model is able to distinguish between subtlety different but meaningful segments between submerged regions. The red arrow in the image above on the right indicates a segment that contains no un-submerged points, but is correctly separated from the adjacent segment on the left. The substrate of the indicated segment is shallow rocks, while the adjacent segment has a sand bottom. I mention this because it underscores the high performance of this algorithm given no context or supervision. It can therefore be used to help ameliorate some of the effort required to prepare image data for bathymetric analysis. This is because if the number of clusters (K) is increased—it is passed as a parameter—the model will be able to isolate un-submerged points in over-water imagery with high accuracy(15)(14). The model also shows the ability to distinguish between variable substrate reflectance properties. The former allows for the generation of masks for these over-water segments, while the latter could help to parameterize bathymetric models that specify values for substrate reflectance classes. 
 
-An interesting feature of the canny edge detection process is that it builds a binarized representation of the coastline that can also be used to propose substrate classes. I ran a spatial density clustering on the canny image matrix and then used the convex hull approximation fucntion in openCV to produce segments in the image: 
+An interesting feature of the canny edge detection process is that it builds a binarized representation of the coastline that can also be used to propose substrate classes. I ran a spatial density clustering on the canny image matrix and then used the convex hull approximation fucntion in openCV to produce segments in the image. The process did not work, even though a mask based on the density clusters shows a very good optical subsetting of the data. Ultimetly the goal though is to generate some set of minimal polygons for the density clusters and use them as abstract substrate labels. The mask from DBSCAN is shown below along with a manual labeling of how I would like the segmentation to draw boundaries. More work needs to be done to accomplish this going forward. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/cluster-centers.png)
 
@@ -135,8 +135,4 @@ Lyzenga (2006) propose a simplification of an approximate solution to the radiat
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/lyzenga-equations-ii.png)
 
 ## Appendix: Patch reef grazing halos 
-
-### Introduction
-
-
 
