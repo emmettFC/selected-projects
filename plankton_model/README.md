@@ -103,9 +103,11 @@ This is in line with the way that the function for D(z,t) takes the absolute val
 
 The chlorophyll fluorescence data is noisy and subject to instrumentation error and anomalous patchiness characteristic of phytoplankton. To try and smooth the data in time, the raw values are log transformed, and the change in density is measured as the differential of the natural log over the change in time(8). This expression can be restated through the application of the chain rule: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/empirical-data-1.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/change-chl.png)
 
-Which shows it is exactly equivalent to the relative rate of change in density. The final pre-processing step to mention is that ambient light or photosynthetically active radiance (PAR) can distort readings of chlorophyll fluorescence, and so intervals with PAR>1 at 1m depth, which is a proxy for daylight, should be excluded(8).  The PAR values were not populated in the data I received, so I used the Astral module in python to evaluate the sunset and sunrise times for each record: 
+Which shows it is exactly equivalent to the relative rate of change in density. The final pre-processing step to mention is that ambient light or photosynthetically active radiance (PAR) can distort readings of chlorophyll fluorescence, and so intervals with PAR>1 at 1m depth, which is a proxy for daylight, should be excluded(8).  The PAR values were not populated in the data I received, so I used the Astral module in python to evaluate the sunset and sunrise times for each record. The simple uni-variate OLS model showed reasonably good correspondence between the two values. The clean and merged data set has ~2500 records, so a good heuristic for train and test splits is 20% or 500 records. The data were split into X and Y vectors, with 500 records removed for performance evaluation of the linear model. The model yielded a coefficient of 0.07, a mean squared error of 0.03 and a R^2 of 0.21. The graph of the OLS best-fit line is shown below:
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/plankton-reg.png)
 
 When you isolate the top one meter of the water column, you can see a very regular periodic change in density as desired by the model: 
 
