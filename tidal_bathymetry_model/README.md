@@ -104,6 +104,12 @@ The output is similar to the output of the sobel operator after Gaussian filtrat
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/image-processing-3.png)
 
+The canny edge detection algorithm does a better job at distinguishing the granular features of the coastline, which will be helpful going forward to do substrate segmentation. More basically though, the output from the canny process can be used to generate and image mask for the image mosaic and isolate the submerged and unsubmerged contours of the coastline: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/cluster-centers.png)
+
+
+
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/cluster-centers.png)
 
 
