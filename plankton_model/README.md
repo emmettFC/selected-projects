@@ -1,5 +1,5 @@
 # Simple physical plankton model
-## Describing coastal plankton density with a one dimensional diffusion-sedimentation model with spatially variable diffusion coefficient and sinusoidal excitation
+## Describing coastal plankton density with a one dimensional diffusion-sedimentation model with spatially variable diffusion coefficient and periodic excitation
 
 ### Introduction
 
