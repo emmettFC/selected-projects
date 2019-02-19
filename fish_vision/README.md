@@ -36,7 +36,7 @@ The next step in the process is to build out functionality to initialize the 'em
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/svd-fnal.png)
 
 
-### Use of motion detection to automate annotations: 
+### Process for saving valid images to memory and annotating training data: 
 When motion is detected, the camera then transfers each occupied frame to the USB storage device. Given the number of frames per second that the device sees, and the large number of potentially spurious objects (such as leaves), I had to specify a large threshold value for what was considered to be a detected object. Further, these images are ultimately meant to be used to train a model, so images with many bounding rectangles and objects at multiple depths are difficult to annotate and to use. For this reason I also specified that a frame would only be written to memory if 1) it was of a large enough size and 2) if there was only one detected object in the frame. This may seem like a severe limitation but the camera sees so many objects that it turned out to be an effective method. This process also makes it pretty simple to use the data for training a classification network, because the dimension of the bounding rectangles from the detection output can be used to 1) produce and label xml annotations (below) and 2) crop out the minimal bounding rectangle to feed the model which helps to mitigate the effect of spurious frame-based learning. The latter issue is addressed in the next section. The figure below shows the output of this process for an adequatey sized frame. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/annot-fnal.png)
