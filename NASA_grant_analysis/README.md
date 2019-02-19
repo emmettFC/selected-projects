@@ -100,12 +100,12 @@ One major obstacle to this analysis is the amount of data that we have to look a
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/coverage-matrix-combined.png)
 
 #### PCA and Kmeans Classification of Activity Vectors: 
-To classify the vectors we used 2 dimentional PCA and kmeans as a baseline process. Frias-Martinez also use kmeans, and choose optimal k values on the basis of silouhette scores. We followed the same process in this analysis. We began with k=5 clusters for this initial run. The two plots below show a comparison of kmeans and principal components for the two different sets of polygons (tesselation left; grid right). Obviously the performance of this model leaves something to be desired. An explicit quantification of the difference between these two classification runs is forthcoming.
+To classify the vectors we used 2 dimentional PCA and kmeans as a baseline process. Frias-Martinez also use kmeans, and choose optimal k values on the basis of silouhette scores. We followed the same process in this analysis, and determined to use k=5 clusters for this initial run. The two plots below show a comparison of kmeans and principal components for the two different sets of polygons (tesselation left; grid right). Obviously the performance of this model leaves something to be desired. An explicit quantification of the difference between these two classification runs is forthcoming.
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-9-cluster-polygons.png)
 
 A major challenge to this process at the moment is the absense of any ground truth labels that can be used to evaluate the model performance. We have started to incorporate some land use approximation data from Beijing city labs, though this has not yet been incorporated into the analysis. While qualitative description of the classification levels has not yet been done, we can look at a quantitative comparision of the raw inputs based on the average distribution of values for each level in the respective classifications. 
-The grid below shows the spectral graph of social media activity (left), a histogram of night lights rs layer pixels (center) and a color histogram of impervious surface pixels (right) for the tesselation. 
+The grid below shows the spectral graph of social media activity (left), a histogram of night lights layer pixels (center) and a color histogram of impervious surface pixels (right) for the tesselation. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/NASA_grant_analysis/assets_README/asset-10-spectral-hist-tess.png)
 
