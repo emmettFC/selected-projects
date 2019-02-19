@@ -91,6 +91,6 @@ Before implementing the automated annotation functionality, I thought that an ob
 
 I am running the CPU version of tensorflow, which takes up a lot of space and has very long run times for models to converge. For this reason I have not yet been able to train for enough steps to produce a high performant model. That being said, even the CPU version with inadequate convergence produces an ok model. The model was run on the testing subset of images and was able in most cases to find the large carp in the video frames.
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/carp-ob-fnal.png.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/fish_vision/assets_README/carp-od-fnal.png.png)
 
 ### Thanks for reading!! 
