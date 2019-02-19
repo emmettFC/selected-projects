@@ -109,17 +109,11 @@ The output is similar to the output of the sobel operator after Gaussian filtrat
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/image-processing-3.png)
 
-When the canny edge model output can then be used to 
-
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/cluster-centers.png)
 
 
-
-
 ### Discussion of the physical model & potential for a sequential tidal correction 
-
 The majority of physical models are based on approximations of the solution to the radiative transfer equations in water (3). In general, these physical models are used to propose a generic formal expression that can be empirically parameterized though regression analysis given known depth points. The tidal correction I am proposing is meant to help calibrate physical depth estimates by comparing the relationship between known and predicted changes in depth through periods of tidal change. Depth estimates will be made at regular one-hour intervals through the tidal cycle, starting at dead-low tide (t=0) and ending at dead-high tide (t=6), for a total of seven flights. 
-
 
 For each flight, depth is then estimated using the physical model proposed by Lyzenga (2006) (17). For different intervals in the tidal cycle (t=i, t=i+n), the difference between estimated depths [Xe(i+n) – Xe(i)] will be compared to known change in depth based on tidal fluctuation (Xa = avg(tidal current velocity(t=i, t=i+n)) * dt). These known and estimated depths can be used directly to derive coefficients for the physical model specified by Lyzenga (2006). 
 
