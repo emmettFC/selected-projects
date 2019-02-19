@@ -90,6 +90,17 @@ The top lefthand subplot shows the initial symmetric punctuated release (black),
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/plank-3d-density.png)
 
+#### Comparision to empirical data 
+One reason that I built this model is because of the paper referenced above that conducted a statistical analysis of longitudinal near-surface chlorophyll data in the North Sea, and found that tidal periodicities accounted for much of the observed variation(8). The goal of this project was to see if I could build a model that incorporated some basic but physically meaningful components that would mimic the observed behavior. 
+
+The data on near surface chlorophyll fluorescence—which in times of low ambient light is a very good proxy for phytoplankton density—are maintained by the Center for the Environment Fisheries and Aquaculture (CEFAS)(17).  These data were collected from a Smart Buoy that automates the collection of oceanic data at regular intervals. Data on near surface chlorophyll is available for the period 2001-2018. While the CEFAS data has a number of interesting features, the buoy did not record tidal change and so I got the tidal gauge data from a very nearby station called Sheerness located in the same inlet in the North Sea. This dataset is maintained by the British Oceanographic Data Center (BODC)(18).
+
+The tide gauge data is at 15-minute temporal resolution and the chlorophyll fluorescence data is at a 2-hour resolution, and so the analysis had to be done at 2-hour intervals. For each 2-hour interval, I brought in the discrete point tidal height, the discrete point tidal height from 2-hours previous, the chlorophyll fluorescence value at 1meter depth and the chlorophyll fluorescence value from 2-hours previous. Tidal current was then calculated as the absolute value of the difference in tide height between the two measurements: TC = abs(tideXn - tide0).
+
+This is in line with the way that the function for D(z,t) takes the absolute value of the periodic rate of change (abs(sin(pit/6))), which facilitates the comparison. The tidal data is at a fine-scale temporal resolution and produces nearly continuous plots over time (pictured below for week 1 & 2 June 2003). When the data are resolved to the less granular interval of the chlorophyll data, the graph becomes less smooth and the current differential is exaggerated (pictured below for week 1 June 2003):
+
+
+
 When you isolate the top one meter of the water column, you can see a very regular periodic change in density as desired by the model: 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plank_9.png)
