@@ -15,7 +15,7 @@ The Warp station in the North Sea is located in a shallow tidal inlet, with stab
    * there will be no consideration of changes in density corresponding to the change in volume due to rise and fall of the water              level; 
    * tidal current velocity will be treated as a laminar force perpendicular to the mouth of the inlet (10)
   
-The model then seeks only to describe variability in the vertical (z) distribution of plankton density in the water column as a consequence of periodic laminar flow velocity. 
+The model then seeks only to describe variability in the vertical (z) distribution of plankton density in the water column as a consequence of diffusion proportional to the periodic laminar flow velocity. 
 
 The chlorophyll fluorescence readings used to validate the model are taken at a discrete point in the (x, y) space at a depth of 1 meter from the surface (17). The assumption of uniformity in the (x, y) plane parallel to the surface is made to eliminate the impact of horizontal transport / advection of plankton during the tidal cycle. This assumption follows from the empirical observation that changes in salinity and temperature are dominated by the 12 hour semidiurnal tidal cycle, though remain relatively stable through the 6 hour tidal current cycle (8). This observation comes from the paper below:
 
