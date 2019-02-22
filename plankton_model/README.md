@@ -25,7 +25,7 @@ Blauw AN, Beninca` E, Laane RWPM, Greenwood N, Huisman J (2012)
 PLoS ONE 7(11): e49319. doi:10.1371/journal.pone.0049319
 ```
 
-The model will describe the change in plankton density at 1m spatial steps in the (z) direction, and at 1-second time steps through the tidal-current period of ~6 hours. The three dimensional distribution (x, y, z) of plankton within each 1m section of the water column at any time (t) will be assumed to be uniform. The concentration P(z, t) of plankton at depth (z) and time (t) will be the output of the model at each step in time, though it is the concentration P(t(n), zmax) in the top 1 meter of the water column that is of specific interest given the availability of empirical data. 
+The model will describe the change in plankton density at 1m spatial steps in the (z) direction, and at 1-second time steps through the tidal-current period of ~6 hours. The three dimensional distribution (x, y, z) of plankton density within each 1m section of the water column at any time (t) will be modeled as a uniform quantity. Though in the three dimensional plots, when density is translated into individual particles, they will be random gaussian variables within a 1m^2 cylindrical region. The concentration P(z, t) of plankton at depth (z) and time (t) will be the output of the model at each step in time, though it is the concentration P(t(n), zmax) in the top 1 meter of the water column that is of specific interest given the availability of empirical data. 
 
 ### Model derivation
 
