@@ -6,7 +6,7 @@
 
 ### Project Overview: 
 
-The Wissahickon Creek in Philadelphia is home to ton of fish. There are two adjacent sections of the creek that have different populations of fish. One has a family / multiple families of White Suckerfish (Catostomus commersonii), and the other has a family of Common Carp (Cyprinus carpio). I know this because I spend a lot of time in the water in both sections and this is/was a pretty stable dynamic, but promted the idea that maybe I could build some hardware / train a classifier to reproduce this observation without any assumptions on the distribution of fish in the two sections. This is a write-up of the attempt at doing that, with a discussion of the cameras and the classification model.
+The Wissahickon Creek in Philadelphia is home to a ton of fish. There are two adjacent sections of the creek that have different populations of fish. One has a family / multiple families of White Suckerfish (Catostomus commersonii), and the other has a family of Common Carp (Cyprinus carpio). I know this because I spend a lot of time in the water in both sections and this is/was a pretty stable dynamic, but promted the idea that maybe I could build some hardware / train a classifier to reproduce this observation without any assumptions on the distribution of fish in the two sections. This is a write-up of the attempt at doing that, with a discussion of the cameras and the classification model.
 
 
 ### Hardware: 
