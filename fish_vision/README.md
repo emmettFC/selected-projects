@@ -43,7 +43,7 @@ When motion is detected, the camera then transfers each occupied frame to the US
 
 
 ### Fish classification: 
-I based my classification model on this  paper -- https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html -- which applies Faster R-CNN (Region based convolutional nueral network) to classify boated fish from camera images taken on commercial fishing vessels. This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary--given the output of the motion detection process. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
+I based my classification model on this  paper -- https://flyyufelix.github.io/2017/04/16/kaggle-nature-conservancy.html -- which applies Deep Residual Learning to classify boated fish from camera images taken on commercial fishing vessels. This paper creates an ensemble method in which the fist layer is object-detection, for which I now think deep learning is not nessecary--given the output of the motion detection process. Even though they cant put any software on the boat cameras --unlike in my case -- there is enough stationary camera data to apply the same SVD process and reduce the complexity of the problem. For classification I attempted two general methods: 
 
   * Classify fish into 1) carp 2) sucker 3) other
   * Classify fish into 1) rock bass 2) sunfish 3) smallmouth bass 4) white sucker 5) carp
