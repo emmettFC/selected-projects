@@ -53,12 +53,33 @@ regr = linear_model.LinearRegression()
 regr.fit(xtrain, ytrain)
 ypred = regr.predict(xtest)
 
+
+''' plot results II '''
+
+sns.set_style('white')
+
+dfPlot = pd.DataFrame(xtest, ytest) 
+dfPlot.reset_index(inplace=True)
+dfPlot.columns = ['CHL Rate of Change', 'Tidal Current Velocity']
+sns.pairplot(dfPlot, x_vars=['Tidal Current Velocity'], y_vars='CHL Rate of Change')
+plt.plot(xtest, ypred, color='red', label='OLS Regression Line', linewidth=1)
+# plt.plot(X_test2, y_pred2, color='blue', label='15 Meters: ' + str(round(metrics15['rmse'],3)) + ' RMSE', linewidth=1)
+# plt.plot(x, y)
+ymin, ymax = plt.ylim() 
+plt.ylim(0, ymax)
+plt.legend()
+plt.show()
+
+
+
 ''' plot results ''' 
 
 plt.scatter(xtest, ytest,  color='black')
 plt.plot(xtest, ypred, color='blue', linewidth=3)
-plt.xticks(())
-plt.yticks(())
+plt.xticks()
+plt.yticks()
+plt.xlabel('Tidal Current Velocity')
+plt.ylabel('CHL Rate of Change (top 1m)')
 plt.show() 
 
 ''' generate model summary: {coef = 0.07; mse = 0.03; r2 = 0.21} '''
