@@ -15,9 +15,9 @@ The Warp station in the North Sea is located in a shallow tidal inlet, with stab
    * there will be no consideration of changes in density corresponding to the change in volume due to rise and fall of the water              level; 
    * tidal current velocity will be treated as a laminar force perpendicular to the mouth of the inlet (10)
   
-The model then seeks only to describe variability in the vertical (z) distribution of plankton density in the water column as a consequence of periodic laminar flow velocity. 
+The model then seeks only to describe variability in the vertical (z) distribution of plankton density in the water column as a consequence of diffusion proportional to the periodic laminar flow velocity. 
 
-The chlorophyll fluorescence readings used to validate the model are taken at a discrete point in the (x, y) space at a depth of 1 meter from the surface (17). The assumption of uniformity in the (x, y) plane parallel to the surface is made to eliminate the impact of horizontal transport / advection of plankton during the tidal cycle. This assumption follows from the empirical observation that changes in salinity and temperature are dominated by the 12 hour semidiurnal tidal cycle, though remain relatively stable through the 6 hour tidal current cycle (8). This observation comes from the paper below:
+The chlorophyll fluorescence readings used to validate the model are taken at a discrete point in the (x, y) space at a depth of 1 meter from the surface (17). This is because the SMART buoy takes CHL readings at a depth of 1m. The assumption of uniformity in the (x, y) plane parallel to the surface is made to eliminate the impact of horizontal transport / advection of plankton during the tidal cycle. This assumption follows from the empirical observation that changes in salinity and temperature are dominated by the 12 hour semidiurnal tidal cycle, though remain relatively stable through the 6 hour tidal current cycle (8). This is in contrast to the observed variability in surface chlorophyll, which fluctuates in phase with tidal current velocity. This observation comes from the paper below:
 
 ```
 Dancing with the Tides: Fluctuations of Coastal Phytoplankton Orchestrated by Different Oscillatory Modes of the Tidal Cycle.
@@ -25,7 +25,7 @@ Blauw AN, Beninca` E, Laane RWPM, Greenwood N, Huisman J (2012)
 PLoS ONE 7(11): e49319. doi:10.1371/journal.pone.0049319
 ```
 
-The model will describe the change in plankton density at 1m spatial steps in the (z) direction, and at 1-second time steps through the tidal-current period of ~6 hours. The three dimensional distribution (x, y, z) of plankton within each 1m section of the water column at any time (t) will be assumed to be uniform. The concentration P(z, t) of plankton at depth (z) and time (t) will be the output of the model at each step in time, though it is the concentration P(t(n), zmax) in the top 1 meter of the water column that is of specific interest given the availability of empirical data. 
+The model will describe the change in plankton density at 1m spatial steps in the (z) direction, and at 1-second time steps through the tidal-current period of ~6 hours. The three dimensional distribution (x, y, z) of plankton density within each 1m section of the water column at any time (t) will be modeled as a uniform quantity. Though in the three dimensional plots, when density is translated into individual particles, they will be random gaussian variables within a 1m^2 cylindrical region. The concentration P(z, t) of plankton at depth (z) and time (t) will be the output of the model at each step in time, though it is the concentration P(t(n), zmax) in the top 1 meter of the water column that is of specific interest given the availability of empirical data. 
 
 ### Model derivation
 

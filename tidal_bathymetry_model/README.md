@@ -9,7 +9,7 @@ Estimating bathymetric models based on mutlispectral data is a well studied prob
 This repository describes two attempts at bathymetric estimation from remote sensing data: 1) an application of the Stumpf (2003) model to WV2 sattelite imagery of the South Cay Marine Preserve in Belize; 2) a ongoing project that intends to use a sequence of images at known points through the tidal cycle to parameterize physical models.  
 
 ### The South Cay Marine Preserve, Belize
-I collaborated with a colleague of mine at UCSB on a project seeking to build a high resolution bathymetric model of the South Cay Marine Preserve in Belize. The purpose of this project was to use passive depth sounding data as labels to train the Stumpf and Lyzenga equations for bathymetric estimation. The spectral data for the region of interest are a set of images from the WV2 digital globe satelite. The image below (left) shows the coverage of the WV2 imagery in red, and the minimal bounding box for the passive depth sounding labels in blue. The lefthand figure is a true color map from the WV2 image of the entire South Cay preserve, with the red showing the enitre region and the green boundary indicating a no-take zone: 
+I collaborated with a colleague of mine at UCSB on a project seeking to build a high resolution bathymetric model of the South Cay Marine Preserve in Belize. The purpose of this project was to use passive depth sounding data as labels to train the Stumpf and Lyzenga equations for bathymetric estimation. The spectral data for the region of interest are a set of images from the WV2 digital globe satelite. The image below (left) shows the coverage of the WV2 imagery in red, and the minimal bounding box for the passive depth sounding labels in blue. The righthand figure is a true color map from the WV2 image of the entire South Cay preserve, with the red showing the enitre region and the green boundary indicating a no-take zone: 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/regions-clean.png)
 
@@ -112,11 +112,15 @@ The canny edge detection algorithm does a better job at distinguishing the granu
 
 The above discussion is based on an analysis of the orthomosaic of the whole image set as produced by photoscan. Though when I re-run this analysis according to my new experimental design, I am going to collect data for a narrow region extending out into the water instead of along the coast. At low tide, this will include sections that are purely water, and sections that are mostly water with isolated un-submerged patch reef structures. When I applied the algorithms described above to images of from this kind of transect—which I collected in my first flight—the results were inadequate to create masks and isolate un-submerged patches. For example, consider the result from application of the sobel operator pictured below:
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/sobel-raw-OW.png)
 
 The poor performance of image gradient methods for over-water images may be because the effects of sun-glint are very significant (19). This is something I will have to experiment with going forward, and will require the inclusion of an NIR band in the imaging set-up on the UAV(17). While edge detection methods produced poor results for these images, I had very good success using a light-weight implementation of a super-pixel segmentation algorithm called SLIC (simple linear iterative clustering)(12). This algorithm is a gradient ascent algorithm based on the development of local k-means super-pixels(12). ScikitImage offers a very efficient version of this algorithm for python. The application of this algorithm to the above image produces the segmentation pictured below (it can be difficult to see so a zoomed in section is included beside):
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/super-pixels-apply-OW.png)
+
 This implementation of the SLIC algorithm is optically very good at building segments in the over-water imagery. The zoomed in section on the right shows how the model is able to distinguish between subtlety different but meaningful segments between submerged regions. The red arrow in the image above on the right indicates a segment that contains no un-submerged points, but is correctly separated from the adjacent segment on the left. The substrate of the indicated segment is shallow rocks, while the adjacent segment has a sand bottom. I mention this because it underscores the high performance of this algorithm given no context or supervision. It can therefore be used to help ameliorate some of the effort required to prepare image data for bathymetric analysis. This is because if the number of clusters (K) is increased—it is passed as a parameter—the model will be able to isolate un-submerged points in over-water imagery with high accuracy(15)(14). The model also shows the ability to distinguish between variable substrate reflectance properties. The former allows for the generation of masks for these over-water segments, while the latter could help to parameterize bathymetric models that specify values for substrate reflectance classes. 
 
+An interesting feature of the canny edge detection process is that it builds a binarized representation of the coastline that can also be used to propose substrate classes. I ran a spatial density clustering on the canny image matrix and then used the convex hull approximation fucntion in openCV to produce segments in the image. The process did not work, even though a mask based on the density clusters shows a very good optical subsetting of the data. Ultimetly the goal though is to generate some set of minimal polygons for the density clusters and use them as abstract substrate labels. The mask from DBSCAN is shown below along with a manual labeling of how I would like the segmentation to draw boundaries. More work needs to be done to accomplish this going forward. 
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/cluster-centers.png)
 
@@ -131,8 +135,4 @@ Lyzenga (2006) propose a simplification of an approximate solution to the radiat
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets_README/lyzenga-equations-ii.png)
 
 ## Appendix: Patch reef grazing halos 
-
-### Introduction
-
-
 
