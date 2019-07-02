@@ -4,6 +4,13 @@
 ### Purpose of repository / disclaimer (for my fans)
 This READMe document is intended to reflect the current state of the work stream and provide updates to stakeholders in a centralized location. As such it does not represent a completed project, and correspondingly the code is unstable and cannot be pulled as ready-to-use software. 
 
+### Desription of raw data & distribution of class examples 
+
+
+
+
+
+
 ### Introduction
 There are a number of papers that use convolutional networks to classify plankton imagery (1)(2)(3). Several of these papers came out of submissions to the National Data Science Bowl 2015 Kaggle competition, which asked participants to classify over 100+ imbalanced classes of plankton images taken by a submersible camera. There is some diversity in the range of approaches taken by participants, though all ranking submissions used convolutional neural networks. The papers I based this analysis on built models with VGG-like architectures:
 
