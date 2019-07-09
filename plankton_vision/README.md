@@ -19,7 +19,9 @@ These reference data are then joined to the list of image files in the NAAMES di
 ##### Joined dataset for analysis
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/joined-data-assets.png)
 #### Adding flags for missing metadata and coercing examples with not associated CATEGORY_GROUPED
-When the datasets have been linked to the file directory, there are sets of examples for which there is no corresponding metadata in the master file, and for which there is no associated CATEGORY_GROUPED in the taxonomy reference. 
+When the datasets have been linked to the file directory, there are sets of examples for which there is no corresponding metadata in the master file, and for which there is no associated CATEGORY_GROUPED in the taxonomy reference. Pictured below (left) is a frequency table of the CATEGORY_PRITIFIED values for which there is no CATEGORY_GROUPED in the taxonomy reference. Pictured below on the right is a refernce dictionary I made to manually coerce the CATEGORY_GROUPED assignment of the examples. The Bacillariophyta category has been changed to Diatom in the current version of the analysis. In total there are 220,896 records of 1,998,900 which needed to be manually assigned to CATEGORY_GROUPED. 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets-no-group-coerce.png)
+For the files missing metadata, there is no manual way to resolve the missing numeric data, and so they have just been excuded from the analysis. In total there are 132,781 records of 1,990,900 with no corresponding entry in the metadata file.
 
 
 ### Introduction
