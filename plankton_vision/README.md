@@ -16,7 +16,7 @@ The image files in the NAAMES directory are named according to the convention FI
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/metadata-sample-asset.png)
 These reference data are then joined to the list of image files in the NAAMES directory, which then gives the full dataset used in the analysis (shown below after join): 
 ##### Joined dataset for analysis
-   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/joined-data-assets.png)
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/joined-data-assets.png)
 
 
 
