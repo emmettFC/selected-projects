@@ -26,7 +26,7 @@ When the datasets have been linked to the file directory, there are sets of exam
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets-no-group-coerce.png)
    
 For the files missing metadata, there is no manual way to resolve the missing numeric data, and so they have just been excuded from the analysis. In total there are 132,781 records of 1,990,900 with no corresponding entry in the metadata file. Files missing metadata are shown below in a historgram over CATEGORY_GROUPED, compared with a historgram of the raw data over the same domain: 
-###### Distribution of files without metadata compared with class distribution in the raw data
+###### Distribution of files without metadata (bottom) compared with class distribution in the raw data (top) 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/histogram-all-data-and-missingmd-asset.png)
 
 
