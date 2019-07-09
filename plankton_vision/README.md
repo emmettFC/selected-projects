@@ -29,6 +29,10 @@ For the files missing metadata, there is no manual way to resolve the missing nu
 ###### Distribution of files without metadata (bottom) compared with class distribution in the raw data (top) 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/histogram-all-data-and-missingmd-asset.png)
 
+### Building vector datasets for classification networks
+
+#### Exclusions to raw data
+
 
 ### Introduction
 There are a number of papers that use convolutional networks to classify plankton imagery (1)(2)(3). Several of these papers came out of submissions to the National Data Science Bowl 2015 Kaggle competition, which asked participants to classify over 100+ imbalanced classes of plankton images taken by a submersible camera. There is some diversity in the range of approaches taken by participants, though all ranking submissions used convolutional neural networks. The papers I based this analysis on built models with VGG-like architectures:
