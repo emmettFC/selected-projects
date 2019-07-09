@@ -5,22 +5,26 @@
 This READMe document is intended to reflect the current state of the work stream and provide updates to stakeholders in a centralized location. As such it does not represent a completed project, and correspondingly the code is unstable and cannot be pulled as ready-to-use software. 
 
 ### Desription of raw data & distribution of class examples 
+
 #### Loading and resolving datasets
 The inputs for the classification networks described in this repo consist of image files and accompanying metadata vectors. The image files are of a variable dimension with RGB channels and the metadata vectors have 16 continuous numeric variables. The data were provided accross three separate files: 
     * a zipfile of all images (NAAMES.zip)
     * a taxonomic reference file (taxonomic_grouping_v3.csv)
     * a metadata file (IFCB_CSV/master.csv)
 The image files in the NAAMES directory are named according to the convention FILE_ID + _ + CATEGORY_PRETTIFIED. These strings can then be parsed out and joined to the other datasets (metadata joins on FILE_ID and taxonomic reference joins on CATEGORY_PRETTIFIED). Extracts from the raw taxonomy reference and metadata files are shown below respectively: 
-##### Taxonomy reference
+###### Taxonomy reference
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets_1_taxonomy.png)
-##### Metadata sample
+###### Metadata sample
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/metadata-sample-asset.png)
 These reference data are then joined to the list of image files in the NAAMES directory, which then gives the full dataset used in the analysis (shown below after join): 
-##### Joined dataset for analysis
+###### Joined dataset for analysis
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/joined-data-assets.png)
-#### Adding flags for missing metadata and coercing examples with not associated CATEGORY_GROUPED
+
+#### Adding flags for missing metadata & coercing examples with no associated CATEGORY_GROUPED
 When the datasets have been linked to the file directory, there are sets of examples for which there is no corresponding metadata in the master file, and for which there is no associated CATEGORY_GROUPED in the taxonomy reference. Pictured below (left) is a frequency table of the CATEGORY_PRITIFIED values for which there is no CATEGORY_GROUPED in the taxonomy reference. Pictured below on the right is a refernce dictionary I made to manually coerce the CATEGORY_GROUPED assignment of the examples. The Bacillariophyta category has been changed to Diatom in the current version of the analysis. In total there are 220,896 records of 1,998,900 which needed to be manually assigned to CATEGORY_GROUPED. 
+
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets-no-group-coerce.png)
+   
 For the files missing metadata, there is no manual way to resolve the missing numeric data, and so they have just been excuded from the analysis. In total there are 132,781 records of 1,990,900 with no corresponding entry in the metadata file.
 
 
