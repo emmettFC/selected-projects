@@ -10,9 +10,12 @@ The inputs for the classification networks described in this repo consist of ima
     * a taxonomic reference file (taxonomic_grouping_v3.csv)
     * a metadata file (IFCB_CSV/master.csv)
 The image files in the NAAMES directory are named according to the convention FILE_ID + _ + CATEGORY_PRETTIFIED. These strings can then be parsed out and joined to the other datasets (metadata joins on FILE_ID and taxonomic reference joins on CATEGORY_PRETTIFIED). Extracts from the raw taxonomy reference and metadata files are shown below respectively: 
+##### Taxonomy reference
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets_1_taxonomy.png)
+##### Metadata sample
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/metadata-sample-asset.png)
 These reference data are then joined to the list of image files in the NAAMES directory, which then gives the full dataset used in the analysis (shown below after join): 
+##### Joined dataset for analysis
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/joined-data-assets.png)
 
 
