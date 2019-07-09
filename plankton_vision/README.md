@@ -5,6 +5,7 @@
 This READMe document is intended to reflect the current state of the work stream and provide updates to stakeholders in a centralized location. As such it does not represent a completed project, and correspondingly the code is unstable and cannot be pulled as ready-to-use software. 
 
 ### Desription of raw data & distribution of class examples 
+#### Loading and resolving datasets
 The inputs for the classification networks described in this repo consist of image files and accompanying metadata vectors. The image files are of a variable dimension with RGB channels and the metadata vectors have 16 continuous numeric variables. The data were provided accross three separate files: 
     * a zipfile of all images (NAAMES.zip)
     * a taxonomic reference file (taxonomic_grouping_v3.csv)
@@ -17,7 +18,8 @@ The image files in the NAAMES directory are named according to the convention FI
 These reference data are then joined to the list of image files in the NAAMES directory, which then gives the full dataset used in the analysis (shown below after join): 
 ##### Joined dataset for analysis
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/joined-data-assets.png)
-
+#### Adding flags for missing metadata and coercing examples with not associated CATEGORY_GROUPED
+When the datasets have been linked to the file directory, there are sets of examples for which there is no corresponding metadata in the master file, and for which there is no associated CATEGORY_GROUPED in the taxonomy reference. 
 
 
 ### Introduction
