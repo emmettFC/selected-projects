@@ -5,9 +5,15 @@
 This READMe document is intended to reflect the current state of the work stream and provide updates to stakeholders in a centralized location. As such it does not represent a completed project, and correspondingly the code is unstable and cannot be pulled as ready-to-use software. 
 
 ### Desription of raw data & distribution of class examples 
-
-
-
+The inputs for the classification networks described in this repo consist of image files and accompanying metadata vectors. The image files are of a variable dimension with RGB channels and the metadata vectors have 16 continuous numeric variables. The data were provided accross three separate files: 
+    * a zipfile of all images (NAAMES.zip)
+    * a taxonomic reference file (taxonomic_grouping_v3.csv)
+    * a metadata file (IFCB_CSV/master.csv)
+The image files in the NAAMES directory are named according to the convention FILE_ID + _ + CATEGORY_PRETTIFIED. These strings can then be parsed out and joined to the other datasets (metadata joins on FILE_ID and taxonomic reference joins on CATEGORY_PRETTIFIED). Extracts from the raw taxonomy reference and metadata files are shown below respectively: 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plankton_image_set_final_1.png)
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plankton_image_set_final_1.png)
+These reference data are then joined to the list of image files in the NAAMES directory, which then gives the full dataset used in the analysis (shown below after join): 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_model/assets_README/_plankton_image_set_final_1.png)
 
 
 
