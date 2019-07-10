@@ -41,7 +41,7 @@ Before doing any upsampling or preprocessing on the data, we make two exclusions
 #### iib: Basic note on train / validation division of data and samping methodology 
 Since the above exclusions do eliminate some valid examples, the impact of the exclusion will be slightly different on training and testing subsets of the data. Because of this, I split the data into training and testing subsets before I apply the ESDA & metadata exclusions, so that the results of the model reflect the expected performance on a totally random set of raw data from the IFCB. I use 85% of the data for training, and 15% for testing. The distribution of class examples in the testing data is aproximately the same as the distribution in the raw data. Having imbalanced classes in the training data can cause undesireable and trivial learning that takes advantage of the probability that any example (x : set(x)) is non uniform across the classes. At this point in development, I have just upsampled the underrepresented classes (both at the CATEGORY_GROUPED level and CATEGORY_PRITTIFIED level). This has helped a ton in model training, and so a more sophisticated approach to sampling (like SMOTE or using Autoencoders) will be implemented in further iterations of the analysis.  
 
-### III: Network design & performance summary 
+### III: Network designs & performance summary 
 
 #### iiia: Model 1A
 ##### Model 1A overview
