@@ -25,13 +25,14 @@ When the datasets have been linked to the file directory, there are sets of exam
 ###### Coerce CATEGORY_GROUPED reference dictionary and frequency table
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets-no-group-coerce.png)
    
-For the files missing metadata, there is no manual way to resolve the missing numeric data, and so they have just been excuded from the analysis. In total there are 132,781 records of 1,990,900 with no corresponding entry in the metadata file. Files missing metadata are shown below in a historgram over CATEGORY_GROUPED, compared with a historgram of the raw data over the same domain: 
+For the files missing metadata, there is no manual way to resolve the missing numeric data, and so they have just been excuded from the analysis. In total there are 132,781 records of 1,990,900 with no corresponding entry in the metadata file. Files missing metadata are shown below in a historgram over CATEGORY_GROUPED, compared with a historgram of the raw data over the same domain. The plots illustrate that the class distribution of files missing metadata is approximatey the same as the class distribution in the raw data, suggesting that it is a random subset. 
 ###### Distribution of files without metadata (bottom) compared with class distribution in the raw data (top) 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/histogram-all-data-and-missingmd-asset.png)
 
 ### Building vector datasets for classification networks
 
 #### Exclusions to raw data
+Before doing any upsampling or preprocessing on the data, we make two exclusions: 1) remove all examples missing metadata, 2) remove all examples for which the equivalent spherical diameter by area (ESDA) is less than or equal to 7.1 um, which corresponds to a 24 pixel cutoff at 3.4 pixels per micrometre. The threshold of 24 pixels / 7.1um is an approximate estimate of the threshold of minimum size below which the instrument data is not reliably quantifiable. The scientists who curated the dataset intended to label all images below this threshold as Unicellular, though when this exclusion is applied there is some very minor loss of data from the valid classes. 
 
 
 ### Introduction
