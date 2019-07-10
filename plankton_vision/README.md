@@ -32,7 +32,7 @@ For the files missing metadata, there is no manual way to resolve the missing nu
 ### II: Building datasets for classification networks
 
 #### iia: Exclusions to raw data
-Before doing any upsampling or preprocessing on the data, we make two exclusions: 1) remove all examples missing metadata, 2) remove all examples for which the equivalent spherical diameter by area (ESDA) is less than or equal to 7.1 um, which corresponds to a 24 pixel cutoff at 3.4 pixels per micrometre. The threshold of 24 pixels / 7.1um is an approximate estimate of the threshold of minimum size below which the instrument data is not reliably quantifiable. The scientists who curated the dataset intended to label all images below this threshold as Unicellular, though when this exclusion is applied there is some very minor loss of data from the valid classes. 
+Before doing any upsampling or preprocessing on the data, we make two exclusions: 1) remove all examples missing metadata, 2) remove all examples for which the equivalent spherical diameter by area (ESDA) is less than or equal to 7.1 um, which corresponds to a 24 pixel cutoff at 3.4 pixels per micrometre. The threshold of 24 pixels / 7.1um is an approximate estimate of the threshold of minimum size below which the instrument data is not reliably quantifiable. The scientists who curated the dataset intended to label all images below this threshold as Unicellular, though when this exclusion is applied there is some very minor loss of data from the valid classes.
 
 
 ### Introduction
