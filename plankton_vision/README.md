@@ -33,7 +33,8 @@ For the files missing metadata, there is no manual way to resolve the missing nu
 
 #### iia: Exclusions to raw data
 Before doing any upsampling or preprocessing on the data, we make two exclusions: 1) remove all examples missing metadata, 2) remove all examples for which the equivalent spherical diameter by area (ESDA) is less than or equal to 7.1 um, which corresponds to a 24 pixel cutoff at 3.4 pixels per micrometre. The threshold of 24 pixels / 7.1um is an approximate estimate of the threshold of minimum size below which the instrument data is not reliably quantifiable. The scientists who curated the dataset intended to label all images below this threshold as Unicellular, though when this exclusion is applied there is some very minor loss of data from the valid classes.
-
+###### Plot of examples excluded by ESDA threshold (99.5% exclusion of invalid data, 0.54% exclusion of valid data)
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/esda-exclude-asset.png)
 
 ### Introduction
 There are a number of papers that use convolutional networks to classify plankton imagery (1)(2)(3). Several of these papers came out of submissions to the National Data Science Bowl 2015 Kaggle competition, which asked participants to classify over 100+ imbalanced classes of plankton images taken by a submersible camera. There is some diversity in the range of approaches taken by participants, though all ranking submissions used convolutional neural networks. The papers I based this analysis on built models with VGG-like architectures:
