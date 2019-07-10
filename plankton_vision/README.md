@@ -44,16 +44,19 @@ Since the above exclusions do eliminate some valid examples, the impact of the e
 ### III: Network design & performance summary 
 
 #### iiia: Model 1A
+##### Model 1A overview
 The first algorithm I used for this analysis splits the classification task into a sequential to step process: 
    * PART I: Binary classication network to exclude invalid or non-planktonic data from the raw datastream
    * PART II: Multi-class classification network over the CATEGORY_GROUPED taxonomy 
 
 Breifly, the reasoning behind using two networks as opposed to a single network is based on a hueristic assement that: 
 
-   * 1) the task of excluding invalid images might rely more on the numeric vector data than the image pixel matricies, which is based on the observation that ESDA thresholding removed nearly 400k images with a single parameter in the vector data.
-   * 2) the objective function for either task might be disigned to optimise different sorts of error (ex. precision and recall), and so separating them allows for specific attention to meaningfully separate tasks 
+   * the task of excluding invalid images might rely more on the numeric vector data than the image pixel matricies, which is based on the observation that ESDA thresholding removed nearly 400k images with a single parameter in the vector data.
+   * the objective function for either task might be disigned to optimise different sorts of error (ex. precision and recall), and so separating them allows for specific attention to meaningfully separate tasks 
 
-That
+That being said, I will try both this sequential approach and single-network approach to see which performs better (to be explored further in model 1B). In terms of the network structure, since we have both numeric data and image data, it makes sense to employ the use of a multi-input model which accepts an image and a vector for each example in the data. In both the binary and multi-class networks, the vector data is input to a multi layer perceptron network (MLP) and the image data is input to a convolutional nueral network (CNN). The specifics of the two networks are given below. 
+
+##### Model 1A: Binary classification network 
 
 
 
