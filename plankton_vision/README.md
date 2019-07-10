@@ -44,6 +44,13 @@ Since the above exclusions do eliminate some valid examples, the impact of the e
 ### III: Network design & performance summary 
 
 #### iiia: Model 1A
+The first algorithm I used for this analysis splits the classification task into a sequential to step process: 
+   * PART I: Binary classication network to exclude invalid or non-planktonic data from the raw datastream
+   * PART II: Multi-class classification network over the CATEGORY_GROUPED taxonomy 
+Breifly, the reasoning behind using two networks as opposed to a single network is based on a hueristic assement that 
+   * 1) the task of excluding invalid images might rely more on the numeric vector data than the image pixel matricies, which is based on the observation that ESDA thresholding removed nearly 400k images with a single parameter in the vector data.
+   * 2) the objective function for either task might be disigned to optimise different sorts of error (ex. precision and recall), and so separating them allows for specific attention to meaningfully separate tasks 
+That
 
 
 
