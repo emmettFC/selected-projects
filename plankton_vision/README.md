@@ -89,14 +89,16 @@ As depicted in the histograms above, this network does very well at excluding th
 ###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/not-plankton-binary-confusion-matrices-asset.png)
 
-
-
-
-
-
-
+###### Mean output probabilities (binary 0 = not plankton, 1 = plankton) for all higher level classes in the data
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-probability-high-group-asset.png)
 
 ##### Model 1A overview: Multi-class network 
+
+###### Confusion matrix for all classes in the multi-class network  
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/confusion-mat-multi-all-asset.png)
+
+###### Mean output probability vectors for each of the classes in the multi-class network  
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/mean-probability-dist-slc-asset.png)
 
 
 ##### Model 1A overview: Multi-class network 
