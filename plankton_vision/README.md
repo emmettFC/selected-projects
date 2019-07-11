@@ -71,6 +71,7 @@ I am going to try both this sequential approach and single-network approach to s
 
 
 ##### Model 1A overview: Binary network performance
+The binary classification network 
 
 ###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-class-by-high-group-matrix.png)
