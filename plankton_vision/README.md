@@ -81,7 +81,7 @@ Both of the networks for this analysis were trained using the same (85%) subset 
 ###### Distribution of class examples in the testing data after examples classifed as not plankton are removed 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/testing-data-after-binary-classification-asset.png)
 
-As depicted in the histograms above, this network does very well at excluding the majority of the invalid examples in the data. The accuracy of the binary classifier for the individual higher level groups is shown below for all images in the 1) plankton and 2) not plankton groups: 
+As depicted in the histograms above, this network does very well at excluding the majority of the invalid examples in the data. The accuracy of the binary classifier for the individual higher level groups is shown below for all images in the 1) plankton and 2) not plankton groups. For both groups, the lefthand plot shows the relative percent error (darker colors indicate more error), and the righthand plot shows actual percent accuracy.  
 
 ###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-class-by-high-group-matrix.png)
@@ -92,7 +92,10 @@ As depicted in the histograms above, this network does very well at excluding th
 ###### Mean output probabilities (binary 0 = not plankton, 1 = plankton) for all higher level classes in the data
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-probability-high-group-asset.png)
 
-##### Model 1A overview: Multi-class network 
+Since the output activations for the binary classification network output a probability between 0 and 1 (1 being plankton 0 being not plankton), you can get a sense of the classification uncertainty by looking at a proability density function for each of the classes. The plot below shows the binary pdfs for all of the classes in the data. There are two things to notice with these plots: 1) the not plankton classes (Multiple, Corrupt, Not living) have wider density spikes around the correct label of 0, which indicates that there is more uncertainty in the classification probabilities for these classes; 2) the plankton classes all seem bifrucated between highly certain correct predictions, and highly certain incorrect predictions. It is worth looking at some examples from these misclassifications to see if there is any qualitative reason behind the observed behavior. 
+
+##### Model 1A overview: Multi-class network structure
+
 
 ###### Complete summary of model performance end-to-end on testing data  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/model-summary-by-class-asset.png)
