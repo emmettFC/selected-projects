@@ -87,7 +87,7 @@ As depicted in the histograms above, this network does very well at excluding th
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-class-by-high-group-matrix.png)
 
 ###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
-   ![alt text]https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/not-plankton-binary-confusion-matrices-asset.png)
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/not-plankton-binary-confusion-matrices-asset.png)
 
 
 
