@@ -7,9 +7,11 @@
 
 #### ia: Loading and resolving datasets
 The inputs for the classification networks described in this repo consist of image files and accompanying metadata. The image files are of a variable dimension with RGB channels and the metadata is a vector that has 16 elements. The data were provided accross three separate files: 
+
     * a zipfile of all images (NAAMES.zip)
     * a taxonomic reference file (taxonomic_grouping_v3.csv)
     * a metadata file (IFCB_CSV/master.csv)
+    
 The image files in the NAAMES directory are named according to the convention FILE_ID + _ + CATEGORY_PRETTIFIED. These strings can then be parsed out and joined to the other datasets (metadata joins on FILE_ID and taxonomic reference joins on CATEGORY_PRETTIFIED). Extracts from the raw taxonomy reference and metadata files are shown below respectively: 
 ###### Taxonomy reference
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets_1_taxonomy.png)
@@ -43,6 +45,7 @@ Since the ESDA exclusion does eliminate some valid examples, the impact will be 
 #### iiia: Model 1A
 ##### Model 1A overview
 The first algorithm I used for this analysis splits the classification task into a sequential two step process: 
+
    * PART I: Binary classication network to exclude invalid or non-planktonic data from the raw datastream
    * PART II: Multi-class classification network over the CATEGORY_GROUPED taxonomy 
 
