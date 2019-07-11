@@ -75,8 +75,11 @@ I am going to try both this sequential approach and single-network approach to s
 ##### Model 1A overview: Binary network performance
 Both of the networks for this analysis were trained using the same (85%) subset of the raw data. The trained models and esda thresholding are run sequentially on the testing sample (15%) so it is exactly like running the code on a random sample of the unlabeled data. The raw sample has 299,835 examples, and after making the esda and missing-metadata exclusions, we are left with 215,357 examples. The binary classification model is run on this subset of the data, and excludes every example the model predicts as belonging to the 'not plankton' (which is really non-living) group. This model has overall accuracy of 96%, with 97% or plankton correctly labeled, and 92% of not plankton labeled correctly. The distribution of classes in the data before and after the binary network is used to exclude examples is pictured below:
 
-###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
-   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-class-by-high-group-matrix.png)
+###### Distribution of class examples in the testing data 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/testing-data-distribution-asset.png)
+
+###### Distribution of class examples in the testing data after examples classifed as not plankton are removed 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/testing-data-after-binary-classification-asset.png)
 
 
 
