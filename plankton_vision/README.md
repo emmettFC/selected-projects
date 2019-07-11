@@ -88,11 +88,12 @@ As depicted in the histograms above, this network does very well at excluding th
 
 ###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/not-plankton-binary-confusion-matrices-asset.png)
+   
+Since the output activations for the binary classification network output a probability between 0 and 1 (1 being plankton 0 being not plankton), you can get a sense of the classification uncertainty by looking at a proability density function for each of the classes. The plot below shows the binary pdfs for all of the classes in the data. There are two things to notice with these plots: 1) the not plankton classes (Multiple, Corrupt, Not living) have wider density spikes around the correct label of 0, which indicates that there is more uncertainty in the classification probabilities for these classes; 2) the plankton classes all seem bifrucated between highly certain correct predictions, and highly certain incorrect predictions. It is worth looking at some examples from these misclassifications to see if there is any qualitative reason behind the observed behavior. 
 
 ###### Mean output probabilities (binary 0 = not plankton, 1 = plankton) for all higher level classes in the data
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-probability-high-group-asset.png)
 
-Since the output activations for the binary classification network output a probability between 0 and 1 (1 being plankton 0 being not plankton), you can get a sense of the classification uncertainty by looking at a proability density function for each of the classes. The plot below shows the binary pdfs for all of the classes in the data. There are two things to notice with these plots: 1) the not plankton classes (Multiple, Corrupt, Not living) have wider density spikes around the correct label of 0, which indicates that there is more uncertainty in the classification probabilities for these classes; 2) the plankton classes all seem bifrucated between highly certain correct predictions, and highly certain incorrect predictions. It is worth looking at some examples from these misclassifications to see if there is any qualitative reason behind the observed behavior. 
 
 ##### Model 1A overview: Multi-class network structure
 
