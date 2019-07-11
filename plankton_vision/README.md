@@ -94,16 +94,24 @@ As depicted in the histograms above, this network does very well at excluding th
 
 ##### Model 1A overview: Multi-class network 
 
+###### Complete summary of model performance end-to-end on testing data  
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/model-summary-by-class-asset.png)
+
 ###### Confusion matrix for all classes in the multi-class network  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/conf-mat-multi-class-asset-2.png)
 
 ###### Mean output probability vectors for each of the classes in the multi-class network  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/mean-probability-dist-slc-asset.png)
 
+###### Proportion of false positives in the final classification (grouped by 1) correct class, 2) other false, 3) other plankton false)  
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/proportion-false-positive-by-class-asset.png)
+
+
+
 
 ##### Model 1A overview: Multi-class network 
 
-
+https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/proportion-false-positive-by-class-asset.png
 
 
 
