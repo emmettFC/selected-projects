@@ -59,9 +59,13 @@ Breifly, the reasoning behind using two networks as opposed to a single network 
 I am going to try both this sequential approach and single-network approach to see which performs better. In terms of the network structure, since we have both numeric data and image data, it makes sense to employ the use of a multi-input model which accepts an image and a metadata vector for each example in the data. In both the binary and multi-class networks, the vector data is input to a multi layer perceptron network (MLP) and the image data is input to a convolutional nueral network (CNN). After the output activations from the last layer of the CNN and MLP nets are then concatenated and fed through several more dense layers and then output as a probability distribution over the classes. The basic components of the two networks are pictured below: 
 
 ###### Input layer 128 * 128 * 3 (RGB) and example convolution (ReLU, batch normalization, max pooling & dropout)
-         ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/cnn-binary-asset.png)
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/cnn-binary-asset.png)
+ 
+###### MLP network branch and CNN branch concatenation
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/mlp-cnn-concat-binary-asset.png)
 
-
+###### Combined layers and output activation 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/combined-stream-binary-asset.png)
 
 
 
