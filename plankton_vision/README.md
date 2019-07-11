@@ -70,6 +70,8 @@ I am going to try both this sequential approach and single-network approach to s
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/combined-stream-binary-asset.png)
 
 
+## *** RESULTS BEGIN ***
+
 ##### Model 1A overview: Binary network performance
 The binary classification network 
 
