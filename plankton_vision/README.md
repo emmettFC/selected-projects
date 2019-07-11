@@ -81,11 +81,13 @@ Both of the networks for this analysis were trained using the same (85%) subset 
 ###### Distribution of class examples in the testing data after examples classifed as not plankton are removed 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/testing-data-after-binary-classification-asset.png)
 
-
-
+As depicted in the histograms above, this network does very well at excluding the majority of the invalid examples in the data. The accuracy of the binary classifier for the individual higher level groups is shown below for all images in the 1) plankton and 2) not plankton groups: 
 
 ###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-class-by-high-group-matrix.png)
+
+###### Relative/normalized percent error (left) and raw percent error (right) for plankton classes 
+   ![alt text]https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/not-plankton-binary-confusion-matrices-asset.png)
 
 
 
