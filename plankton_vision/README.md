@@ -43,6 +43,7 @@ Since the above exclusions do eliminate some valid examples, the impact of the e
 
 ### III: Network designs & performance summary 
 
+
 #### iiia: Model 1A
 ##### Model 1A overview
 The first algorithm I used for this analysis splits the classification task into a sequential to step process: 
