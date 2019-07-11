@@ -107,6 +107,7 @@ As depicted in the histograms above, this network does very well at excluding th
 
 
 
+
 Might want to see what the performance of the MLP network is on the data, and then see what the performance of the cnn is on the data, and optimize those separately and then see if the combined model outperforms, or is you could be ensembling them differently in some way. 
 
 
