@@ -6,7 +6,7 @@
 ### I: Desription of raw data & distribution of class examples 
 
 #### ia: Loading and resolving datasets
-The inputs for the classification networks described in this repo consist of image files and accompanying metadata vectors. The image files are of a variable dimension with RGB channels and the metadata vectors have 16 continuous numeric variables. The data were provided accross three separate files: 
+The inputs for the classification networks described in this repo consist of image files and accompanying metadata. The image files are of a variable dimension with RGB channels and the metadata is a vector that has 16 elements. The data were provided accross three separate files: 
     * a zipfile of all images (NAAMES.zip)
     * a taxonomic reference file (taxonomic_grouping_v3.csv)
     * a metadata file (IFCB_CSV/master.csv)
@@ -23,39 +23,39 @@ These reference data are then joined to the list of image files in the NAAMES di
 When the datasets have been linked to the file directory, there are sets of examples for which there is no corresponding metadata in the master file, and for which there is no associated CATEGORY_GROUPED in the taxonomy reference. Pictured below (left) is a frequency table of the CATEGORY_PRITIFIED values for which there is no CATEGORY_GROUPED in the taxonomy reference. Pictured below on the right is a refernce dictionary I made to manually coerce the CATEGORY_GROUPED assignment of the examples. The Bacillariophyta category has been changed to Diatom in the current version of the analysis. In total there are 220,896 records of 1,998,900 which needed to be manually assigned to CATEGORY_GROUPED. 
 ###### Coerce CATEGORY_GROUPED reference dictionary and frequency table
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets-no-group-coerce.png)
-   
-For the files missing metadata, there is no manual way to resolve the missing numeric data, and so they have just been excuded from the analysis. In total there are 132,781 records of 1,990,900 with no corresponding entry in the metadata file. Files missing metadata are shown below in a historgram over CATEGORY_GROUPED, compared with a historgram of the raw data over the same domain. The plots illustrate that the class distribution of files missing metadata is approximatey the same as the class distribution in the raw data, suggesting that it is a random subset. 
+
+The files missing metadata have been excuded from the analysis. In total there are 132,781 records of 1,990,900 with no corresponding entry in the metadata file. Files missing metadata are shown below in a historgram over CATEGORY_GROUPED, compared with a historgram of the raw data over the same domain. The plots illustrate that the class distribution of files missing metadata is approximatey the same as the class distribution in the raw data, presumably meaning that it is a random subset. 
 ###### Distribution of files without metadata (bottom) compared with class distribution in the raw data (top) 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/histogram-all-data-and-missingmd-asset.png)
 
 ### II: Building datasets for classification networks
 
 #### iia: Exclusions to raw data
-Before doing any upsampling or preprocessing on the data, we make two exclusions: 1) remove all examples missing metadata, 2) remove all examples for which the equivalent spherical diameter by area (ESDA) is less than or equal to 7.1 um, which corresponds to a 24 pixel cutoff at 3.4 pixels per micrometre. The threshold of 24 pixels / 7.1um is an approximate estimate of the threshold of minimum size below which the instrument data is not reliably quantifiable. The scientists who curated the dataset intended to label all images below this threshold as Unicellular, though when this exclusion is applied there is some very minor loss of data from the valid classes.
+Before doing any upsampling or preprocessing on the data, I make two exclusions: 1) remove all examples missing metadata, 2) remove all examples for which the equivalent spherical diameter by area (ESDA) is less than or equal to 7.1 um. All images in this dataset with a value below this threshold were intended to be labeled as Unicellular, though when this exclusion is applied there is some very minor loss of data from the valid classes.
 ###### Plot of examples excluded by ESDA threshold (99.5% exclusion of invalid data, 0.54% exclusion of valid data)
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/esda-exclude-asset.png)
 
 #### iib: Basic note on train / validation division of data and samping methodology 
-Since the above exclusions do eliminate some valid examples, the impact of the exclusion will be slightly different on training and testing subsets of the data. Because of this, I split the data into training and testing subsets before I apply the ESDA & metadata exclusions, so that the results of the model reflect the expected performance on a totally random set of raw data from the IFCB. I use 85% of the data for training, and 15% for testing. The distribution of class examples in the testing data is aproximately the same as the distribution in the raw data. Having imbalanced classes in the training data can cause undesireable and trivial learning that takes advantage of the probability that any example (x : set(x)) is non uniform across the classes. At this point in development, I have just upsampled the underrepresented classes (both at the CATEGORY_GROUPED level and CATEGORY_PRITTIFIED level). This has helped a ton in model training, and so a more sophisticated approach to sampling (like SMOTE or using Autoencoders) will be implemented in further iterations of the analysis.  
+Since the ESDA exclusion does eliminate some valid examples, the impact will be slightly different on training and testing subsets of the data. I use 85% of the data for training, and 15% for testing. The distribution of class examples in the testing data is aproximately the same as the distribution in the raw data. Having imbalanced classes in the training data can cause undesireable and trivial learning that takes advantage of the probability that any example (xn : set(x0..xn)) is non uniform across the classes. At this point in development, I have just upsampled the under-represented classes (both at the CATEGORY_GROUPED level and CATEGORY_PRITTIFIED level). This has helped a ton in model training, and I think its definitely worthwhile to explore more sophisticated approaches to sampling (like SMOTE or using Autoencoders) to see if it will improve performance on real data.
 
 ### III: Network designs & performance summary 
 
-
 #### iiia: Model 1A
 ##### Model 1A overview
-The first algorithm I used for this analysis splits the classification task into a sequential to step process: 
+The first algorithm I used for this analysis splits the classification task into a sequential two step process: 
    * PART I: Binary classication network to exclude invalid or non-planktonic data from the raw datastream
    * PART II: Multi-class classification network over the CATEGORY_GROUPED taxonomy 
 
-Breifly, the reasoning behind using two networks as opposed to a single network is based on a hueristic assement that: 
+Breifly, the reasoning behind using two networks as opposed to a single network is based on a (potentially wrong) hueristic that: 
 
    * the task of excluding invalid images might rely more on the numeric vector data than the image pixel matricies, which is based on the observation that ESDA thresholding removed nearly 400k images with a single parameter in the vector data.
-   * the objective function for either task might be disigned to optimise different sorts of error (ex. precision and recall), and so separating them allows for specific attention to meaningfully separate tasks 
+   * the objective function for either task might be disigned to optimise different sorts of error (ex. precision and recall) based on how we want to use the model (ie we really dont want to throw out any valid plankton images in the binary model, so change the loss function to penalize that sort of misclasification more). 
 
 That being said, I will try both this sequential approach and single-network approach to see which performs better (to be explored further in model 1B). In terms of the network structure, since we have both numeric data and image data, it makes sense to employ the use of a multi-input model which accepts an image and a vector for each example in the data. In both the binary and multi-class networks, the vector data is input to a multi layer perceptron network (MLP) and the image data is input to a convolutional nueral network (CNN). The specifics of the two networks are given below. 
 
 ##### Model 1A: Binary classification network 
 
+Might want to see what the performance of the MLP network is on the data, and then see what the performance of the cnn is on the data, and optimize those separately and then see if the combined model outperforms, or is you could be ensembling them differently in some way. 
 
 
 ### Introduction
