@@ -130,6 +130,8 @@ In the table summarizing the model, you can see that examples from the plankton 
 ###### Proportion of false positives in the final classification (grouped by 1) correct class, 2) other false, 3) other plankton false) 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/proportion-false-positive-by-class-asset.png)
 
+Examples of the false positives shown in the pie graphs above (Other --> plankton misclassification) for each of the 8 plankton groups are given in the sample plot below: 
+
 ###### Examples of Other images classified as each of the plankton groups (false positives) in the multi-class model 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/other-to-plank-misclass-asset.png)
 
