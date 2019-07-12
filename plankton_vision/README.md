@@ -91,6 +91,8 @@ As depicted in the histograms above, this network does very well at excluding th
    
 The not plankton graph is less interesting give that there are just 3 sub classes, though the plankton graphs show that Prymnesio, Dictyo and Cilliate are the worst performing, and it may be helpful to look at some examples from those groups! 
 
+###### Plankton examples mislabelled as Not plankton (Corrupt, Multiple, Not living) from worst performing groups 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/mislabeled-binary-plank-asset.png)
 
 Since the output activations for the binary classification network output a probability between 0 and 1 (1 being plankton 0 being not plankton), you can get a sense of the classification uncertainty by looking at a proability density function for each of the classes. The plot below shows the binary pdfs for all of the classes in the data. 
 
@@ -98,6 +100,9 @@ Since the output activations for the binary classification network output a prob
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-probability-high-group-asset.png)
 
 There are two things to notice with these plots: 1) the not plankton classes (Multiple, Corrupt, Not living) have wider density spikes around the correct label of 0, which indicates that there is more uncertainty in the classification probabilities for these classes; 2) the plankton classes all seem bifrucated between highly certain correct predictions, and highly certain incorrect predictions. It is worth looking at some examples from these misclassifications to see if there is any qualitative reason behind the observed behavior across all the plankton classes: 
+
+###### Example plankton to not plankton misclassifcations for all plankton groups
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/binary-misclass-all-plank-asset.png)
 
 ##### Model 1A overview: Multi-class network structure
 The input data for the multi-class model is all of the examples labeled as plankton from the binary model, which is 179,175 examples. Of these, 2,863 are actually mislabeled examples from the binary classifier (described above). This means that 1.5% of the data evaluated by this model are already incorrect. It is worth noting though that the data is pretty clean at this point because of 300k inputs to testing, we are left with 180k examples with only 2k(1%) valid images discarded, and ~3k (1.5%) invalid images kept. The muti class network then separates these into 10 categories (8 plankton classes, Other & Not plankton). I now think setting up the model with these levels is a potentially bad design choice, and should be trained over the plankton classes only. The full performance of the models on the testing data is summarized in the table below: 
@@ -117,14 +122,16 @@ In the same way we plotted the binary probabiity density of the first network, w
 
 These mean output probabilities show that the tendancy towards 'Other' over the other incorrect labels is pretty much visible in all the classes. The impact is most significant in the Prymnesio, Chloro and Dinoflagellate classes. Below I have included a plot of sample images from those classes that have been misclassified as 'Other' in the multi-class network: 
 
-
+###### Images from each plankton class that have been misclassified as Other in the multi-class network  
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/other-misclass-by-plank-multi-asset.png)
 
 In the table summarizing the model, you can see that examples from the plankton classes are classified very well, but the resulting absolute percentage error of the full algorithm is nearly 80% for some example classes (Chloro). This is because a proportionally large number of images form the Other class are assigned as Chloro. To visualize the impact of the mislabeled Other data, the pie graphs below show the proportion of examples in the final classification bins that actually belong to the other class. 
 
-###### Proportion of false positives in the final classification (grouped by 1) correct class, 2) other false, 3) other plankton false)  
+###### Proportion of false positives in the final classification (grouped by 1) correct class, 2) other false, 3) other plankton false) 
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/proportion-false-positive-by-class-asset.png)
 
-
+###### Examples of Other images classified as each of the plankton groups (false positives) in the multi-class model 
+   ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/other-to-plank-misclass-asset.png)
 
 
 
