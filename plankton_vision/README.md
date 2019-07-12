@@ -115,7 +115,11 @@ In the same way we plotted the binary probabiity density of the first network, w
 ###### Mean output probability vectors for each of the classes in the multi-class network  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/mean-probability-dist-slc-asset.png)
 
-In the table summarizing the model, you can see that examples from the plankton classes are classified very well, but the resulting absolute percentage error of the full algorithm is nearly 80% (Chloro). This is because a proportionally large number of images form the Other class are assigned as Chloro. To visualize the impact of the mislabeled Other data, the pie graphs below show the proportion of examples in the final classification bins that actually belong to the other class. 
+These mean output probabilities show that the tendancy towards 'Other' over the other incorrect labels is pretty much visible in all the classes. The impact is most significant in the Prymnesio, Chloro and Dinoflagellate classes. Below I have included a plot of sample images from those classes that have been misclassified as 'Other' in the multi-class network: 
+
+
+
+In the table summarizing the model, you can see that examples from the plankton classes are classified very well, but the resulting absolute percentage error of the full algorithm is nearly 80% for some example classes (Chloro). This is because a proportionally large number of images form the Other class are assigned as Chloro. To visualize the impact of the mislabeled Other data, the pie graphs below show the proportion of examples in the final classification bins that actually belong to the other class. 
 
 ###### Proportion of false positives in the final classification (grouped by 1) correct class, 2) other false, 3) other plankton false)  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/proportion-false-positive-by-class-asset.png)
