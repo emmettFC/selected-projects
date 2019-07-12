@@ -101,41 +101,20 @@ The input data for the multi-class model is all of the examples labeled as plank
 ###### Complete summary of model performance end-to-end on testing data  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/model-summary-by-class-asset.png)
 
+Of the 179,175 input examples, the multi-class model classifies 67,423 of 71,910 plankton images into thier correct category (93.7%). Unfortunately, the model only labels 85,384 of 107,265 of the Other and Not plankton images correctly (79.8%). IN total the model predicts 152,807 of 179,175 testing examples correctly (85.3%). This is pretty encouraging, especially because I think it can be significantly improved upon. Below is a confusion matrix showing the true labels and predicted labels and the proportion of misclasification for all pairs of labels. 
 
 ###### Confusion matrix for all classes in the multi-class network  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/conf-mat-multi-class-asset-2.png)
 
+In the same way we plotted the binary probabiity density of the first network, we can here do the same by looking at the mean output probabilities for each class over the domain of the classifier. This graph again underscores the impact that the 'Other' class has on the models learned probabilities. 
+
 ###### Mean output probability vectors for each of the classes in the multi-class network  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/mean-probability-dist-slc-asset.png)
 
+In the table summarizing the model, you can see that examples from the plankton classes are classified very well, but the resulting absolute percentage error of the full algorithm is nearly 80% (Chloro). This is because a proportionally large number of images form the Other class are assigned as Chloro. To visualize the impact of the mislabeled Other data, the pie graphs below show the proportion of examples in the final classification bins that actually belong to the other class. 
+
 ###### Proportion of false positives in the final classification (grouped by 1) correct class, 2) other false, 3) other plankton false)  
    ![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/proportion-false-positive-by-class-asset.png)
-
-
-
-
-##### Model 1A overview: Multi-class network 
-
-https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/proportion-false-positive-by-class-asset.png
-
-
-
-
-Might want to see what the performance of the MLP network is on the data, and then see what the performance of the cnn is on the data, and optimize those separately and then see if the combined model outperforms, or is you could be ensembling them differently in some way. 
-
-
-### Introduction
-There are a number of papers that use convolutional networks to classify plankton imagery (1)(2)(3). Several of these papers came out of submissions to the National Data Science Bowl 2015 Kaggle competition, which asked participants to classify over 100+ imbalanced classes of plankton images taken by a submersible camera. There is some diversity in the range of approaches taken by participants, though all ranking submissions used convolutional neural networks. The papers I based this analysis on built models with VGG-like architectures:
-
-   * 6+ convolutional layers
-   * ReLU activations (or variant)
-   * Pooling layers (Max and variants)
-   * Fully connected dense layers
-   * Regularization (dropout most common)
-   * Fixed stride of 1
-   * Layer by layer increasing number of 3*3 filters
-
-
 
 
 
