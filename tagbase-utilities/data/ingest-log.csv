@@ -1,0 +1,3 @@
+date,file_id,file_name,n_records,type
+2020-02-01 15:11:15.564654,0,159924_2013_128419_eTUFF_hdr.txt,5311,time_series
+2020-02-01 15:11:18.972208,1,160189_2009_95949_eTUFF_hdr.txt,3709,time_series

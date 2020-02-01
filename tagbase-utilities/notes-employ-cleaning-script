@@ -1,0 +1,37 @@
+
+
+
+# -- 
+# run script
+
+python clean-timeseries-eTUFF.py
+
+
+# -- 
+# scp over all cleaned files
+
+scp -i sharkbase.pem /Users/culhane/Desktop/shark_tagbase/tagbase-work-new/data/clean_timeseries/*.txt ubuntu@ec2-18-222-195-161.us-east-2.compute.amazonaws.com:~/sharkbase/tagbase-server/data/timeseries/
+
+
+# -- 
+# spin up the server (files are not accessible untill you restart the docker service)
+
+screen 
+docker-compose build 
+docker-compose up
+
+
+# -- 
+# detatch, assign granule id numbers and run curl statements 
+
+ctr + a + d 
+
+gid_a = 1235
+gid_b = 1236
+
+
+curl -X GET "http://0.0.0.0:5433/v2/tagbase/ingest/etuff?granule_id=1235&file=file%3A%2F%2F%2Fusr%2Fsrc%2Fapp%2Fdata%2Ftimeseries%2F159924_2013_128419_eTUFF_hdr.txt" -H "accept: application/json"
+
+curl -X GET "http://0.0.0.0:5433/v2/tagbase/ingest/etuff?granule_id=1236&file=file%3A%2F%2F%2Fusr%2Fsrc%2Fapp%2Fdata%2Ftimeseries%2F160189_2009_95949_eTUFF_hdr.txt" -H "accept: application/json"
+
+

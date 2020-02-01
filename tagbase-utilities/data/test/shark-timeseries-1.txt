@@ -1,0 +1,57 @@
+// global attributes:
+// etag device attributes:
+  :instrument_name = "159924_2013_128419"
+  :instrument_type = "s"
+  :manufacturer = "Wildlife"
+  :model = "SPOT"
+  :owner_contact = "wetherbee@uri.edu"
+  :person_owner = "Bradley Wetherbee"
+  :ptt = "128419"
+// etag deployment attributes:
+  :geospatial_lat_start = "38.0427"
+  :geospatial_lon_start = "-74.493"
+  :time_coverage_start = "1369958400"
+// etag end of mission attributes:
+  :time_coverage_end = "1404950400"
+  :end_details = "Argos"
+  :end_type = "stopped transmitting"
+  :geospatial_lat_end = "42.2644"
+  :geospatial_lon_end = "-66.504"
+// etag animal attributes:
+  :platform = "Isurus oxyrinchus"
+  :taxonomic_serial_number = "159924"
+// etag quality attributes:
+  :found_problem = "no"
+  :person_qc = "Camrin Braun"
+// data:
+// DateTime,VariableID,VariableValue,VariableName,VariableUnits
+2013-06-03 09:48:27,2,-74.2922,longitude,degree
+2013-06-03 09:48:27,3,37.0511,latitude,degree
+2013-06-03 10:28:52,2,-74.2952,longitude,degree
+2013-06-03 10:28:52,3,37.0802,latitude,degree
+2013-06-03 11:20:36,2,-74.2917,longitude,degree
+2013-06-03 11:20:36,3,37.0766,latitude,degree
+2013-06-03 12:59:59,2,-74.2932,longitude,degree
+2013-06-03 12:59:59,3,37.0539,latitude,degree
+2013-06-03 13:39:15,2,-74.2918,longitude,degree
+2013-06-03 13:39:15,3,37.0595,latitude,degree
+2013-06-03 15:20:12,2,-74.3088,longitude,degree
+2013-06-03 15:20:12,3,37.0418,latitude,degree
+2013-06-03 18:27:11,2,-74.3157,longitude,degree
+2013-06-03 18:27:11,3,37.0299,latitude,degree
+2013-06-03 19:43:13,2,-74.3139,longitude,degree
+2013-06-03 19:43:13,3,37.0297,latitude,degree
+2013-06-03 20:58:23,2,-74.3071,longitude,degree
+2013-06-03 20:58:23,3,37.0538,latitude,degree
+2013-06-03 21:19:03,2,-74.2886,longitude,degree
+2013-06-03 21:19:03,3,37.0402,latitude,degree
+2013-06-04 00:06:43,2,-74.2548,longitude,degree
+2013-06-04 00:06:43,3,37.0449,latitude,degree
+2013-06-04 00:22:05,2,-74.2663,longitude,degree
+2013-06-04 00:22:05,3,37.0562,latitude,degree
+2013-06-04 00:23:51,2,-74.2662,longitude,degree
+2013-06-04 00:23:51,3,37.0565,latitude,degree
+2013-06-04 05:05:01,2,-74.3313,longitude,degree
+2013-06-04 05:05:01,3,37.0479,latitude,degree
+2013-06-04 07:59:28,2,-74.4511,longitude,degree
+2013-06-04 07:59:28,3,36.9213,latitude,degree
