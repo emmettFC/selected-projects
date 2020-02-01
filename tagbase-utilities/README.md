@@ -1,5 +1,8 @@
 # Tagbase server deployment 
 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/logos.png)
+
 ### Progress and Notes
 
 ### I: Ingest timeseries eTUFF files
@@ -9,7 +12,7 @@ The timeseries data files we are working with often have 'argosLC' values. These
 
 To demonstrate this workaround this repo mimics the directory structure used in this process. The code currently assumes that you have in your working directory set up as follows: 
 
-![alt text](https://github.com/emmettFC/selected-projects/blob/master/plankton_vision/assets/assets_1_taxonomy.png)
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/directory-initial.png)
 
 
 
