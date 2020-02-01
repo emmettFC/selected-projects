@@ -32,6 +32,15 @@ After running the script, the directory structure will have changed to the follo
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/directory-after-clean.png)
 
+#### ii: Log files 
+The script clean-timeseries-eTUFF.py will either generate or update two metadata files in the working directory. The first file is called ingest-log.csv, and contains the date the file was staged into the ingestion directory, the original file name, the number of records, a new unique identifier and the type of the file (timeseries or profile). The file will look as follows after running for the this repo: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/ingestlog.png)
+
+The script also creates a second metadata file called lc-log-info.csv, which contains the original argosLC codes from each file and the new unique numeric id that is assigned to it so the files can be ingested. The script will check to see for each argos code if it is already in the reference file, and if it is not then it will generate a new id and update the file. This file will look as follows after the script is run in the directory: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/argos-log.png)
+
 ### II: Ingest cleaned files into tagbase and query the database
 
 #### i: 
