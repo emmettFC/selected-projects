@@ -16,11 +16,10 @@ To demonstrate this workaround this repo mimics the directory structure used in 
 
 In the working directory, raw eTUFF files should be placed in ./raw/ directory in either the ./profile/ or ./timeseries/ subdirectory depending on if they are positional files or depth & profile files. The script clean-timeseries-eTUFF.py can be run from the command line as is, and will do the following things: 
 
-    * read and clean all eTUFF files in the ./data/raw/timeseries/ directory
+    * read all eTUFF files in the ./data/raw/timeseries/ directory
     * replace the string values for argosLC with an integer unique identifier 
     * store the argosLC string value and unique id in a metadata file called lc-log-info.csv
-    * if the file doesnt exist it will build it, and if it does exists it will update it with any not yet seen argosLC 
-    * log the ingestion in a metadata file called ingest-log.csv with number of records, data, unique id and original file name
+    * log the ingestion in a metadata file called ingest-log.csv 
     * move cleaned files into the ./ingested/timeseries/ directory
     * write all files ready to be sent to tagbase in the ./data/clean_timeseries/ directory
    
@@ -41,9 +40,11 @@ The script also creates a second metadata file called lc-log-info.csv, which con
 
 ![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/argos-log.png)
 
+
 ### II: Ingest cleaned files into tagbase and query the database
 
-#### i: 
+#### i: scp files from ./cleaned_timeseries or ./cleaned_profile directory to the remote server
+
 
     
 
