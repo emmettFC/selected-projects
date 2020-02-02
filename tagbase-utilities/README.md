@@ -44,7 +44,28 @@ The script also creates a second metadata file called lc-log-info.csv, which con
 ### II: Ingest cleaned files into tagbase and query the database
 
 #### i: scp files from ./cleaned_timeseries or ./cleaned_profile directory to the remote server
+The cleaned files are then all stored in the clean_timeseries directory, and can be sent with scp over to the remote server running the database. To send all cleaned files, you can run the scp command with * wildcards as shown here: 
 
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/scp-cmd.png)
 
-    
+Once the files are on the remote server, you can instantiate the database with docker in a screen on the remote machine (docker-compose build, docker-compose up). Then, using the curl syntaz proved by the Swagger API, and by generating a unique granule id for each file in the staging directory ./tagbase-server/data/timeseries/, you can build a set of curl commands to write the data to tagbase: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/curl-data.png)
+
+The major to do item right now is to turn the process from scp --> ingestion into a set of bash scrtipts that are executable and can be run base on some trigger. This could be manually or setup through cronjobs once we have data coming in on a regular basis. This portion is done manually now, though automating it with bash is a simple next step. 
+
+#### ii: Writing queries to access the newly ingested data
+Once the curl commands are run, the data can be found on the sever and explored using the tagbase postgres interface though pgadmin. If you write a query to select all entries from the submissions table, you can see the two new submissions we just made at the bottom of the table: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/submissions-query.png)
+
+Using the submission id, you can then query the data_position table to see the positional data loaded from the file: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/lat-lon-query.png)
+
+Finally, the numeric unique id numbers that we used to replace the argos values have successfully been loaded into the database, and can be viewed by writing a query with the sumission id on the proc_observations table: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tagbase-utilities/assets/argos-values-query.png)
+
+This process is complete for the timeseries data, and the next steps are to 1) automate data transfer and ingestion with bash utilities, 2) write a program to clean, log, and write the profile eTUFF files. 
 
