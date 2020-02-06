@@ -136,3 +136,7 @@ Lyzenga (2006) propose a simplification of an approximate solution to the radiat
 
 ## Appendix: Patch reef grazing halos 
 
+A further application of drone photogrammetry that I intend to explore is the use of convolutional models to detect grazing halos in patch reef structures as a way to evaluate trophic activity in a given region. The idea is that the size of the grazing halos is related to the presence of predators, and as the predator population declines the grazing fish are able to move further and further away from the protection of the reef structure. Given the ability to use drones to take high frequency observations, we could look at the change in the grazing halo distance over time as a way to get some information on the corresponding change in predation. An example of the grazing halos detected in the Belize imagery is shown below: 
+
+![alt text](https://github.com/emmettFC/selected-projects/blob/master/tidal_bathymetry_model/assets/grazing-halos.png)
+
